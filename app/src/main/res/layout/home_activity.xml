@@ -19,12 +19,14 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/main_goto_login_button"
-        android:layout_weight="0.18" />
+        android:layout_weight="0.18"
+        android:onClick="gotoLogin" />
 
     <Button
         android:text="Register"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/main_goto_register_button"
-        android:layout_weight="0.18" />
+        android:layout_weight="0.18"
+        android:onClick="gotoRegister" />
 </LinearLayout>
