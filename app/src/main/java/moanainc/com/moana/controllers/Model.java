@@ -23,15 +23,20 @@ public class Model {
     }
 
     /**
+     * return the list of users
+     */
+    public List<User> getUsers() { return _users; };
+
+    /**
      * Add a test user
      */
     public void testUser() {
         User datBoi = new User("George P. Burdell", "jackets7");
-        addUser(datBoi);
+        _users.add(datBoi);
     }
 
     /**
-     * Add a new user to the list
+     * Add a new user to the list.....is this needed??? since arraylist has add method
      */
     public void addUser(User u) {
         if (_users.add(u)) {
