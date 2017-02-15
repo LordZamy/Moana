@@ -21,21 +21,9 @@ public class User {
      */
 
     public User(String name, String password) {
-        boolean bool = false;
-        for (int i = 0; i < password.length(); i++) {
-            if ((password.charAt(i) < 48) || (password.charAt(i) > 57 && password.charAt(i) < 65)
-                    || (password.charAt(i) > 90 && password.charAt(i) < 97)
-                    || (password.charAt(i) > 122)) {
-                bool = true;
-            }
-        }
-        if (!bool) {
-            _name = name;
-            _password = password;
-        } else {
-            //goToRetry();
-        }
 
+        _name = name;
+        _password = password;
     }
 
     /**
@@ -47,17 +35,6 @@ public class User {
     public String getPassword() { return _password; } //if we want to implement "Forgot password"
     public void setPassword(String password) { _password = password; } //if we want to implement "Change password"
 
-    public boolean contains(String s) {
-        boolean bool = false;
-        for (int i = 0; i < s.length(); i++) {
-            if ((s.charAt(i) < 48) || (s.charAt(i) > 57 && s.charAt(i) < 65)
-                    || (s.charAt(i) > 90 && s.charAt(i) < 97)
-                    || (s.charAt(i) > 122)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public boolean equals(Object o) {
