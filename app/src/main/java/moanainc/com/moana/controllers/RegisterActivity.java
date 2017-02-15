@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordError = (TextView) findViewById(R.id.textView13);
     }
 
-    public void gotoHome(View view) {
+    public void gotoHome() {
         Intent gotoHome = new Intent(getBaseContext(), HomeActivity.class);
         getBaseContext().startActivity(gotoHome);
     }
@@ -61,10 +62,16 @@ public class RegisterActivity extends AppCompatActivity {
         String passwordInput = _passwordField.getText().toString();
 
         if (validateName(nameInput) && validatePassword(passwordInput)) {
+            // add new user to user base
             _user.setUsername(nameInput);
             _user.setPassword(passwordInput);
             model.addUser(_user);
-            Log.d("RegisterActivity", _user);
+            Log.d("RegisterActivity", _user.toString());
+
+            // let user know of registration success
+            showConfirmation();
+            // move to home
+            gotoHome();
         }
     }
 
@@ -111,5 +118,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    private void showConfirmation() {
+        Toast toast = Toast.makeText(getApplicationContext(), "Registration Successful!", Toast.LENGTH_LONG);
+        toast.show();
     }
 }
