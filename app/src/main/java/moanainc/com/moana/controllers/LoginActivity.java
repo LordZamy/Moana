@@ -39,9 +39,11 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginPressed(View view) {
         if (areValidCredentials(nameField.toString(), passwordField.toString())) {
-            pageTitle.setText("Welcome, " + nameField.toString());
+            pageTitle.setText("Login succeeded.");
+            // go to login success page.
         } else {
-            pageTitle.setText("New phone. Who dis?");
+            pageTitle.setText("Login failed.");
+            // go to login fail page.
         }
     }
 

@@ -58,14 +58,22 @@ public class RegisterActivity extends AppCompatActivity {
             enter password
         }*/
 
-        if ((_nameField.getText().toString().trim().length() > 0) && (_passwordField.getText().toString().trim().length() > 0)) {
+        if (validName(_nameField.getText().toString()) && validPassword(_passwordField.getText().toString())) {
             _user.setUsername(_nameField.toString());
             _user.setPassword(_nameField.toString());
-            model.getUsers().add(_user);
+            model.addUser(_user);
         } else if (_nameField.toString().trim().length() == 0) {
             // go to registration failed activity
         } else if (_passwordField.toString().trim().length() == 0) {
             // go to registration failed activity
         }
+    }
+
+    private boolean validName(String name) {
+        return true;
+    }
+
+    private boolean validPassword(String name) {
+        return true;
     }
 }
