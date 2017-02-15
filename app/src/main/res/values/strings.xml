@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Moana</string>
+    <string name="title_activity_screen">ScreenA</string>
 </resources>
