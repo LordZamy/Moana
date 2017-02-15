@@ -37,13 +37,19 @@ public class LoginActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToHome);
     }
 
+    public void goToApplication(View view) {
+        Intent goToApplication = new Intent(getBaseContext(), ScreenA.class);
+        getBaseContext().startActivity(goToApplication);
+    }
+
     public void onLoginPressed(View view) {
         if (areValidCredentials(nameField.getText().toString(), passwordField.getText().toString())) {
-            pageTitle.setText("Login succeeded.");
-            // go to login success page.
+            Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
+            toast.show();
+            goToApplication(null);
         } else {
-            pageTitle.setText("Login failed.");
-            // go to login fail page.
+            Toast toast = Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
