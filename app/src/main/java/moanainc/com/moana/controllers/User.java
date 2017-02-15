@@ -38,6 +38,10 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
+        if (!(o instanceof User)) {
+            return false;
+        }
+
         User u = (User) o;
         return (u.getUsername().equals(_name) && u.getPassword().equals(_password));
     }

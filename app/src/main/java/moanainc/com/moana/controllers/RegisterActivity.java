@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordError = (TextView) findViewById(R.id.textView13);
     }
 
-    public void gotoHome() {
+    public void gotoHome(View view) {
         Intent gotoHome = new Intent(getBaseContext(), HomeActivity.class);
         getBaseContext().startActivity(gotoHome);
     }
@@ -71,16 +71,19 @@ public class RegisterActivity extends AppCompatActivity {
             // let user know of registration success
             showConfirmation();
             // move to home
-            gotoHome();
+            gotoHome(null);
         }
     }
 
     private boolean validateName(String nameInput) {
         // check if username string is valid
-        if (!nameInput.matches("^[a-zA-Z0-9_]*$")) {
+        if (nameInput.length() < 5) {
+            writeNameError("Username needs to be at least 5 characters long.");
+            return false;
+        } else if (!nameInput.matches("^[a-zA-Z0-9_]*$")) {
             writeNameError("Username can only contain alphanumeric characters.");
             return false;
-        } else if (userExists(nameInput)) {
+        } else if (Model.getInstance().userExists(nameInput)) {
             // check if username exists
             writeNameError("Username already exists.");
             return false;
@@ -109,15 +112,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void writePasswordError(String errorMsg) {
         passwordError.setText(errorMsg);
         passwordError.setTextColor(0xFFFF0000);
-    }
-
-    private boolean userExists(String name) {
-        for (User u: Model.getInstance().getUsers()) {
-            if (u.getUsername().equals(name)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void showConfirmation() {

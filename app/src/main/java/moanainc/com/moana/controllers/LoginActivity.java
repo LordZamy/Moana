@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        if (areValidCredentials(nameField.toString(), passwordField.toString())) {
+        if (areValidCredentials(nameField.getText().toString(), passwordField.getText().toString())) {
             pageTitle.setText("Login succeeded.");
             // go to login success page.
         } else {
@@ -48,13 +48,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean areValidCredentials(String username, String password) {
-        Model model = Model.getInstance();
-        List<User> users = model.getUsers();
-        for (User user : users) {
-            if (user.getUsername() == username && user.getPassword() == password) {
-                return true;
-            }
-        }
-        return false;
+        return Model.getInstance().getUsers().containsValue(new User(username, password));
     }
 }
