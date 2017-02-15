@@ -5,11 +5,74 @@
     android:weightSum="1">
 
     <TextView
-        android:text="TODO: IMPLEMENT LOGIN"
+        android:text="LOGIN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_weight="0.05"
+        android:id="@+id/textView3"
+        android:textSize="36sp"
         android:textAlignment="center"
-        android:textSize="36sp" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:text="Please enter a username:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="82dp"
+        android:id="@+id/textView12" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text=""
+        android:ems="10"
+        android:layout_marginTop="22dp"
+        android:id="@+id/editText"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Please enter a password:
+(must be at least 7 alphanumeric characters long with no spaces)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="24dp"
+        android:id="@+id/editText2"
+        android:layout_below="@+id/textView13"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:layout_alignEnd="@+id/editText2"
+        android:layout_marginEnd="43dp"
+        android:layout_marginTop="23dp"
+        android:id="@+id/button"
+        android:onClick="onLoginPressed"/>
+
+    <Button
+        android:text="Go Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button"
+        android:layout_toEndOf="@+id/button"
+        android:id="@+id/button2"
+        android:onClick="goToHome" />
+
 </LinearLayout>
