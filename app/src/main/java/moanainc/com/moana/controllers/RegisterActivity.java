@@ -23,8 +23,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText _nameField;
     private EditText _passwordField;
     private TextView pageTitle;
-    private TextView nameText;
-    private TextView passwordText;
+    private TextView nameError;
+    private TextView passwordError;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         _user = new User();
         _nameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
+        nameError = (TextView) findViewById(R.id.textView12);
+        passwordError = (TextView) findViewById(R.id.textView13);
     }
 
     public void gotoHome(View view) {
@@ -55,41 +57,59 @@ public class RegisterActivity extends AppCompatActivity {
         //Log.d("Edit", "Add user");
         Model model = Model.getInstance();
 
+        String nameInput = _nameField.getText().toString();
+        String passwordInput = _passwordField.getText().toString();
 
-        if (_nameField.toString().trim().length() == 0) {
-            Log.d("empty", "name");
-            nameText.setText("Please enter a valid username:");
-            nameText.setTextColor(0xFF0000);
-        } else if (_passwordField.toString().trim().length() == 0 || !validPassword(_passwordField.getText().toString())) {
-            Log.d("invalid", "password");
-            passwordText.setText("Please enter a valid password:\n" +
-                    "(must be at least 7 alphanumeric characters long with no spaces)");
-            passwordText.setTextColor(0xFF0000);
-        } else if (validName(_nameField.getText().toString()) && validPassword(_passwordField.getText().toString())) {
-            //Log.d("Edit", "Add user");
-            _user.setUsername(_nameField.toString());
-            _user.setPassword(_passwordField.toString());
+        if (validateName(nameInput) && validatePassword(passwordInput)) {
+            _user.setUsername(nameInput);
+            _user.setPassword(passwordInput);
             model.addUser(_user);
+            Log.d("RegisterActivity", _user);
         }
     }
 
-    private boolean validName(String name) {
+    private boolean validateName(String nameInput) {
+        // check if username string is valid
+        if (!nameInput.matches("^[a-zA-Z0-9_]*$")) {
+            writeNameError("Username can only contain alphanumeric characters.");
+            return false;
+        } else if (userExists(nameInput)) {
+            // check if username exists
+            writeNameError("Username already exists.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validatePassword(String passwordInput) {
+        if (passwordInput.length() < 8) {
+            writePasswordError("Password needs to be at least 8 characters long.");
+            return false;
+        } else if (!passwordInput.matches("^[a-zA-Z0-9_]*$")) {
+           writePasswordError("Password can only contain alphanumeric characters");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void writeNameError(String errorMsg) {
+        nameError.setText(errorMsg);
+        nameError.setTextColor(0xFFFF0000);
+    }
+
+    private void writePasswordError(String errorMsg) {
+        passwordError.setText(errorMsg);
+        passwordError.setTextColor(0xFFFF0000);
+    }
+
+    private boolean userExists(String name) {
         for (User u: Model.getInstance().getUsers()) {
             if (u.getUsername().equals(name)) {
-                return false;
+                return true;
             }
         }
-        return true;
-    }
-
-    private boolean validPassword(String password) {
-        for (int i = 0; i < _passwordField.getText().toString().length(); i++) {
-            if ((password.charAt(i) < 48) || (password.charAt(i) > 57 && password.charAt(i) < 65)
-                    || (password.charAt(i) > 90 && password.charAt(i) < 97)
-                    || (password.charAt(i) > 122)) {
-                return false;
-            }
-        }
-        return true;
+        return false;
     }
 }
