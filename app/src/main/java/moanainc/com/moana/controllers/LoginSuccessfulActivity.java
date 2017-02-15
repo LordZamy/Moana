@@ -11,14 +11,20 @@ import moanainc.com.moana.R;
  * Created by josh baldwin on 2/14/2017.
  */
 
-public class InvalidPasswordActivity extends AppCompatActivity {
+public class LoginSuccessfulActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.invalid_password_activity);
+        setContentView(R.layout.loginsuccessful_activity);
     }
     public void gotoHome(View view) {
         Intent gotoHome = new Intent(getBaseContext(), HomeActivity.class);
         getBaseContext().startActivity(gotoHome);
+    }
+    public void onLogoutPressed(View view) {
+        gotoHome(null);
+    }
+    public void onSurprisePressed(View view) {
+
     }
 }

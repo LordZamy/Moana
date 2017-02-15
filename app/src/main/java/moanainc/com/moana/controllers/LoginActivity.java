@@ -37,10 +37,15 @@ public class LoginActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToHome);
     }
 
+    public void gotoLoginSuccessful(View view) {
+        Intent gotoLoginSuccessful = new Intent(getBaseContext(), LoginSuccessfulActivity.class);
+        getBaseContext().startActivity(gotoLoginSuccessful);
+    }
+
     public void onLoginPressed(View view) {
         if (areValidCredentials(nameField.getText().toString(), passwordField.getText().toString())) {
             pageTitle.setText("Login succeeded.");
-            // go to login success page.
+            gotoLoginSuccessful(null);
         } else {
             pageTitle.setText("Login failed.");
             // go to login fail page.

@@ -44,10 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         getBaseContext().startActivity(gotoHome);
     }
 
-    public void gotoInvalidPassword(View view) {
-        Intent gotoInvalidPassword = new Intent(getBaseContext(), InvalidPasswordActivity.class);
-        getBaseContext().startActivity(gotoInvalidPassword);
-    }
+
 
     /**
      * Button handler for the register button

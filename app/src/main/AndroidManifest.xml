@@ -19,6 +19,7 @@
         <activity android:name=".controllers.HomeActivity"/>
         <activity android:name=".controllers.LoginActivity"/>
         <activity android:name=".controllers.RegisterActivity"/>
+        <activity android:name=".controllers.LoginSuccessfulActivity"/>
 
     </application>
 
