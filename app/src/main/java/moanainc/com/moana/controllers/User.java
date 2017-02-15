@@ -10,11 +10,16 @@ public class User {
     //the user's password
     private String _password;
 
+    public User() {
+
+    }
+
     /**
      * Makes a new user
      * @param name the username
      * @param password the password
      */
+
     public User(String name, String password) {
         boolean bool = false;
         for (int i = 0; i < password.length(); i++) {

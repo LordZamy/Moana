@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.List;
+
 import moanainc.com.moana.R;
 
 /**
@@ -14,31 +16,26 @@ import moanainc.com.moana.R;
  */
 
 public class RegisterActivity extends AppCompatActivity {
+
+
+    private User _user;
+    private EditText _nameField;
+    private EditText _passwordField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+        _user = new User();
+        _nameField = (EditText) findViewById(R.id.editText);
+        _passwordField = (EditText) findViewById(R.id.editText2);
     }
 
     public void gotoHome(View view) {
         Intent gotoHome = new Intent(getBaseContext(), HomeActivity.class);
         getBaseContext().startActivity(gotoHome);
     }
-
-    /**
-     * Data from widgets
-     */
-    private EditText nameField;
-    private EditText passwordField;
-
-    /**
-     * Data for current user
-     */
-    private User _user;
-
-    //nameField = (EditText) findViewById(R.id.student_name_input);    //how to get this info
-    //passwordField = (EditText) findViewById(R.id.student_id_field);  //how to get this info
 
     /**
      * Button handler for the register button
@@ -48,17 +45,27 @@ public class RegisterActivity extends AppCompatActivity {
         Log.d("Edit", "Add user");
         Model model = Model.getInstance();
 
-        /*if (nameField and passwordField not empty){
-            _user.setUsername(nameField);
-            _user.setPassword(passwordField);
+        /*if (_nameField and _passwordField not empty){
+            _user.setUsername(_nameField);
+            _user.setPassword(_passwordField);
             _users.add(_user)
             go to registration success page
-        } else if (nameField is empty) {
+        } else if (_nameField is empty) {
             registration failed page
             enter username
-        } else if (passwordField is empty) {
+        } else if (_passwordField is empty) {
             registration failed page
             enter password
         }*/
+
+        if ((_nameField.getText().toString().trim().length() > 0) && (_passwordField.getText().toString().trim().length() > 0)) {
+            _user.setUsername(_nameField.toString());
+            _user.setPassword(_nameField.toString());
+            model.getUsers().add(_user);
+        } else if (_nameField.toString().trim().length() == 0) {
+            // go to registration failed activity
+        } else if (_passwordField.toString().trim().length() == 0) {
+            // go to registration failed activity
+        }
     }
 }
