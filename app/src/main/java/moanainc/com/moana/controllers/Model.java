@@ -41,12 +41,6 @@ public class Model {
      * Add a new user to the list.....is this needed??? since arraylist has add method
      */
     public void addUser(User u) {
-//        if (_users.add(u)) {
-//            //go to successful registration page
-//        } else {
-//            registrationFailed(u);
-//        }
-
         _users.put(u.getUsername(), u);
     }
 

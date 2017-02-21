@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +25,10 @@ public class RegisterActivity extends AppCompatActivity {
     private User _user;
     private EditText _nameField;
     private EditText _passwordField;
-    private TextView pageTitle;
+    private EditText _realNameField;
     private TextView nameError;
     private TextView passwordError;
+    private Spinner accountSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,15 @@ public class RegisterActivity extends AppCompatActivity {
         _user = new User();
         _nameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
+        _realNameField = (EditText) findViewById(R.id.editText3);
         nameError = (TextView) findViewById(R.id.textView12);
         passwordError = (TextView) findViewById(R.id.textView13);
+        accountSpinner = (Spinner) findViewById(R.id.spinner);
+
+        //set up spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, AccountType.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountSpinner.setAdapter(adapter);
     }
 
     public void gotoHome(View view) {
@@ -57,11 +67,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         String nameInput = _nameField.getText().toString();
         String passwordInput = _passwordField.getText().toString();
+        String realNameInput = _realNameField.getText().toString();
 
         if (validateName(nameInput) && validatePassword(passwordInput)) {
             // add new user to user base
             _user.setUsername(nameInput);
             _user.setPassword(passwordInput);
+            _user.setRealName(realNameInput);
+            _user.setAccountType((AccountType) accountSpinner.getSelectedItem());
             model.addUser(_user);
             Log.d("RegisterActivity", _user.toString());
 
@@ -94,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
             writePasswordError("Password needs to be at least 8 characters long.");
             return false;
         } else if (!passwordInput.matches("^[a-zA-Z0-9_]*$")) {
-           writePasswordError("Password can only contain alphanumeric characters");
+            writePasswordError("Password can only contain alphanumeric characters");
             return false;
         }
 
@@ -110,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordError.setText(errorMsg);
         passwordError.setTextColor(0xFFFF0000);
     }
+
 
     private void showConfirmation() {
         Toast toast = Toast.makeText(getApplicationContext(), "Registration Successful!", Toast.LENGTH_LONG);
