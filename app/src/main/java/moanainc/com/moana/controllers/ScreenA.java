@@ -14,6 +14,7 @@ import moanainc.com.moana.R;
 public class ScreenA extends AppCompatActivity {
 
     Button _logoutButton;
+    Button _editProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class ScreenA extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         _logoutButton = (Button) findViewById(R.id.logoutButton);
+        _editProfile = (Button) findViewById(R.id.editButton);
     }
 
     public void goToHome(View view) {
@@ -32,5 +34,10 @@ public class ScreenA extends AppCompatActivity {
 
     public void onLogoutPressed(View view) {
         goToHome(null);
+    }
+
+    public void onEditProfilePressed(View view) {
+        Intent goToProfile = new Intent(getBaseContext(), ProfileActivity.class);
+        getBaseContext().startActivity(goToProfile);
     }
 }
