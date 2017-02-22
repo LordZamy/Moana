@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 public class Model {
     private static final Model _instance = new Model();
+    private User currentUser;
     public static Model getInstance() { return _instance; }
 
     private Map<String, User> _users;
@@ -21,7 +22,7 @@ public class Model {
     public Model() {
         _users = new HashMap<>();
 
-        testUser();
+        //testUser();
     }
 
     /**
@@ -32,10 +33,10 @@ public class Model {
     /**
      * Add a test user
      */
-    public void testUser() {
+    /*public void testUser() {
         User datBoi = new User("George P. Burdell", "jackets7");
         _users.put("Georgia P. Burdell", datBoi);
-    }
+    }*/
 
     /**
      * Add a new user to the list.....is this needed??? since arraylist has add method
@@ -62,4 +63,7 @@ public class Model {
     public boolean userExists(String username) {
         return _users.containsKey(username);
     }
+
+    public User getCurrentUser() { return currentUser; }
+    public void setCurrentUser(User user) { currentUser = user; }
 }

@@ -10,9 +10,13 @@ public class User {
     //the user's password
     private String _password;
     //the user's real name
-    private String _name;
+    private String _name = "";
     //the user's access level
     private AccountType _accountType;
+
+    //user details
+    private String _emailAddress = "";
+    private String _homeAddress = "";
 
     public User() {
 
@@ -44,6 +48,12 @@ public class User {
 
     public AccountType getAccountType() { return _accountType; }
     public void setAccountType(AccountType type) { _accountType = type; }
+
+    public String getEmailAddress() { return _emailAddress; }
+    public void setEmailAddress(String email) { _emailAddress = email; }
+
+    public String getHomeAddress() { return _homeAddress; }
+    public void setHomeAddress(String home) { _homeAddress = home; }
 
     @Override
     public boolean equals(Object o) {
