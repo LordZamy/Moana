@@ -44,9 +44,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginPressed(View view) {
         if (areValidCredentials(usernameField.getText().toString(), passwordField.getText().toString())) {
+            Model.getInstance().setCurrentUser(Model.getInstance().getUsers().get(usernameField.getText().toString()));
             Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
             toast.show();
-            Model.getInstance().setCurrentUser(Model.getInstance().getUsers().get(usernameField.getText().toString()));
             goToApplication(null);
         } else {
             Toast toast = Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_LONG);

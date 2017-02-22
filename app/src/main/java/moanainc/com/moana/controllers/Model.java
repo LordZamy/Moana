@@ -22,7 +22,7 @@ public class Model {
     public Model() {
         _users = new HashMap<>();
 
-        //testUser();
+        testUser();
     }
 
     /**
@@ -33,10 +33,10 @@ public class Model {
     /**
      * Add a test user
      */
-    /*public void testUser() {
+    public void testUser() {
         User datBoi = new User("George P. Burdell", "jackets7");
         _users.put("Georgia P. Burdell", datBoi);
-    }*/
+    }
 
     /**
      * Add a new user to the list.....is this needed??? since arraylist has add method

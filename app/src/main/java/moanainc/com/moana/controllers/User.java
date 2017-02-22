@@ -26,6 +26,22 @@ public class User {
      * Makes a new user
      * @param username the username
      * @param password the password
+     * @param name the name
+     * @param accountType the account type
+     */
+
+    public User(String username, String password, String name, AccountType accountType) {
+
+        _username = username;
+        _password = password;
+        _name = name;
+        _accountType = accountType;
+    }
+
+    /**
+     * Makes a new user
+     * @param username the username
+     * @param password the password
      */
 
     public User(String username, String password) {

@@ -33,6 +33,7 @@ public class ScreenA extends AppCompatActivity {
     }
 
     public void onLogoutPressed(View view) {
+        Model.getInstance().setCurrentUser(null);
         goToHome(null);
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
@@ -18,6 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText _realNameField;
     private EditText _emailAddressField;
     private EditText _homeAddressField;
+    private TextView _accountTypeField;
 
 
     User u = Model.getInstance().getCurrentUser();
@@ -29,10 +31,12 @@ public class ProfileActivity extends AppCompatActivity {
         _realNameField = (EditText) findViewById(R.id.editText3);
         _emailAddressField = (EditText) findViewById(R.id.editText);
         _homeAddressField = (EditText) findViewById(R.id.editText2);
+        _accountTypeField = (TextView) findViewById(R.id.editText4);
 
         _realNameField.setText(u.getName());
         _homeAddressField.setText(u.getHomeAddress());
         _emailAddressField.setText(u.getEmailAddress());
+        _accountTypeField.setText(u.getAccountType().toString());
 
     }
 
