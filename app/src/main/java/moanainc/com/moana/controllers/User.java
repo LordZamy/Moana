@@ -52,8 +52,7 @@ public class User {
         }
 
         User u = (User) o;
-        return (u.getUsername().equals(_name) && u.getPassword().equals(_password)
-                && u.getRealName().equals(_realName) && u.getAccountType().equals(_accountType));
+        return (u.getUsername().equals(_name) && u.getPassword().equals(_password));
     }
 
     @Override
