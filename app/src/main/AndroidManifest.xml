@@ -22,6 +22,7 @@
             android:name=".controllers.ScreenA"
             android:label="@string/title_activity_screen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".controllers.ProfileActivity" />
     </application>
 
 </manifest>
