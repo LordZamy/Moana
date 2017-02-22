@@ -19,7 +19,7 @@ import moanainc.com.moana.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText nameField;
+    EditText usernameField;
     EditText passwordField;
     TextView pageTitle;
 
@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        nameField = (EditText) findViewById(R.id.editText);
+        usernameField = (EditText) findViewById(R.id.editText);
         passwordField = (EditText) findViewById(R.id.editText2);
         pageTitle = (TextView) findViewById(R.id.textView3);
     }
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        if (areValidCredentials(nameField.getText().toString(), passwordField.getText().toString())) {
+        if (areValidCredentials(usernameField.getText().toString(), passwordField.getText().toString())) {
             Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
             toast.show();
             goToApplication(null);

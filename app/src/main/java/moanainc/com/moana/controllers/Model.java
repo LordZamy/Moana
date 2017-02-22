@@ -55,11 +55,11 @@ public class Model {
         }
     }
 
-    public User findUserByName(String name) {
-        return _users.get(name);
+    public User findUserByUsername(String username) {
+        return _users.get(username);
     }
 
-    public boolean userExists(String name) {
-        return _users.containsKey(name);
+    public boolean userExists(String username) {
+        return _users.containsKey(username);
     }
 }

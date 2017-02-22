@@ -23,10 +23,10 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private User _user;
-    private EditText _nameField;
+    private EditText _usernameField;
     private EditText _passwordField;
-    private EditText _realNameField;
-    private TextView nameError;
+    private EditText _nameField;
+    private TextView usernameError;
     private TextView passwordError;
     private Spinner accountSpinner;
 
@@ -36,10 +36,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
         _user = new User();
-        _nameField = (EditText) findViewById(R.id.editText);
+        _usernameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
-        _realNameField = (EditText) findViewById(R.id.editText3);
-        nameError = (TextView) findViewById(R.id.textView12);
+        _nameField = (EditText) findViewById(R.id.editText3);
+        usernameError = (TextView) findViewById(R.id.textView12);
         passwordError = (TextView) findViewById(R.id.textView13);
         accountSpinner = (Spinner) findViewById(R.id.spinner);
 
@@ -65,15 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
         //Log.d("Edit", "Add user");
         Model model = Model.getInstance();
 
-        String nameInput = _nameField.getText().toString();
+        String usernameInput = _usernameField.getText().toString();
         String passwordInput = _passwordField.getText().toString();
-        String realNameInput = _realNameField.getText().toString();
+        String nameInput = _nameField.getText().toString();
 
-        if (validateName(nameInput) && validatePassword(passwordInput)) {
+        if (validateName(usernameInput) && validatePassword(passwordInput)) {
             // add new user to user base
-            _user.setUsername(nameInput);
+            _user.setUsername(usernameInput);
             _user.setPassword(passwordInput);
-            _user.setRealName(realNameInput);
+            _user.setName(nameInput);
             _user.setAccountType((AccountType) accountSpinner.getSelectedItem());
             model.addUser(_user);
             Log.d("RegisterActivity", _user.toString());
@@ -85,15 +85,15 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validateName(String nameInput) {
+    private boolean validateName(String usernameInput) {
         // check if username string is valid
-        if (nameInput.length() < 5) {
+        if (usernameInput.length() < 5) {
             writeNameError("Username needs to be at least 5 characters long.");
             return false;
-        } else if (!nameInput.matches("^[a-zA-Z0-9_]*$")) {
+        } else if (!usernameInput.matches("^[a-zA-Z0-9_]*$")) {
             writeNameError("Username can only contain alphanumeric characters.");
             return false;
-        } else if (Model.getInstance().userExists(nameInput)) {
+        } else if (Model.getInstance().userExists(usernameInput)) {
             // check if username exists
             writeNameError("Username already exists.");
             return false;
@@ -115,8 +115,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void writeNameError(String errorMsg) {
-        nameError.setText(errorMsg);
-        nameError.setTextColor(0xFFFF0000);
+        usernameError.setText(errorMsg);
+        usernameError.setTextColor(0xFFFF0000);
     }
 
     private void writePasswordError(String errorMsg) {
