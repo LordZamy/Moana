@@ -10,8 +10,9 @@ import android.view.View;
 import android.widget.Button;
 
 import moanainc.com.moana.R;
+import moanainc.com.moana.models.Model;
 
-public class ScreenA extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     Button _logoutButton;
     Button _editProfile;

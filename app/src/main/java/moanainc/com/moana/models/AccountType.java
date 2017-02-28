@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.models;
 
 import java.io.Serializable;
 

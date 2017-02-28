@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.models;
 
 /**
  * Created by josh baldwin on 2/13/2017.

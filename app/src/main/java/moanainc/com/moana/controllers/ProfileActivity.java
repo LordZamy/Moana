@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import moanainc.com.moana.R;
+import moanainc.com.moana.models.Account;
+import moanainc.com.moana.models.Model;
 
 /**
  * Created by josh baldwin on 2/21/2017.
@@ -40,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void goToApplication(View view) {
-        Intent goToApplication = new Intent(getBaseContext(), ScreenA.class);
+        Intent goToApplication = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToApplication);
     }
 

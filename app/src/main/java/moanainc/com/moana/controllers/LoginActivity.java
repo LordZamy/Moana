@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
+import moanainc.com.moana.models.Account;
+import moanainc.com.moana.models.Model;
 
 /**
  * Created by Micah Terrell on 2/13/2017.
@@ -35,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToApplication(View view) {
-        Intent goToApplication = new Intent(getBaseContext(), ScreenA.class);
+        Intent goToApplication = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToApplication);
     }
 
