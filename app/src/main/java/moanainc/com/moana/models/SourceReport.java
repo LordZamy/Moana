@@ -5,10 +5,6 @@ package moanainc.com.moana.models;
  */
 
 public class SourceReport implements Report {
-
-    public SourceReport() {
-    }
-
     @Override
     public Report createReport() {
         return new SourceReport();
