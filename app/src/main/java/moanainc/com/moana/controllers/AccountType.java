@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public enum AccountType implements Serializable {
-    USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
+    USER("Account"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
 
     private final String text;
 

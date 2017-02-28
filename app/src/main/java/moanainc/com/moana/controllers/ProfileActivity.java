@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import moanainc.com.moana.R;
 
@@ -22,7 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView _accountTypeField;
 
 
-    User u = Model.getInstance().getCurrentUser();
+    Account u = Model.getInstance().getCurrentAccount();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

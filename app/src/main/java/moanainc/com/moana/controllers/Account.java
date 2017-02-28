@@ -4,7 +4,9 @@ package moanainc.com.moana.controllers;
  * Created by josh baldwin on 2/13/2017.
  */
 
-public class User {
+public class Account {
+    // the user's permission level
+    private String _permission;
     //the user's username
     private String _username;
     //the user's password
@@ -18,7 +20,7 @@ public class User {
     private String _emailAddress = "";
     private String _homeAddress = "";
 
-    public User() {
+    public Account() {
 
     }
 
@@ -30,7 +32,7 @@ public class User {
      * @param accountType the account type
      */
 
-    public User(String username, String password, String name, AccountType accountType) {
+    public Account(String username, String password, String name, AccountType accountType) {
 
         _username = username;
         _password = password;
@@ -44,7 +46,7 @@ public class User {
      * @param password the password
      */
 
-    public User(String username, String password) {
+    public Account(String username, String password) {
 
         _username = username;
         _password = password;
@@ -71,13 +73,21 @@ public class User {
     public String getHomeAddress() { return _homeAddress; }
     public void setHomeAddress(String home) { _homeAddress = home; }
 
+    public String get_permission() {
+        return _permission;
+    }
+
+    public void set_permission(String _permission) {
+        this._permission = _permission;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof User)) {
+        if (!(o instanceof Account)) {
             return false;
         }
 
-        User u = (User) o;
+        Account u = (Account) o;
         return (u.getUsername().equals(_username) && u.getPassword().equals(_password));
     }
 

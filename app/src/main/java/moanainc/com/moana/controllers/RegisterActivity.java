@@ -11,8 +11,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import moanainc.com.moana.R;
 
 /**
@@ -22,7 +20,7 @@ import moanainc.com.moana.R;
 public class RegisterActivity extends AppCompatActivity {
 
 
-    private User _user;
+    private Account _account;
     private EditText _usernameField;
     private EditText _passwordField;
     private EditText _nameField;
@@ -35,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
-        _user = new User();
+        _account = new Account();
         _usernameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
         _nameField = (EditText) findViewById(R.id.editText3);
@@ -71,12 +69,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (validateName(usernameInput) && validatePassword(passwordInput)) {
             // add new user to user base
-            _user.setUsername(usernameInput);
-            _user.setPassword(passwordInput);
-            _user.setName(nameInput);
-            _user.setAccountType((AccountType) accountSpinner.getSelectedItem());
-            model.addUser(_user);
-            Log.d("RegisterActivity", _user.toString());
+            _account.setUsername(usernameInput);
+            _account.setPassword(passwordInput);
+            _account.setName(nameInput);
+            _account.setAccountType((AccountType) accountSpinner.getSelectedItem());
+            model.addUser(_account);
+            Log.d("RegisterActivity", _account.toString());
 
             // let user know of registration success
             showConfirmation();

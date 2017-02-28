@@ -1,7 +1,5 @@
 package moanainc.com.moana.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -11,10 +9,10 @@ import java.util.HashMap;
 
 public class Model {
     private static final Model _instance = new Model();
-    private User currentUser;
+    private Account currentAccount;
     public static Model getInstance() { return _instance; }
 
-    private Map<String, User> _users;
+    private Map<String, Account> _users;
 
     /**
      * make a new model
@@ -28,27 +26,27 @@ public class Model {
     /**
      * return the list of users
      */
-    public Map<String, User> getUsers() { return _users; };
+    public Map<String, Account> getUsers() { return _users; };
 
     /**
      * Add a test user
      */
     public void testUser() {
-        User datBoi = new User("George P. Burdell", "jackets7");
+        Account datBoi = new Account("George P. Burdell", "jackets7");
         _users.put("Georgia P. Burdell", datBoi);
     }
 
     /**
      * Add a new user to the list.....is this needed??? since arraylist has add method
      */
-    public void addUser(User u) {
+    public void addUser(Account u) {
         _users.put(u.getUsername(), u);
     }
 
     /**
      * Find the cause of a failed registration
      */
-    public void registrationFailed(User u) {
+    public void registrationFailed(Account u) {
         if (_users.containsValue(u)) {
             //user already exists
         } else if (!_users.containsValue(u)) {
@@ -56,7 +54,7 @@ public class Model {
         }
     }
 
-    public User findUserByUsername(String username) {
+    public Account findUserByUsername(String username) {
         return _users.get(username);
     }
 
@@ -64,6 +62,6 @@ public class Model {
         return _users.containsKey(username);
     }
 
-    public User getCurrentUser() { return currentUser; }
-    public void setCurrentUser(User user) { currentUser = user; }
+    public Account getCurrentAccount() { return currentAccount; }
+    public void setCurrentAccount(Account account) { currentAccount = account; }
 }
