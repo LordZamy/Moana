@@ -1,10 +1,12 @@
 package moanainc.com.moana.controllers;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,6 +35,15 @@ public class ReportListActivity extends AppCompatActivity {
 
         final ReportAdapter adapter = new ReportAdapter(this, android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
+    }
+
+    public void goToWelcome(View view) {
+        Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
+        getBaseContext().startActivity(goToWelcome);
+    }
+
+    public void onBackPressed(View view) {
+        goToWelcome(null);
     }
 
     private class ReportAdapter extends ArrayAdapter<Report> {

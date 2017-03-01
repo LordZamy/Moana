@@ -44,6 +44,6 @@ public class AvailReport implements Report {
 
     @Override
     public String toString(){
-        return _reportName + " | Created on: " + _dateCreated + " | By: " + _creator.getAccount().getName();
+        return _reportName + " | Status: " + _status + " | Created on: " + _dateCreated + " | By: " + _creator.getAccount().getName();
     }
 }

@@ -15,6 +15,13 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="413dp" />
+
+    <Button
+        android:text="Back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onBackPressed"
+        android:id="@+id/button5" />
 
 </LinearLayout>
