@@ -34,7 +34,6 @@ public class ReportActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         _reportName = (EditText) findViewById(R.id.editText5);
-        _reportStatus = (EditText) findViewById(R.id.editText6);
         _statusSpinner = (Spinner) findViewById(R.id.spinner2);
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, AvailReport.legalStatus);
@@ -49,9 +48,8 @@ public class ReportActivity extends AppCompatActivity {
 
     public void onSubmitReport(View view){
         String nameInput = _reportName.getText().toString();
-        String statusInput = _reportStatus.getText().toString();
-        //AvailReport _availReport = Model.getInstance().getCurrentUser().createAvailReport(nameInput, (new Date()).toString(), statusInput);
-        //_reportManager.createReport(_availReport);
+        String statusInput = _statusSpinner.getSelectedItem().toString();
+        Model.getInstance().getCurrentUser().createAvailReport(nameInput, (new Date()).toString(), statusInput);
 
         goToWelcome(null);
         Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
