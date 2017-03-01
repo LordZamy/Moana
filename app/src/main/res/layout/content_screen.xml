@@ -33,16 +33,6 @@
         android:src="@drawable/toxicfrog"/>
 
     <Button
-        android:text="Logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:id="@+id/logoutButton"
-        android:onClick="onLogoutPressed"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/imageView" />
-
-    <Button
         android:text="Edit Profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,4 +40,31 @@
         android:layout_alignParentStart="true"
         android:id="@+id/editButton"
         android:onClick="onEditProfilePressed"/>
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logoutButton"
+        android:onClick="onLogoutPressed"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="New Report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reportButton"
+        android:onClick="onCreateReport"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="View Reports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewButton"
+        android:onClick="onViewReports"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

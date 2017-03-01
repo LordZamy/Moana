@@ -6,5 +6,8 @@ package moanainc.com.moana.models;
 
 public interface Report {
 
+    public String getName();
+    public String getDate();
+    public User getCreator();
     public Report createReport();
 }

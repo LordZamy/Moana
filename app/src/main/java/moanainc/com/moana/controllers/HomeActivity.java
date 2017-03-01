@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import moanainc.com.moana.R;
 
@@ -30,4 +31,9 @@ public class HomeActivity extends AppCompatActivity {
         getBaseContext().startActivity(gotoRegister);
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast toast = Toast.makeText(getApplicationContext(), "You are not logged in", Toast.LENGTH_LONG);
+        toast.show();
+    }
 }

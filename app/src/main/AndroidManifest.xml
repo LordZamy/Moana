@@ -20,12 +20,12 @@
         <activity android:name=".controllers.RegisterActivity" />
         <activity
             android:name=".controllers.WelcomeActivity"
-            android:label="@string/title_activity_screen"
+            android:label="Welcome"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controllers.ProfileActivity" />
         <activity
             android:name=".controllers.ReportActivity"
-            android:label="@string/title_activity_report"
+            android:label="Create a Report"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

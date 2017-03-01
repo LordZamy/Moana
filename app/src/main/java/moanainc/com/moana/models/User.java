@@ -1,10 +1,5 @@
 package moanainc.com.moana.models;
 
-import android.content.Intent;
-
-import moanainc.com.moana.controllers.HomeActivity;
-import moanainc.com.moana.models.Account;
-
 /**
  * Created by darrion on 2/28/17.
  * << information holder >>
@@ -12,7 +7,7 @@ import moanainc.com.moana.models.Account;
 
 public class User {
     Account _account;
-    ReportManager _reportManager;
+    ReportManager _reportManager = new ReportManager();
 
     public User(String username, String password, String name, AccountType accountType) {
         _account = new Account(username, password, name, accountType);
@@ -26,8 +21,9 @@ public class User {
         _account = new Account();
     }
 
-    public Report createAvailReport() {
-        return new AvailReport();
+    public void createAvailReport(String reportName, String dateCreated){
+        Report newReport = new AvailReport(reportName, dateCreated, this);
+        _reportManager.createReport(newReport);
     }
 
     public Account getAccount() {
@@ -53,5 +49,4 @@ public class User {
         return _account.getName() + " " + _account.getUsername() + " " + _account.getPassword() + " " + _account.getAccountType().toString();
     }
 
-    // TODO: a method to pull a report submitted by this user from the report manager.
 }

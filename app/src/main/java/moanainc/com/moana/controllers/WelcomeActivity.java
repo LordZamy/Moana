@@ -42,4 +42,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent goToProfile = new Intent(getBaseContext(), ProfileActivity.class);
         getBaseContext().startActivity(goToProfile);
     }
+
+    public void onCreateReport(View view) {
+        Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
+        getBaseContext().startActivity(goToCreateReport);
+    }
 }
