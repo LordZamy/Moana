@@ -1,7 +1,6 @@
 package moanainc.com.moana.models;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by darrion on 2/28/17.
@@ -9,13 +8,14 @@ import java.util.List;
 
 public class ReportManager {
 
-    List<Report> _reports = new ArrayList<Report>();;
+    ArrayList<Report> _reports = new ArrayList<Report>();
 
     public void createReport(Report report) {
         _reports.add(report);
+        Model.getInstance().addReport(report);
     }
 
-    public List<Report> pastReports() {
-        return _reports;
+    public ArrayList<Report> pastReports() {
+        return Model.getInstance().getReports();
     }
 }

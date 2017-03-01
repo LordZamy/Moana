@@ -47,4 +47,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
         getBaseContext().startActivity(goToCreateReport);
     }
+
+    public void onViewReports(View view) {
+        Intent goToViewReports = new Intent(getBaseContext(), ReportListActivity.class);
+        getBaseContext().startActivity(goToViewReports);
+    }
 }

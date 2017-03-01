@@ -26,7 +26,11 @@
         <activity
             android:name=".controllers.ReportActivity"
             android:label="Create a Report"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controllers.ReportListActivity"
+            android:label="List of Reports"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

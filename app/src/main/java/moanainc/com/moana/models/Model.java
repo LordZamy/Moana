@@ -1,5 +1,6 @@
 package moanainc.com.moana.models;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -11,6 +12,8 @@ public class Model {
     private static final Model _instance = new Model();
     private User currentUser;
     public static Model getInstance() { return _instance; }
+
+    ArrayList<Report> reports = new ArrayList<Report>();
 
     private Map<String, User> _users;
 
@@ -64,4 +67,12 @@ public class Model {
 
     public User getCurrentUser() { return currentUser; }
     public void setCurrentUser(User user) { currentUser = user; }
+
+    public void addReport(Report report) {
+        reports.add(report);
+    }
+
+    public ArrayList<Report> getReports() {
+        return reports;
+    }
 }
