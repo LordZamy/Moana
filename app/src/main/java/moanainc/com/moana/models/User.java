@@ -6,8 +6,8 @@ package moanainc.com.moana.models;
  */
 
 public class User {
-    Account _account;
-    ReportManager _reportManager = new ReportManager();
+    private Account _account;
+    private ReportManager _reportManager = new ReportManager();
 
     public User(String username, String password, String name, AccountType accountType) {
         _account = new Account(username, password, name, accountType);
@@ -33,6 +33,7 @@ public class User {
         _account = newAccount;
     }
 
+    public ReportManager getReportManager(){ return _reportManager; }
 
     @Override
     public boolean equals(Object o) {
