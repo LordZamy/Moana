@@ -34,7 +34,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void onLogoutPressed(View view) {
-        Model.getInstance().setCurrentAccount(null);
+        Model.getInstance().setCurrentUser(null);
         goToHome(null);
     }
 
