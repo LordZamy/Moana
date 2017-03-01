@@ -9,10 +9,10 @@ import java.util.HashMap;
 
 public class Model {
     private static final Model _instance = new Model();
-    private Account currentAccount;
+    private User currentUser;
     public static Model getInstance() { return _instance; }
 
-    private Map<String, Account> _users;
+    private Map<String, User> _users;
 
     /**
      * make a new model
@@ -26,27 +26,27 @@ public class Model {
     /**
      * return the list of users
      */
-    public Map<String, Account> getUsers() { return _users; };
+    public Map<String, User> getUsers() { return _users; };
 
     /**
      * Add a test user
      */
     public void testUser() {
-        Account datBoi = new Account("George P. Burdell", "jackets7");
+        User datBoi = new User("George P. Burdell", "jackets7");
         _users.put("Georgia P. Burdell", datBoi);
     }
 
     /**
      * Add a new user to the list.....is this needed??? since arraylist has add method
      */
-    public void addUser(Account u) {
-        _users.put(u.getUsername(), u);
+    public void addUser(User u) {
+        _users.put(u.getAccount().getUsername(), u);
     }
 
     /**
      * Find the cause of a failed registration
      */
-    public void registrationFailed(Account u) {
+    public void registrationFailed(User u) {
         if (_users.containsValue(u)) {
             //user already exists
         } else if (!_users.containsValue(u)) {
@@ -54,7 +54,7 @@ public class Model {
         }
     }
 
-    public Account findUserByUsername(String username) {
+    public User findUserByUsername(String username) {
         return _users.get(username);
     }
 
@@ -62,6 +62,6 @@ public class Model {
         return _users.containsKey(username);
     }
 
-    public Account getCurrentAccount() { return currentAccount; }
-    public void setCurrentAccount(Account account) { currentAccount = account; }
+    public User getCurrentUser() { return currentUser; }
+    public void setCurrentUser(User user) { currentUser = user; }
 }

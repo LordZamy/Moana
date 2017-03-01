@@ -23,7 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
     private TextView _accountTypeField;
 
 
-    Account u = Model.getInstance().getCurrentAccount();
+    Account u = Model.getInstance().getCurrentUser().getAccount();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

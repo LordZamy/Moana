@@ -12,7 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.Account;
+import moanainc.com.moana.models.User;
+import moanainc.com.moana.models.Worker;
+import moanainc.com.moana.models.Manager;
+import moanainc.com.moana.models.Admin;
 import moanainc.com.moana.models.AccountType;
 import moanainc.com.moana.models.Model;
 
@@ -23,7 +26,7 @@ import moanainc.com.moana.models.Model;
 public class RegisterActivity extends AppCompatActivity {
 
 
-    private Account _account;
+    private User _user;
     private EditText _usernameField;
     private EditText _passwordField;
     private EditText _nameField;
@@ -36,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
-        _account = new Account();
+        _user = new User();
         _usernameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
         _nameField = (EditText) findViewById(R.id.editText3);
@@ -72,12 +75,28 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (validateName(usernameInput) && validatePassword(passwordInput)) {
             // add new user to user base
-            _account.setUsername(usernameInput);
-            _account.setPassword(passwordInput);
-            _account.setName(nameInput);
-            _account.setAccountType((AccountType) accountSpinner.getSelectedItem());
-            model.addUser(_account);
-            Log.d("RegisterActivity", _account.toString());
+            switch((AccountType) accountSpinner.getSelectedItem()) {
+                case USER:
+                    _user = new User();
+                    break;
+                case WORKER:
+                    _user = new Worker();
+                    break;
+                case MANAGER:
+                    _user = new Manager();
+                    break;
+                case ADMIN:
+                    _user = new Admin();
+                    break;
+                default:
+                    _user = new User();
+            }
+            _user.getAccount().setUsername(usernameInput);
+            _user.getAccount().setPassword(passwordInput);
+            _user.getAccount().setName(nameInput);
+            _user.getAccount().setAccountType((AccountType) accountSpinner.getSelectedItem());
+            model.addUser(_user);
+            Log.d("RegisterActivity", _user.getAccount().toString());
 
             // let user know of registration success
             showConfirmation();

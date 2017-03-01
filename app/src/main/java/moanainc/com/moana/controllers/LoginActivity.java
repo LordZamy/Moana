@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.Account;
+import moanainc.com.moana.models.User;
 import moanainc.com.moana.models.Model;
 
 /**
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginPressed(View view) {
         if (areValidCredentials(usernameField.getText().toString(), passwordField.getText().toString())) {
-            Model.getInstance().setCurrentAccount(Model.getInstance().getUsers().get(usernameField.getText().toString()));
+            Model.getInstance().setCurrentUser(Model.getInstance().getUsers().get(usernameField.getText().toString()));
             Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
             toast.show();
             goToApplication(null);
@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean areValidCredentials(String username, String password) {
-        return Model.getInstance().getUsers().containsValue(new Account(username, password));
+        return Model.getInstance().getUsers().containsValue(new User(username, password));
     }
 
     public LoginActivity() { }
