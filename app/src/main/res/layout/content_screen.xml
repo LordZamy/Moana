@@ -67,4 +67,13 @@
         android:onClick="onViewReports"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="View Map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapButton"
+        android:onClick="onViewMap"
+        android:layout_above="@+id/reportButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

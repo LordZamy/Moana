@@ -52,4 +52,9 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent goToViewReports = new Intent(getBaseContext(), ReportListActivity.class);
         getBaseContext().startActivity(goToViewReports);
     }
+
+    public void onViewMap(View view) {
+        Intent goToViewMap = new Intent(getBaseContext(), MapsActivity.class);
+        getBaseContext().startActivity(goToViewMap);
+    }
 }
