@@ -21,8 +21,8 @@ public class User {
         _account = new Account();
     }
 
-    public void createAvailReport(String reportName, String dateCreated, String statusOfReport) {
-        Report newReport = new AvailReport(reportName, dateCreated, this, statusOfReport);
+    public void createAvailReport(String reportName, String dateCreated, double lat, double lng, String statusOfReport) {
+        Report newReport = new AvailReport(reportName, dateCreated, this, lat, lng, statusOfReport);
         _reportManager.createReport(newReport);
     }
 

@@ -13,14 +13,18 @@ public class AvailReport implements Report {
     private String _dateCreated;
     private User _creator;
     private String _status;
+    private double _lat;
+    private double _lng;
     public static List<String> legalStatus = Arrays.asList("Available", "Unavailable");
 
 
-    public AvailReport(String reportName, String dateCreated, User creator, String status) {
+    public AvailReport(String reportName, String dateCreated, User creator, double lat, double lng, String status) {
         _reportName = reportName;
         _dateCreated = dateCreated;
         _creator = creator;
         _status = status;
+        _lat = lat;
+        _lng = lng;
 
     }
 
@@ -38,12 +42,16 @@ public class AvailReport implements Report {
         return _creator;
     }
 
+    public double getLat() { return _lat; }
+
+    public double getLng() { return _lng; }
+
     public Report createReport(){
         return new AvailReport();
     }
 
     @Override
     public String toString(){
-        return _reportName + " | Status: " + _status + " | Created on: " + _dateCreated + " | By: " + _creator.getAccount().getName();
+        return _reportName + " | Status: " + _status + " | By: " + _creator.getAccount().getName();
     }
 }

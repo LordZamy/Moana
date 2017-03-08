@@ -10,4 +10,6 @@ public interface Report {
     public String getDate();
     public User getCreator();
     public Report createReport();
+    public double getLat();
+    public double getLng();
 }
