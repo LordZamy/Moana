@@ -47,7 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToProfile);
     }
 
-    public void onCreateReport(View view) {
+    public void onAvailabilityReport(View view) {
         Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
 
         if (_userAccountType == AccountType.USER) {
