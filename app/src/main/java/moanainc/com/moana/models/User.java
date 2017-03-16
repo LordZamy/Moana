@@ -26,6 +26,10 @@ public class User {
         _reportManager.createReport(newReport);
     }
 
+    public void createPurityReport() {
+
+    }
+
     public Account getAccount() {
         return _account;
     }

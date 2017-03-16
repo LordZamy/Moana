@@ -57,7 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="moanainc.com.moana.controllers.MapsActivity"
-        android:layout_below="@+id/spinner2" />
+        android:layout_below="@+id/spinner2"
+        tools:layout="@layout/content_report" />
 
     <Button
         android:text="Submit Report"
