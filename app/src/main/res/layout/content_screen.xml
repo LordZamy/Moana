@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reportButton"
-        android:onClick="onCreateReport"
+        android:onClick="onAvailabilityReport"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
