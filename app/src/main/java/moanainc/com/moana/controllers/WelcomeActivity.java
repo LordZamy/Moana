@@ -8,14 +8,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import moanainc.com.moana.R;
+import moanainc.com.moana.models.AccountType;
 import moanainc.com.moana.models.Model;
 
 public class WelcomeActivity extends AppCompatActivity {
 
     Button _logoutButton;
     Button _editProfile;
+    private AccountType _userAccountType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         _logoutButton = (Button) findViewById(R.id.logoutButton);
         _editProfile = (Button) findViewById(R.id.editButton);
+        _userAccountType = Model.getInstance().getCurrentUser().getAccount().getAccountType();
     }
 
     public void goToHome(View view) {
@@ -45,12 +49,24 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onCreateReport(View view) {
         Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
-        getBaseContext().startActivity(goToCreateReport);
+
+        if (_userAccountType == AccountType.USER) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Users cannot create reports.", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            getBaseContext().startActivity(goToCreateReport);
+        }
     }
 
     public void onViewReports(View view) {
         Intent goToViewReports = new Intent(getBaseContext(), ReportListActivity.class);
-        getBaseContext().startActivity(goToViewReports);
+
+        if (_userAccountType != AccountType.WORKER && _userAccountType != AccountType.MANAGER) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Only Workers and Managers can access reports.", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            getBaseContext().startActivity(goToViewReports);
+        }
     }
 
     public void onViewMap(View view) {
