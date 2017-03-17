@@ -26,6 +26,7 @@
         <activity android:name=".controllers.LoginActivity" />
         <activity android:name=".controllers.RegisterActivity" />
         <activity android:name=".controllers.ChooseReportActivity" />
+        <activity android:name=".controllers.ChooseReportListActivity" />
         <activity
             android:name=".controllers.WelcomeActivity"
             android:label="Welcome"
