@@ -24,7 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:text="onSelectPressed"
+        android:onClick="onSelectPressed"
+        android:text="Select"
         android:layout_below="@+id/spinner4"
         android:layout_alignStart="@+id/textView11" />
 
@@ -32,7 +33,8 @@
         android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="onCancelPressed"
+        android:text="Cancel"
+        android:onClick="onCancelPressed"
         android:layout_alignTop="@+id/button8"
         android:layout_alignEnd="@+id/textView11" />
 </RelativeLayout>

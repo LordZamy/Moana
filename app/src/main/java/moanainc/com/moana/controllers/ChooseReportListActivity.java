@@ -19,7 +19,7 @@ import moanainc.com.moana.models.ReportManager;
 
 public class ChooseReportListActivity extends AppCompatActivity {
 
-    private Spinner _statusSpinner;
+    private Spinner _reportSpinner;
     private ReportManager _reportManager;
     private AccountType _userAccountType;
 
@@ -27,15 +27,15 @@ public class ChooseReportListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choosereport_activity);
+        setContentView(R.layout.choose_report_list);
 
-        _statusSpinner = (Spinner) findViewById(R.id.spinner4);
+        _reportSpinner = (Spinner) findViewById(R.id.spinner4);
         _userAccountType = Model.getInstance().getCurrentUser().getAccount().getAccountType();
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, _reportManager.legalReports);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        _statusSpinner.setAdapter(adapter);
+        _reportSpinner.setAdapter(adapter);
     }
 
     public void onCancelPressed(View view) {
@@ -44,10 +44,10 @@ public class ChooseReportListActivity extends AppCompatActivity {
     }
 
     public void onSelectPressed(View view) {
-        Intent goToAvailReportList = new Intent(getBaseContext(), AvailabilityActivity.class); ////AvailReportList.class
-        Intent goToPurityReportList = new Intent(getBaseContext(), PurityActivity.class); ////PurityReportList.class
+        Intent goToAvailReportList = new Intent(getBaseContext(), ReportListActivity.class); ////AvailReportList.class
+        Intent goToPurityReportList = new Intent(getBaseContext(), PurityReportListActivity.class); ////PurityReportList.class
 
-        String statusInput = _statusSpinner.getSelectedItem().toString();
+        String statusInput = _reportSpinner.getSelectedItem().toString();
         if (statusInput.equals("Purity") && (_userAccountType != AccountType.MANAGER)) {
             Toast toast = Toast.makeText(getApplicationContext(), "Only Managers can view purity reports.", Toast.LENGTH_LONG);
             toast.show();

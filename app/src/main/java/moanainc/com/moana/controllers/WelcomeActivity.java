@@ -53,14 +53,8 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void onViewReports(View view) {
-        Intent goToViewReports = new Intent(getBaseContext(), ReportListActivity.class);
-
-        if (_userAccountType != AccountType.WORKER && _userAccountType != AccountType.MANAGER && _userAccountType != AccountType.ADMIN) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Only Workers and Managers can access reports.", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            getBaseContext().startActivity(goToViewReports);
-        }
+        Intent goToChooseViewReports = new Intent(getBaseContext(), ChooseReportListActivity.class);
+        getBaseContext().startActivity(goToChooseViewReports);
     }
 
     public void onViewMap(View view) {

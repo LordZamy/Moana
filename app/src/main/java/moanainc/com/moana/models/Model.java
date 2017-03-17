@@ -14,6 +14,7 @@ public class Model {
     public static Model getInstance() { return _instance; }
 
     ArrayList<Report> reports = new ArrayList<Report>();
+    ArrayList<PurityReport> purityReports = new ArrayList<>();
 
     private Map<String, User> _users;
 
@@ -71,8 +72,11 @@ public class Model {
     public void addReport(Report report) {
         reports.add(report);
     }
+    public void addPurityReport(PurityReport report) { purityReports.add(report); }
 
     public ArrayList<Report> getReports() {
         return reports;
     }
+    public ArrayList<PurityReport> getPurityReports() { return purityReports; }
+
 }

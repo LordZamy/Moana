@@ -12,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -29,6 +31,7 @@ import java.util.Date;
 import moanainc.com.moana.R;
 import moanainc.com.moana.models.AccountType;
 import moanainc.com.moana.models.Model;
+import moanainc.com.moana.models.PurityCondition;
 import moanainc.com.moana.models.ReportManager;
 
 
@@ -44,6 +47,9 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
     private final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private LatLng currentLocation;
     private GoogleMap mMap;
+    private EditText _virusPPM;
+    private EditText _contaminationPPM;
+    private Spinner _conditionSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,13 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         mapFragment.getMapAsync(this);
 
         _purityReportName = (EditText) findViewById(R.id.editText6);
+        _virusPPM = (EditText) findViewById(R.id.editText7);
+        _contaminationPPM = (EditText) findViewById(R.id.editText8);
+        _conditionSpinner = (Spinner) findViewById(R.id.spinner5);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, PurityCondition.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        _conditionSpinner.setAdapter(adapter);
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -85,7 +98,11 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
     public void onSubmitReport(View view){
         String nameInput = _purityReportName.getText().toString();
-        Model.getInstance().getCurrentUser().createPurityReport();
+        int virusInput = _virusPPM.getInputType();
+        int contaminationInput = _contaminationPPM.getInputType();
+        String conditionInput = _conditionSpinner.getSelectedItem().toString();
+        Model.getInstance().getCurrentUser().createPurityReport(nameInput, (new Date()).toString(), currentLocation.latitude, currentLocation.longitude,
+                PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
 
         goToWelcome(null);
