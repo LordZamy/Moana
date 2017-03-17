@@ -47,6 +47,11 @@ public class WelcomeActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToProfile);
     }
 
+    public void onNewReport(View view) {
+        Intent goToChooseReport = new Intent(getBaseContext(), ChooseReportActivity.class);
+        getBaseContext().startActivity(goToChooseReport);
+    }
+
     public void onAvailabilityReport(View view) {
         Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
 
