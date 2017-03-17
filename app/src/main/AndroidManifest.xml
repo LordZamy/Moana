@@ -32,8 +32,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controllers.ProfileActivity" />
         <activity
-            android:name=".controllers.ReportActivity"
-            android:label="Create a Report"
+            android:name=".controllers.AvailabilityActivity"
+            android:label="Create an Availability Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".controllers.ReportListActivity"

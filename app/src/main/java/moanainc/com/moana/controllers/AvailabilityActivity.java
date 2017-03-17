@@ -36,7 +36,7 @@ import moanainc.com.moana.models.Model;
 import moanainc.com.moana.models.Report;
 import moanainc.com.moana.models.ReportManager;
 
-public class ReportActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class AvailabilityActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private EditText _reportName;
     private EditText _reportStatus;

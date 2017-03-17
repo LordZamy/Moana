@@ -43,8 +43,8 @@ public class ChooseReportActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToWelcome);
     }
 
-    public void onNextPressed(View view) {
-        Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
+    public void onSelectPressed(View view) {
+        Intent goToCreateReport = new Intent(getBaseContext(), AvailabilityActivity.class);
         Intent goToPurityReport = new Intent(getBaseContext(), PurityActivity.class);
 
         String statusInput = _statusSpinner.getSelectedItem().toString();

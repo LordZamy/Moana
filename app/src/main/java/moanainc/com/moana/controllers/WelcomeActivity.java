@@ -52,28 +52,6 @@ public class WelcomeActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToChooseReport);
     }
 
-    public void onAvailabilityReport(View view) {
-        Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
-
-        if (_userAccountType == AccountType.USER) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Users cannot create reports.", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            getBaseContext().startActivity(goToCreateReport);
-        }
-    }
-
-    public void onPurityReport(View view) {
-        Intent goToPurityReport = new Intent(getBaseContext(), PurityActivity.class);
-
-        if (_userAccountType == AccountType.USER) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Users cannot create reports.", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            getBaseContext().startActivity(goToPurityReport);
-        }
-    }
-
     public void onViewReports(View view) {
         Intent goToViewReports = new Intent(getBaseContext(), ReportListActivity.class);
 
