@@ -53,4 +53,10 @@ public class PurityReport implements Report {
     public PurityReport createReport(){
         return new PurityReport();
     }
+
+    @Override
+    public String toString(){
+        return _reportName + " | Date: " + _dateCreated + " | Location: " + _lat + ", " + _lng + "\nPurity Condition: " + _cond.toString()
+        + " | Virus PPM: " + _virusPPM + " | Contamination PPM: " + _contaminationPPM + " | By: " + _creator.getAccount().getName();
+    }
 }

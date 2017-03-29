@@ -98,8 +98,8 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
     public void onSubmitReport(View view){
         String nameInput = _purityReportName.getText().toString();
-        int virusInput = _virusPPM.getInputType();
-        int contaminationInput = _contaminationPPM.getInputType();
+        int virusInput = Integer.parseInt(_virusPPM.getText().toString());
+        int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
         String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
         PurityCondition pc = PurityCondition.valueOf(conditionInput);
         Model.getInstance().getCurrentUser().createPurityReport(nameInput, (new Date()).toString(), currentLocation.latitude, currentLocation.longitude,
