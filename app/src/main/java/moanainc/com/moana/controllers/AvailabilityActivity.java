@@ -79,10 +79,10 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 Log.d("PERMS", "GRANTED");
                 Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                Log.d("LOCATION", lastKnownLocation.toString());
                 if(lastKnownLocation == null){
                     currentLocation = new LatLng(0, 0);
                 } else {
+                    Log.d("LOCATION", lastKnownLocation.toString());
                     currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
                 }
                 if(mMap != null) {
