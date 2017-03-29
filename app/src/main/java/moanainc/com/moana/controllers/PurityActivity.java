@@ -22,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -55,8 +56,9 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purityreport);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map1);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
         _purityReportName = (EditText) findViewById(R.id.editText6);
@@ -195,7 +197,11 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
         if(currentLocation != null) {
             mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your current location").snippet("Press and hold to drag").draggable(true));
+            mMap.addMarker(new MarkerOptions().position(currentLocation)
+                    .title("Your current location")
+                    .snippet("Press and hold to drag")
+                    .draggable(true)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10));
         }
     }
