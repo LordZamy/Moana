@@ -27,7 +27,7 @@ public class PurityReportListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_purityreportlist);
+        setContentView(R.layout.activity_purityreportlist);
 
         ListView listview = (ListView) findViewById(R.id.listview2);
         ArrayList<PurityReport> list = Model.getInstance().getCurrentUser().getReportManager().pastPurityReports();

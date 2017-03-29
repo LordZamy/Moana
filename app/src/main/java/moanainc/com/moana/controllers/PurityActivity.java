@@ -54,9 +54,9 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.purity_report);
+        setContentView(R.layout.activity_purityreport);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
         _purityReportName = (EditText) findViewById(R.id.editText6);
@@ -100,7 +100,8 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         String nameInput = _purityReportName.getText().toString();
         int virusInput = _virusPPM.getInputType();
         int contaminationInput = _contaminationPPM.getInputType();
-        String conditionInput = _conditionSpinner.getSelectedItem().toString();
+        String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
+        PurityCondition pc = PurityCondition.valueOf(conditionInput);
         Model.getInstance().getCurrentUser().createPurityReport(nameInput, (new Date()).toString(), currentLocation.latitude, currentLocation.longitude,
                 PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
