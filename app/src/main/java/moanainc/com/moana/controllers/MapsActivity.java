@@ -70,7 +70,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if(!reports.isEmpty()) {
             LatLngBounds bounds = builder.build();
-            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 10));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 60));
         }
     }
 
