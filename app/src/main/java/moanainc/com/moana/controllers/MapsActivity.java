@@ -68,9 +68,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             builder.include(new LatLng(report.getLat(), report.getLng()));
         }
 
-        if(!reports.isEmpty()) {
+        if(!reports.isEmpty() || !purityReports.isEmpty()) {
             LatLngBounds bounds = builder.build();
-            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 60));
+            int width = getResources().getDisplayMetrics().widthPixels;
+            int height = getResources().getDisplayMetrics().heightPixels;
+            int padding = (int) (width * 0.12);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,  width, height, padding));
         }
     }
 
