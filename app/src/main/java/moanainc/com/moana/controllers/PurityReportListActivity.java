@@ -21,13 +21,14 @@ import moanainc.com.moana.models.Report;
  * Created by josh baldwin on 3/17/2017.
  */
 
-
 public class PurityReportListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purityreportlist);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ListView listview = (ListView) findViewById(R.id.listview2);
         ArrayList<PurityReport> list = Model.getInstance().getCurrentUser().getReportManager().pastPurityReports();

@@ -25,9 +25,6 @@
         <activity android:name=".controllers.HomeActivity" />
         <activity android:name=".controllers.LoginActivity" />
         <activity android:name=".controllers.RegisterActivity" />
-        <activity android:name=".controllers.ChooseReportActivity" />
-        <activity android:name=".controllers.ChooseReportListActivity" />
-        <activity android:name=".controllers.PurityReportListActivity" />
         <activity
             android:name=".controllers.WelcomeActivity"
             android:label="Welcome"
@@ -40,6 +37,10 @@
         <activity
             android:name=".controllers.ReportListActivity"
             android:label="List of Reports"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controllers.PurityReportListActivity"
+            android:label="List of Purity Reports"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".controllers.MapsActivity"
