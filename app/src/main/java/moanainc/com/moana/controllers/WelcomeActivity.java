@@ -117,6 +117,16 @@ public class WelcomeActivity extends AppCompatActivity {
         popup.show();
     }
 
+    public void onHistoricalReport(View view) {
+        if (_userAccountType != AccountType.MANAGER) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Only managers can view historical reports.", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            Intent goToHistoricalReport = new Intent(getBaseContext(), HistoricalReportActivity.class);
+            getBaseContext().startActivity(goToHistoricalReport);
+        }
+    }
+
     public void onViewMap(View view) {
         Intent goToViewMap = new Intent(getBaseContext(), MapsActivity.class);
         getBaseContext().startActivity(goToViewMap);

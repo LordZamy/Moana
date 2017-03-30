@@ -1,7 +1,9 @@
 package moanainc.com.moana.controllers;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import moanainc.com.moana.R;
 import moanainc.com.moana.models.User;
@@ -34,6 +43,9 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView passwordError;
     private Spinner accountSpinner;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,6 +63,23 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, AccountType.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accountSpinner.setAdapter(adapter);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d("TAG", "onAuthStateChanged:signed_in:" + user.getUid());
+                } else {
+                    // User is signed out
+                    Log.d("TAG", "onAuthStateChanged:signed_out");
+                }
+                // ...
+            }
+        };
     }
 
     public void gotoHome(View view) {
@@ -69,40 +98,49 @@ public class RegisterActivity extends AppCompatActivity {
         //Log.d("Edit", "Add user");
         Model model = Model.getInstance();
 
-        String usernameInput = _usernameField.getText().toString();
-        String passwordInput = _passwordField.getText().toString();
-        String nameInput = _nameField.getText().toString();
+        final String usernameInput = _usernameField.getText().toString();
+        final String passwordInput = _passwordField.getText().toString();
+        final String nameInput = _nameField.getText().toString();
 
-        if (validateName(usernameInput) && validatePassword(passwordInput)) {
-            // add new user to user base
-            switch((AccountType) accountSpinner.getSelectedItem()) {
-                case USER:
-                    _user = new User();
-                    break;
-                case WORKER:
-                    _user = new Worker();
-                    break;
-                case MANAGER:
-                    _user = new Manager();
-                    break;
-                case ADMIN:
-                    _user = new Admin();
-                    break;
-                default:
-                    _user = new User();
-            }
-            _user.getAccount().setUsername(usernameInput);
-            _user.getAccount().setPassword(passwordInput);
-            _user.getAccount().setName(nameInput);
-            _user.getAccount().setAccountType((AccountType) accountSpinner.getSelectedItem());
-            model.addUser(_user);
-            Log.d("RegisterActivity", _user.getAccount().toString());
+        mAuth.createUserWithEmailAndPassword(usernameInput, passwordInput)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d("TAG", "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-            // let user know of registration success
-            showConfirmation();
-            // move to home
-            gotoHome(null);
-        }
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(RegisterActivity.this, "Failed",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(nameInput)
+                                    .setPhotoUri(Uri.parse(accountSpinner.getSelectedItem().toString()))
+                                    .build();
+
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("TAG", "user profile updated");
+                                                // let user know of registration success
+                                                showConfirmation();
+                                                // move to home
+                                                gotoHome(null);
+
+                                            }
+                                        }
+                                    });
+                        }
+
+                    }
+                });
+
     }
 
     private boolean validateName(String usernameInput) {
