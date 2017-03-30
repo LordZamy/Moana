@@ -21,6 +21,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.Console;
+
 /**
  * Created by Micah Terrell on 2/13/2017.
  */
@@ -100,6 +102,21 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             AccountType accountType;
+
+                            if(user == null) {
+                                //TODO: fail elegantly
+                                Log.d("FIREBASE FAILURE", "RIP");
+                            } else {
+                                Log.d("FIREBASE GOOD", "HELLO");
+                                if(user.getPhotoUrl() == null) {
+                                    Log.d("FIREBASE GOOD", "photo is null");
+                                }
+                            }
+
+
+
+
+
                             Log.d("ACCOUNTTYPE", user.getPhotoUrl().toString()); //TODO: Causing a crash on Micah's environment
                             switch (user.getPhotoUrl().toString()) { //TODO: Causing a crash on Micah's environment
                                 case "User":
