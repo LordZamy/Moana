@@ -1,4 +1,4 @@
-package moanainc.com.moana.models;
+package moanainc.com.moana.model.report;
 
 import java.io.Serializable;
 

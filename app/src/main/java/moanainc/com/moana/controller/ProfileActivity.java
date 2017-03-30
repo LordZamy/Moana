@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.Account;
-import moanainc.com.moana.models.Model;
+import moanainc.com.moana.model.user.Account;
+import moanainc.com.moana.model.Model;
 
 /**
  * Created by josh baldwin on 2/21/2017.

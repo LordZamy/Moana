@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
@@ -17,9 +17,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.Model;
-import moanainc.com.moana.models.PurityReport;
-import moanainc.com.moana.models.Report;
+import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.report.PurityReport;
+import moanainc.com.moana.model.Report;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

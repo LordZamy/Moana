@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "839380443808-2qrojjhbokhv9brkh3af93kq9ifs54lt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "moanainc.com.moana",
-            "certificate_hash": "f132d4d5997c1a5aaf757f8e5c7c199063b556c2"
-          }
-        },
-        {
           "client_id": "839380443808-a0sopak0dq9b28734jmemogr627nhcql.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

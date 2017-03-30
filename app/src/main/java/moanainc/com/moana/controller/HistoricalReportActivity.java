@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +13,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.Model;
-import moanainc.com.moana.models.PurityReport;
-import moanainc.com.moana.models.ReportManager;
+import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.report.PurityReport;
 
 /**
  * Created by josh baldwin on 3/29/2017.

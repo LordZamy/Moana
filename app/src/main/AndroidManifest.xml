@@ -22,35 +22,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controllers.HomeActivity" />
-        <activity android:name=".controllers.LoginActivity" />
-        <activity android:name=".controllers.RegisterActivity" />
+        <activity android:name=".controller.HomeActivity" />
+        <activity android:name=".controller.LoginActivity" />
+        <activity android:name=".controller.RegisterActivity" />
         <activity
-            android:name=".controllers.WelcomeActivity"
+            android:name=".controller.WelcomeActivity"
             android:label="Welcome"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controllers.ProfileActivity" />
+        <activity android:name=".controller.ProfileActivity" />
         <activity
-            android:name=".controllers.AvailabilityActivity"
+            android:name=".controller.AvailabilityActivity"
             android:label="Create an Availability Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".controllers.ReportListActivity"
+            android:name=".controller.ReportListActivity"
             android:label="List of Reports"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".controllers.PurityReportListActivity"
+            android:name=".controller.PurityReportListActivity"
             android:label="List of Purity Reports"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".controllers.MapsActivity"
+            android:name=".controller.MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".controllers.PurityActivity"
+            android:name=".controller.PurityActivity"
             android:label="Create a Purity Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".controllers.HistoricalReportActivity"
+            android:name=".controller.HistoricalReportActivity"
             android:label="Historical Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <!--
