@@ -1,4 +1,4 @@
-package moanainc.com.moana.models;
+package moanainc.com.moana.model.user;
 
 /**
  * Created by josh baldwin on 2/13/2017.

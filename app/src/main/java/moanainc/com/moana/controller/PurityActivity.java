@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -6,8 +6,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-//import android.support.design.widget.FloatingActionButton;
-//import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,52 +17,56 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.AvailReport;
-import moanainc.com.moana.models.Model;
-import moanainc.com.moana.models.Report;
-import moanainc.com.moana.models.ReportManager;
+import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.report.PurityCondition;
+import moanainc.com.moana.model.ReportManager;
 
-public class AvailabilityActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private EditText _reportName;
-    private EditText _reportStatus;
-    private Spinner _statusSpinner;
+/**
+ * Created by USER on 3/15/2017.
+ */
+
+public class PurityActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+
+    private EditText _purityReportName;
     private ReportManager _reportManager;
     private final int MY_PERMISSIONS_REQUEST_LOCATION = 1;
     private LatLng currentLocation;
     private GoogleMap mMap;
-
+    private EditText _virusPPM;
+    private EditText _contaminationPPM;
+    private Spinner _conditionSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report);
+        setContentView(R.layout.activity_purityreport);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
-        _reportName = (EditText) findViewById(R.id.editText5);
-        _statusSpinner = (Spinner) findViewById(R.id.spinner2);
+        _purityReportName = (EditText) findViewById(R.id.editText6);
+        _virusPPM = (EditText) findViewById(R.id.editText7);
+        _contaminationPPM = (EditText) findViewById(R.id.editText8);
+        _conditionSpinner = (Spinner) findViewById(R.id.spinner5);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, AvailReport.legalStatus);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, PurityCondition.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        _statusSpinner.setAdapter(adapter);
-
+        _conditionSpinner.setAdapter(adapter);
 
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -85,11 +87,13 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
                     Log.d("LOCATION", lastKnownLocation.toString());
                     currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
                 }
+
                 if(mMap != null) {
                     onMapReady(mMap);
                 }
             }
         }
+
     }
 
     public void goToWelcome(View view) {
@@ -98,14 +102,20 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
     }
 
     public void onSubmitReport(View view){
-        String nameInput = _reportName.getText().toString();
-        String statusInput = _statusSpinner.getSelectedItem().toString();
-        Model.getInstance().getCurrentUser().createAvailReport(nameInput, (new Date()).toString(), currentLocation.latitude, currentLocation.longitude, statusInput);
+        String nameInput = _purityReportName.getText().toString();
+        int virusInput = Integer.parseInt(_virusPPM.getText().toString());
+        int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
+        String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
+        PurityCondition pc = PurityCondition.valueOf(conditionInput);
+        Model.getInstance().getCurrentUser().createPurityReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude,
+                PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
+
 
         goToWelcome(null);
         Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
         toast.show();
     }
+
 
     public void onCancelPressed(View view) {
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
@@ -189,7 +199,7 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
                     .title("Your current location")
                     .snippet("Press and hold to drag")
                     .draggable(true)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10));
         }
     }

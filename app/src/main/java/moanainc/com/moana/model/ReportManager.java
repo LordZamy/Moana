@@ -1,4 +1,4 @@
-package moanainc.com.moana.models;
+package moanainc.com.moana.model;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -6,6 +6,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import moanainc.com.moana.model.report.PurityReport;
+
 /**
  * Created by darrion on 2/28/17.
  */

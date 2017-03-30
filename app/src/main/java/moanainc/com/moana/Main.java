@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import moanainc.com.moana.controllers.HomeActivity;
-import moanainc.com.moana.controllers.LoginActivity;
+import moanainc.com.moana.controller.HomeActivity;
 
 public class Main extends AppCompatActivity {
 

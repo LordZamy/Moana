@@ -1,8 +1,11 @@
-package moanainc.com.moana.models;
+package moanainc.com.moana.model;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+
+import moanainc.com.moana.model.report.PurityReport;
+import moanainc.com.moana.model.user.User;
 
 /**
  * Created by josh baldwin on 2/13/2017.

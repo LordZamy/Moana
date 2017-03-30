@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.AccountType;
-import moanainc.com.moana.models.Model;
-import moanainc.com.moana.models.ReportManager;
+import moanainc.com.moana.model.user.AccountType;
+import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.ReportManager;
 
 public class WelcomeActivity extends AppCompatActivity {
 

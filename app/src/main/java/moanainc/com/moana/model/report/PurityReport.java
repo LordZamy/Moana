@@ -1,6 +1,9 @@
-package moanainc.com.moana.models;
+package moanainc.com.moana.model.report;
 
 import java.util.Date;
+
+import moanainc.com.moana.model.Report;
+import moanainc.com.moana.model.user.User;
 
 /**
  * Created by darrion on 2/28/17.

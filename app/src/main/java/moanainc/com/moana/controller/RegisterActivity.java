@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -21,12 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.User;
-import moanainc.com.moana.models.Worker;
-import moanainc.com.moana.models.Manager;
-import moanainc.com.moana.models.Admin;
-import moanainc.com.moana.models.AccountType;
-import moanainc.com.moana.models.Model;
+import moanainc.com.moana.model.user.User;
+import moanainc.com.moana.model.user.AccountType;
+import moanainc.com.moana.model.Model;
 
 /**
  * Created by Micah Terrell on 2/13/2017.

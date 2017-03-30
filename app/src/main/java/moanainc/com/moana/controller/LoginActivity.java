@@ -1,4 +1,4 @@
-package moanainc.com.moana.controllers;
+package moanainc.com.moana.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.models.AccountType;
-import moanainc.com.moana.models.User;
-import moanainc.com.moana.models.Model;
+import moanainc.com.moana.model.user.AccountType;
+import moanainc.com.moana.model.user.User;
+import moanainc.com.moana.model.Model;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

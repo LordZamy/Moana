@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="moanainc.com.moana.controllers.PurityActivity"
+    tools:context="moanainc.com.moana.controller.PurityActivity"
     tools:showIn="@layout/activity_purityreport">
 
     <EditText
@@ -86,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="24dp"
-        tools:context="moanainc.com.moana.controllers.MapsActivity"
+        tools:context="moanainc.com.moana.controller.MapsActivity"
         android:layout_below="@+id/editText8" />
 
 
