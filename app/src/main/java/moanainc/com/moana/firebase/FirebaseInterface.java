@@ -1,5 +1,8 @@
 package moanainc.com.moana.firebase;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import moanainc.com.moana.model.Report;
 
 /**
@@ -7,6 +10,8 @@ import moanainc.com.moana.model.Report;
  */
 
 public class FirebaseInterface {
+
+    DatabaseReference mDatabaseReference;
 
     public Report getAvailabilityReports() {
         return null;
@@ -25,18 +30,22 @@ public class FirebaseInterface {
     }
 
     public void addAvailabilityReport(Report report) {
-
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mDatabaseReference.child("reports").child("availability").setValue(report);
     }
 
     public void addPurityReport(Report report) {
-
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mDatabaseReference.child("reports").child("purity").setValue(report);
     }
 
-    public void addHistoryReport(Report report) {
-
+    public void addHistoricalReport(Report report) {
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mDatabaseReference.child("reports").child("historical").setValue(report);
     }
 
     public void addSourceReport(Report report) {
-
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mDatabaseReference.child("reports").child("source").setValue(report);
     }
 }
