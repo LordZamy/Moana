@@ -1,5 +1,7 @@
 package moanainc.com.moana.models;
 
+import java.util.Date;
+
 /**
  * Created by darrion on 2/28/17.
  */
@@ -7,7 +9,7 @@ package moanainc.com.moana.models;
 public class PurityReport implements Report {
 
     private String _reportName;
-    private String _dateCreated;
+    private Date _dateCreated;
     private User _creator;
     private double _lat;
     private double _lng;
@@ -16,7 +18,7 @@ public class PurityReport implements Report {
     private int _contaminationPPM;
 
 
-    public PurityReport(String reportName, String dateCreated, User creator, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
+    public PurityReport(String reportName, Date dateCreated, User creator, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
         _reportName = reportName;
         _dateCreated = dateCreated;
         _creator = creator;
@@ -35,6 +37,11 @@ public class PurityReport implements Report {
     }
 
     public String getDate(){
+        return _dateCreated.toString();
+    }
+
+    // created to preserve compatibility
+    public Date getDateActual() {
         return _dateCreated;
     }
 
@@ -52,5 +59,11 @@ public class PurityReport implements Report {
 
     public PurityReport createReport(){
         return new PurityReport();
+    }
+
+    @Override
+    public String toString(){
+        return _reportName + " | Date: " + _dateCreated + " | Location: " + _lat + ", " + _lng + "\nPurity Condition: " + _cond.toString()
+        + " | Virus PPM: " + _virusPPM + " | Contamination PPM: " + _contaminationPPM + " | By: " + _creator.getAccount().getName();
     }
 }

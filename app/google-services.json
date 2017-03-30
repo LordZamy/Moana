@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "839380443808",
+    "firebase_url": "https://moana-d6fc3.firebaseio.com",
+    "project_id": "moana-d6fc3",
+    "storage_bucket": "moana-d6fc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839380443808:android:7d7fcc8836c48ca7",
+        "android_client_info": {
+          "package_name": "moanainc.com.moana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839380443808-iumue95ebgrffh3kf5so2nbnejdp82fk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "moanainc.com.moana",
+            "certificate_hash": "6fda763058ee76ea44255764f27c176141996fec"
+          }
+        },
+        {
+          "client_id": "839380443808-c61retkveb89pal6v9km6ech6gk82t5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQO_9locryJUh8bdONhL5-fOhof2tfI7I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839380443808-c61retkveb89pal6v9km6ech6gk82t5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

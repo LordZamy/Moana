@@ -23,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -54,8 +55,7 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         _reportName = (EditText) findViewById(R.id.editText5);
@@ -79,8 +79,12 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 Log.d("PERMS", "GRANTED");
                 Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                Log.d("LOCATION", lastKnownLocation.toString());
-                currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                if(lastKnownLocation == null){
+                    currentLocation = new LatLng(0, 0);
+                } else {
+                    Log.d("LOCATION", lastKnownLocation.toString());
+                    currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                }
                 if(mMap != null) {
                     onMapReady(mMap);
                 }
@@ -181,7 +185,11 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
 
         if(currentLocation != null) {
             mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your current location").snippet("Press and hold to drag").draggable(true));
+            mMap.addMarker(new MarkerOptions().position(currentLocation)
+                    .title("Your current location")
+                    .snippet("Press and hold to drag")
+                    .draggable(true)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10));
         }
     }

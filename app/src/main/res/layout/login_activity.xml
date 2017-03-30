@@ -16,7 +16,7 @@
         android:layout_marginTop="21dp" />
 
     <TextView
-        android:text="Please enter a username:"
+        android:text="Please enter your email:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"

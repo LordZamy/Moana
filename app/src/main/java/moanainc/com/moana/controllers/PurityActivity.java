@@ -22,6 +22,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -54,9 +55,10 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.purity_report);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        setContentView(R.layout.activity_purityreport);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
         _purityReportName = (EditText) findViewById(R.id.editText6);
@@ -81,8 +83,13 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 Log.d("PERMS", "GRANTED");
                 Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                Log.d("LOCATION", lastKnownLocation.toString());
-                currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                if(lastKnownLocation == null){
+                    currentLocation = new LatLng(0, 0);
+                } else {
+                    Log.d("LOCATION", lastKnownLocation.toString());
+                    currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
+                }
+
                 if(mMap != null) {
                     onMapReady(mMap);
                 }
@@ -98,10 +105,11 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
     public void onSubmitReport(View view){
         String nameInput = _purityReportName.getText().toString();
-        int virusInput = _virusPPM.getInputType();
-        int contaminationInput = _contaminationPPM.getInputType();
-        String conditionInput = _conditionSpinner.getSelectedItem().toString();
-        Model.getInstance().getCurrentUser().createPurityReport(nameInput, (new Date()).toString(), currentLocation.latitude, currentLocation.longitude,
+        int virusInput = Integer.parseInt(_virusPPM.getText().toString());
+        int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
+        String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
+        PurityCondition pc = PurityCondition.valueOf(conditionInput);
+        Model.getInstance().getCurrentUser().createPurityReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude,
                 PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
 
@@ -189,7 +197,11 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
         if(currentLocation != null) {
             mMap.clear();
-            mMap.addMarker(new MarkerOptions().position(currentLocation).title("Your current location").snippet("Press and hold to drag").draggable(true));
+            mMap.addMarker(new MarkerOptions().position(currentLocation)
+                    .title("Your current location")
+                    .snippet("Press and hold to drag")
+                    .draggable(true)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 10));
         }
     }

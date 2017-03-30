@@ -15,7 +15,7 @@
 
     <TextView
         android:text="Moana Water Reports"
-        android:textSize="35sp"
+        android:textSize="34sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -28,9 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="0dp"
         android:id="@+id/imageView"
-        android:src="@drawable/toxicfrog"/>
+        android:src="@drawable/moana"/>
 
     <Button
         android:text="Edit Profile"
@@ -75,5 +75,14 @@
         android:id="@+id/mapButton"
         android:onClick="onViewMap"
         android:layout_above="@+id/reportButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onHistoricalReport"
+        android:layout_above="@+id/viewButton"
+        android:layout_alignParentEnd="true"
+        android:text="Historical Report" />
 </RelativeLayout>

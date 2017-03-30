@@ -1,5 +1,7 @@
 package moanainc.com.moana.models;
 
+import java.util.Date;
+
 /**
  * Created by darrion on 2/28/17.
  * << information holder >>
@@ -26,7 +28,7 @@ public class User {
         _reportManager.createReport(newReport);
     }
 
-    public void createPurityReport(String reportName, String dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
+    public void createPurityReport(String reportName, Date dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
         PurityReport newPurityReport = new PurityReport(reportName, dateCreated, this, lat, lng, condition, virusPPM, contaminationPPM);
         _reportManager.createPurityReport(newPurityReport);
     }
