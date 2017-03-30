@@ -31,12 +31,23 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controllers.ProfileActivity" />
         <activity
-            android:name=".controllers.ReportActivity"
-            android:label="Create a Report"
+            android:name=".controllers.AvailabilityActivity"
+            android:label="Create an Availability Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".controllers.ReportListActivity"
             android:label="List of Reports"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controllers.PurityReportListActivity"
+            android:label="List of Purity Reports"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controllers.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".controllers.PurityActivity"
+            android:label="Create a Purity Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -49,10 +60,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".controllers.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

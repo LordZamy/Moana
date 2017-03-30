@@ -5,14 +5,20 @@ import android.os.Bundle;
 //import android.support.design.widget.FloatingActionButton;
 //import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import moanainc.com.moana.R;
 import moanainc.com.moana.models.AccountType;
 import moanainc.com.moana.models.Model;
+import moanainc.com.moana.models.ReportManager;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -47,37 +53,68 @@ public class WelcomeActivity extends AppCompatActivity {
         getBaseContext().startActivity(goToProfile);
     }
 
-    public void onCreateReport(View view) {
-        Intent goToCreateReport = new Intent(getBaseContext(), ReportActivity.class);
-
-        if (_userAccountType == AccountType.USER) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Users cannot create reports.", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            getBaseContext().startActivity(goToCreateReport);
-        }
-    }
-
-    public void onPurityReport(View view) {
-        Intent goToPurityReport = new Intent(getBaseContext(), PurityActivity.class);
-
-        if (_userAccountType == AccountType.USER) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Users cannot create reports.", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            getBaseContext().startActivity(goToPurityReport);
-        }
+    public void onNewReport(View view) {
+        final ListPopupWindow popup = new ListPopupWindow(this);
+        popup.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, ReportManager.legalReports));
+        popup.setAnchorView(findViewById(R.id.reportButton));
+        popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent goToCreateReport;
+                switch(ReportManager.legalReports.get(position)){
+                    case "Availability":
+                        goToCreateReport = new Intent(getBaseContext(), AvailabilityActivity.class);
+                        getBaseContext().startActivity(goToCreateReport);
+                        break;
+                    case "Purity":
+                        if(_userAccountType == AccountType.USER || _userAccountType == AccountType.ADMIN) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Users and Admins cannot create purity reports.", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            goToCreateReport = new Intent(getBaseContext(), PurityActivity.class);
+                            getBaseContext().startActivity(goToCreateReport);
+                        }
+                        break;
+                    case "History":
+                        break;
+                    case "Source":
+                        break;
+                }
+                popup.dismiss();
+            }
+        });
+        popup.show();
     }
 
     public void onViewReports(View view) {
-        Intent goToViewReports = new Intent(getBaseContext(), ReportListActivity.class);
-
-        if (_userAccountType != AccountType.WORKER && _userAccountType != AccountType.MANAGER) {
-            Toast toast = Toast.makeText(getApplicationContext(), "Only Workers and Managers can access reports.", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            getBaseContext().startActivity(goToViewReports);
-        }
+        final ListPopupWindow popup = new ListPopupWindow(this);
+        popup.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, ReportManager.legalReports));
+        popup.setAnchorView(findViewById(R.id.viewButton));
+        popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent goToCreateReport;
+                switch(ReportManager.legalReports.get(position)){
+                    case "Availability":
+                        goToCreateReport = new Intent(getBaseContext(), ReportListActivity.class);
+                        getBaseContext().startActivity(goToCreateReport);
+                        break;
+                    case "Purity":
+                        if(_userAccountType == AccountType.USER || _userAccountType == AccountType.ADMIN) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Users and Admins cannot view purity reports.", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            goToCreateReport = new Intent(getBaseContext(), PurityReportListActivity.class);
+                            getBaseContext().startActivity(goToCreateReport);
+                        }
+                        break;
+                    case "History":
+                        break;
+                    case "Source":
+                        break;
+                }
+                popup.dismiss();
+            }
+        });
+        popup.show();
     }
 
     public void onViewMap(View view) {

@@ -26,8 +26,9 @@ public class User {
         _reportManager.createReport(newReport);
     }
 
-    public void createPurityReport() {
-
+    public void createPurityReport(String reportName, String dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
+        PurityReport newPurityReport = new PurityReport(reportName, dateCreated, this, lat, lng, condition, virusPPM, contaminationPPM);
+        _reportManager.createPurityReport(newPurityReport);
     }
 
     public Account getAccount() {
