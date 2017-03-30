@@ -28,7 +28,9 @@ public class AvailReport implements Report {
 
     }
 
-    public AvailReport(){}
+    public AvailReport(){
+
+    }
 
     public String getName() {
         return _reportName;

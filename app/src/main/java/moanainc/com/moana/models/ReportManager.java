@@ -1,27 +1,30 @@
 package moanainc.com.moana.models;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 /**
  * Created by darrion on 2/28/17.
  */
 
 public class ReportManager {
 
+    private DatabaseReference mDatabaseReference;
+
     public static List<String> legalReports = Arrays.asList("Availability", "Purity", "History", "Source");
 
-    ArrayList<Report> _reports = new ArrayList<Report>();
-    ArrayList<PurityReport> _purityReports = new ArrayList<>();
-
     public void createReport(Report report) {
-        _reports.add(report);
-        Model.getInstance().addReport(report);
+        // TODO: Call Firebase interface.
+        FirebaseDatabase.getInstance().getReference();
+
+        //Model.getInstance().addReport(report);
     }
 
     public void createPurityReport(PurityReport report) {
-        _purityReports.add(report);
+        //_purityReports.add(report);
         Model.getInstance().addPurityReport(report);
     }
 
