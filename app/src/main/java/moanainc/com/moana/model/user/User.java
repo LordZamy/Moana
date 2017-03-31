@@ -2,6 +2,7 @@ package moanainc.com.moana.model.user;
 
 import java.util.Date;
 
+import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.ReportManager;
 import moanainc.com.moana.model.report.AvailReport;
@@ -15,7 +16,7 @@ import moanainc.com.moana.model.report.PurityReport;
 
 public class User {
     private Account _account;
-    private ReportManager _reportManager = new ReportManager();
+    //private ReportManager _reportManager = new ReportManager();
 
     public User(String username, String password, String name, AccountType accountType) {
         _account = new Account(username, password, name, accountType);
@@ -30,13 +31,12 @@ public class User {
     }
 
     public void createAvailReport(String reportName, String dateCreated, double lat, double lng, String statusOfReport) {
-        Report newReport = new AvailReport(reportName, dateCreated, this, lat, lng, statusOfReport);
-        _reportManager.createReport(newReport);
+        FirebaseInterface.addAvailabilityReport(new AvailReport(reportName, dateCreated, this, lat, lng, statusOfReport));
     }
 
     public void createPurityReport(String reportName, Date dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
         PurityReport newPurityReport = new PurityReport(reportName, dateCreated, this, lat, lng, condition, virusPPM, contaminationPPM);
-        _reportManager.createPurityReport(newPurityReport);
+        //_reportManager.createPurityReport(newPurityReport);
     }
 
     public Account getAccount() {
@@ -46,7 +46,7 @@ public class User {
         _account = newAccount;
     }
 
-    public ReportManager getReportManager(){ return _reportManager; }
+    public ReportManager getReportManager(){ return null; }
 
     @Override
     public boolean equals(Object o) {

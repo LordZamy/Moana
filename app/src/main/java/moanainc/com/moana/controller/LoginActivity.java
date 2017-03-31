@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
+import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.user.AccountType;
 import moanainc.com.moana.model.user.User;
 import moanainc.com.moana.model.Model;
@@ -20,6 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Console;
 
@@ -87,50 +91,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
-        mAuth.signInWithEmailAndPassword(usernameField.getText().toString(), passwordField.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("TAG", "signInWithEmail:onComplete:" + task.isSuccessful());
+        OnCompleteListener listener = new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d("TAG", "signInWithEmail:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w("TAG", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
-                        } else {
-                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            AccountType accountType;
+                if (!task.isSuccessful()) {
+                    Log.w("TAG", "signInWithEmail:failed", task.getException());
+                    Toast.makeText(LoginActivity.this, "Login failed: " + task.getException(), Toast.LENGTH_SHORT).show();
+                } else {
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    AccountType accountType;
 
-                            Log.d("ACCOUNTTYPE", user.getPhotoUrl().toString()); //TODO: Causing a crash on Micah's environment
-                            switch (user.getPhotoUrl().toString()) { //TODO: Causing a crash on Micah's environment
-                                case "User":
-                                    accountType = AccountType.USER;
-                                    break;
-                                case "Worker":
-                                    accountType = AccountType.WORKER;
-                                    break;
-                                case "Manager":
-                                    accountType = AccountType.MANAGER;
-                                    break;
-                                case "Admin":
-                                    accountType = AccountType.ADMIN;
-                                    break;
-                                default:
-                                    accountType = AccountType.USER;
-                                    break;
-                }
-                            Model.getInstance().setCurrentUser(new User(user.getUid(),"", user.getDisplayName(), accountType));
-                            Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
-                            toast.show();
-                            goToApplication(null);
-                        }
+                    Log.d("ACCOUNTTYPE", user.getPhotoUrl().toString());
+                    switch (user.getPhotoUrl().toString()) {
+                        case "User":
+                            accountType = AccountType.USER;
+                            break;
+                        case "Worker":
+                            accountType = AccountType.WORKER;
+                            break;
+                        case "Manager":
+                            accountType = AccountType.MANAGER;
+                            break;
+                        case "Admin":
+                            accountType = AccountType.ADMIN;
+                            break;
+                        default:
+                            accountType = AccountType.USER;
+                            break;
                     }
-                });
-
-
-
+                    Model.getInstance().setCurrentUser(new User(user.getUid(), "", user.getDisplayName(), accountType));
+                    Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
+                    toast.show();
+                    goToApplication(null);}
+            }
+        };
+        FirebaseInterface.loginUser(listener, usernameField.getText().toString(), passwordField.getText().toString());
     }
 
     public boolean areValidCredentials(String username, String password) {

@@ -1,10 +1,15 @@
 package moanainc.com.moana.firebase;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import moanainc.com.moana.model.Report;
 
@@ -18,6 +23,22 @@ public class FirebaseInterface {
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public static Report getAvailabilityReports() {
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("TAG", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        };
+        mDatabaseReference.addValueEventListener(listener);
         return null;
     }
 
@@ -49,67 +70,8 @@ public class FirebaseInterface {
         mDatabaseReference.child("reports").child("source").push().setValue(report);
     }
 
-    public static void loginUser(AppCompatActivity activity, String username, String password) {
-        //mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(activity, ) TODO: stuff here
-        //TODO:Implement
-        //TODO:Method params and return type may/should change
-        /*
-        //TODO:Pass in callback, and define that callback in the activity that's using this method
-        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("TAG", "signInWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w("TAG", "signInWithEmail:failed", task.getException());
-                            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
-                        } else {
-                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                            AccountType accountType;
-
-                            if(user == null) {
-                                //TODO: fail elegantly
-                                Log.d("FIREBASE FAILURE", "RIP");
-                            } else {
-                                Log.d("FIREBASE GOOD", "HELLO");
-                                if(user.getPhotoUrl() == null) {
-                                    Log.d("FIREBASE GOOD", "photo is null");
-                                }
-                            }
-
-
-
-
-
-                            Log.d("ACCOUNTTYPE", user.getPhotoUrl().toString()); //TODO: Causing a crash on Micah's environment
-                            switch (user.getPhotoUrl().toString()) { //TODO: Causing a crash on Micah's environment
-                                case "User":
-                                    accountType = AccountType.USER;
-                                    break;
-                                case "Worker":
-                                    accountType = AccountType.WORKER;
-                                    break;
-                                case "Manager":
-                                    accountType = AccountType.MANAGER;
-                                    break;
-                                case "Admin":
-                                    accountType = AccountType.ADMIN;
-                                    break;
-                                default:
-                                    accountType = AccountType.USER;
-                                    break;
-                }
-                            Model.getInstance().setCurrentUser(new User(user.getUid(),"", user.getDisplayName(), accountType));
-                            Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
-                            toast.show();
-                            goToApplication(null);
-                        }
-                    }
-                });
-         */
+    public static void loginUser(OnCompleteListener activity, String username, String password) {
+        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(activity);
     }
 
     public static void registerUser() {
