@@ -1,5 +1,6 @@
 package moanainc.com.moana.firebase;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -11,7 +12,8 @@ import moanainc.com.moana.model.Report;
 
 public class FirebaseInterface {
 
-    private static DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference(); //TODO: Need to define globally
+    private static DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public static Report getAvailabilityReports() {
         return null;
@@ -30,23 +32,18 @@ public class FirebaseInterface {
     }
 
     public static void addAvailabilityReport(Report report) {
-        //mDatabaseReference = FirebaseDatabase.getInstance().getReference();  /* made this a class field */
-        mDatabaseReference.child("reports").child("availability").setValue(report); //TODO: This only allows one report, we need an array of them
     }
 
     public static void addPurityReport(Report report) {
-        //mDatabaseReference = FirebaseDatabase.getInstance().getReference();  /* made this a class field */
-        mDatabaseReference.child("reports").child("purity").setValue(report); //TODO: This only allows one report, we need an array of them
+        mDatabaseReference.child("reports").child("purity").push().setValue(report);
     }
 
     public static void addHistoricalReport(Report report) {
-        //mDatabaseReference = FirebaseDatabase.getInstance().getReference();  /* made this a class field */
-        mDatabaseReference.child("reports").child("historical").setValue(report); //TODO: This only allows one report, we need an array of them
+        mDatabaseReference.child("reports").child("historical").push().setValue(report);
     }
 
     public static void addSourceReport(Report report) {
-        //mDatabaseReference = FirebaseDatabase.getInstance().getReference();  /* made this a class field */
-        mDatabaseReference.child("reports").child("source").setValue(report); //TODO: This only allows one report, we need an array of them
+        mDatabaseReference.child("reports").child("source").push().setValue(report);
     }
 
     public static void loginUser() {
