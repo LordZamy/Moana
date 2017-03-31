@@ -49,8 +49,10 @@ public class FirebaseInterface {
 
         //Define all of the report listeners
         availabilityReportListener = new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
@@ -67,6 +69,7 @@ public class FirebaseInterface {
         purityReportListener  = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
@@ -83,6 +86,7 @@ public class FirebaseInterface {
         historyReportListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
@@ -99,6 +103,7 @@ public class FirebaseInterface {
         sourceReportListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
@@ -112,9 +117,17 @@ public class FirebaseInterface {
             }
         };
 
+        //Add all of the listeners
+        mDatabaseReference.addValueEventListener(availabilityReportListener);
+        mDatabaseReference.addValueEventListener(purityReportListener);
+        mDatabaseReference.addValueEventListener(historyReportListener);
+        mDatabaseReference.addValueEventListener(sourceReportListener);
+
+
     }
 
-    public static Report getAvailabilityReports() {
+    public ArrayList<AvailReport> getAvailabilityReports() {
+        /*
         ValueEventListener listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -132,18 +145,20 @@ public class FirebaseInterface {
         };
         mDatabaseReference.addValueEventListener(listener);
         return null;
+        */
+        return availibilityReports;
     }
 
-    public static Report getPurityReports() {
-        return null;
+    public ArrayList<PurityReport> getPurityReports() {
+        return purityReports;
     }
 
-    public static Report getHistoryReports() {
-        return null;
+    public ArrayList<HistoryReport> getHistoryReports() {
+        return historyReports;
     }
 
-    public static Report getSourceReports() {
-        return null;
+    public ArrayList<SourceReport> getSourceReports() {
+        return sourceReports;
     }
 
     public static void addAvailabilityReport(Report report) {
