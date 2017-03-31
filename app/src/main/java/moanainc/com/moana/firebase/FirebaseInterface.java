@@ -48,4 +48,20 @@ public class FirebaseInterface {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mDatabaseReference.child("reports").child("source").setValue(report);
     }
+
+    public void loginUser() {
+        //TODO:Implement
+        //TODO:Method params and return type may/should change
+    }
+
+    public void registerUser() {
+        //TODO:Implement
+        //TODO:Method params and return type may/should change
+    }
+
+    public void removeUser() {
+        //TODO:Implement
+        //TODO:Method params and return type may/should change
+    }
+
 }
