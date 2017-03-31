@@ -141,7 +141,7 @@ public class FirebaseInterface {
             }
         };
 
-        //Add all of the listeners //TODO:These listeners may need to be pointed at another child deeper to see the Firebase list updates
+        //Add all of the listeners
         mDatabaseReference.child("reports").child("availability").addValueEventListener(availabilityReportListener);
         mDatabaseReference.child("reports").child("purity").addValueEventListener(purityReportListener);
         mDatabaseReference.child("reports").child("historical").addValueEventListener(historyReportListener);
@@ -151,25 +151,6 @@ public class FirebaseInterface {
     }
 
     public ArrayList<AvailReport> getAvailabilityReports() {
-        /*
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        };
-        mDatabaseReference.addValueEventListener(listener);
-        return null;
-        */
         return availibilityReports;
     }
 
