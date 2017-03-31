@@ -44,6 +44,7 @@ public class FirebaseInterface {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
+            availibilityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 availibilityReports.add((Report) child.getValue(AvailReport.class));
             }
@@ -62,6 +63,7 @@ public class FirebaseInterface {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
+            purityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 purityReports.add((Report) child.getValue(PurityReport.class));
             }
@@ -82,6 +84,7 @@ public class FirebaseInterface {
 
             ArrayList<HistoryReport> newReportList = new ArrayList<>();
 
+            historyReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 historyReports.add((Report) child.getValue(HistoryReport.class));
             }
@@ -97,10 +100,10 @@ public class FirebaseInterface {
     private static ValueEventListener sourceReportListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            //TODO: Need to take the snapshot data and put it into the respective array list for this report type
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
+            sourceReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 sourceReports.add((Report) child.getValue(SourceReport.class));
             }
@@ -124,8 +127,7 @@ public class FirebaseInterface {
         Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
 
-
-        //Add all of the listeners //TODO:These listeners may need to be pointed at another child deeper to see the Firebase list updates
+        //Add all of the listeners
         mDatabaseReference.child("reports").child("availability").addValueEventListener(availabilityReportListener);
         mDatabaseReference.child("reports").child("purity").addValueEventListener(purityReportListener);
         mDatabaseReference.child("reports").child("historical").addValueEventListener(historyReportListener);
@@ -144,12 +146,11 @@ public class FirebaseInterface {
         Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
 
-
-        //Add all of the listeners //TODO:These listeners may need to be pointed at another child deeper to see the Firebase list updates
         mDatabaseReference.child("reports").child("availability").removeEventListener(availabilityReportListener);
         mDatabaseReference.child("reports").child("purity").removeEventListener(purityReportListener);
         mDatabaseReference.child("reports").child("historical").removeEventListener(historyReportListener);
         mDatabaseReference.child("reports").child("source").removeEventListener(sourceReportListener);
+
 
 
     }

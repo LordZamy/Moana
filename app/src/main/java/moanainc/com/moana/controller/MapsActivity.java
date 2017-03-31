@@ -17,7 +17,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import moanainc.com.moana.R;
-import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.Model;
 import moanainc.com.moana.model.report.PurityReport;
 import moanainc.com.moana.model.Report;
@@ -50,9 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        ArrayList<Report> availReports = FirebaseInterface.getAvailabilityReports();
+        ArrayList<Report> reports = Model.getInstance().getReports();
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (Report report : availReports) {
+        for (Report report : reports) {
             mMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
                     .title(report.getName())
                     .snippet(report.toString())
@@ -69,7 +68,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             builder.include(new LatLng(report.getLat(), report.getLng()));
         }
 
-        if(!availReports.isEmpty() || !purityReports.isEmpty()) {
+        if(!reports.isEmpty() || !purityReports.isEmpty()) {
             LatLngBounds bounds = builder.build();
             int width = getResources().getDisplayMetrics().widthPixels;
             int height = getResources().getDisplayMetrics().heightPixels;

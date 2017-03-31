@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.Model;
 import moanainc.com.moana.model.Report;
-import moanainc.com.moana.model.report.AvailReport;
 
 /**
  * Created by reecedantin on 2/28/17.
@@ -33,9 +31,7 @@ public class ReportListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ListView listview = (ListView) findViewById(R.id.listview);
-        //ArrayList<Report> list = Model.getInstance().getCurrentUser().getReportManager().pastReports();
-        ArrayList<Report> list = FirebaseInterface.getAvailabilityReports();
-
+        ArrayList<Report> list = Model.getInstance().getCurrentUser().getReportManager().pastReports();
 
         final ReportAdapter adapter = new ReportAdapter(this, android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);

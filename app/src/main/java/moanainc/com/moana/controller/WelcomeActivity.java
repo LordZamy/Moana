@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import moanainc.com.moana.R;
-import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.user.AccountType;
 import moanainc.com.moana.model.Model;
 import moanainc.com.moana.model.ReportManager;
@@ -44,7 +43,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onLogoutPressed(View view) {
         Model.getInstance().setCurrentUser(null);
-        FirebaseInterface.logout();
         goToHome(null);
     }
 
