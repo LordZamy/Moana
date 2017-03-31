@@ -1,5 +1,7 @@
 package moanainc.com.moana.model.report;
 
+import java.util.Date;
+
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.user.User;
 
@@ -10,13 +12,13 @@ import moanainc.com.moana.model.user.User;
 public class HistoryReport implements Report {
 
     private String _reportName;
-    private String _dateCreated;
+    private Date _dateCreated;
     private User _creator;
     private double _lat;
     private double _lng;
 
 
-    public HistoryReport(String reportName, String dateCreated, User creator, double lat, double lng){
+    public HistoryReport(String reportName, Date dateCreated, User creator, double lat, double lng){
         _reportName = reportName;
         _dateCreated = dateCreated;
         _creator = creator;
@@ -31,7 +33,7 @@ public class HistoryReport implements Report {
         return _reportName;
     }
 
-    public String getDate(){
+    public Date getDate(){
         return _dateCreated;
     }
 

@@ -1,8 +1,11 @@
 package moanainc.com.moana.model.report;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import moanainc.com.moana.model.Report;
@@ -42,12 +45,7 @@ public class PurityReport implements Report {
         return _reportName;
     }
 
-    public String getDate(){
-        return _dateCreated.toString();
-    }
-
-    // created to preserve compatibility
-    public Date getDateActual() {
+    public Date getDate(){
         return _dateCreated;
     }
 
@@ -67,16 +65,8 @@ public class PurityReport implements Report {
         _reportName = reportName;
     }
 
-    public void setDateCreated(String date){
-        try{
-            _dateCreated = (new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US)).parse(date);
-        } catch (ParseException perror) {
-            _dateCreated = null;
-        }
-    }
-
     // created to preserve compatibility
-    public void setDateCreated(Date date) {
+    public void setDate(Date date) {
         _dateCreated = date;
     }
 

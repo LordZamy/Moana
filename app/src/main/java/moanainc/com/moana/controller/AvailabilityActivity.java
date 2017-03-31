@@ -94,7 +94,7 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
     public void onSubmitReport(View view){
         String nameInput = _reportName.getText().toString();
         String statusInput = _statusSpinner.getSelectedItem().toString();
-        Model.getInstance().getCurrentUser().createAvailReport(nameInput, (new Date()).toString(), currentLocation.latitude, currentLocation.longitude, statusInput);
+        Model.getInstance().getCurrentUser().createAvailReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude, statusInput);
 
         goToWelcome(null);
         Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);

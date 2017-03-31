@@ -24,6 +24,8 @@ import moanainc.com.moana.model.Report;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +48,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
-        ArrayList<Report> reports = FirebaseInterface.getAllReports();
+        ArrayList<Report> availReports = FirebaseInterface.getAvailabilityReports();
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (Report report : reports) {
+        for (Report report : availReports) {
             googleMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
                     .title(report.getName())
                     .snippet(report.toString())
@@ -57,12 +60,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             builder.include(new LatLng(report.getLat(), report.getLng()));
         }
 
-        if(!reports.isEmpty()) {
+        ArrayList<Report> purityReports = FirebaseInterface.getPurityReports();
+        for (Report report : purityReports) {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
+                    .title(report.getName())
+                    .snippet(report.toString())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+            builder.include(new LatLng(report.getLat(), report.getLng()));
+        }
+
+        ArrayList<Report> historyReports = FirebaseInterface.getHistoryReports();
+        for (Report report : historyReports) {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
+                    .title(report.getName())
+                    .snippet(report.toString())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+            builder.include(new LatLng(report.getLat(), report.getLng()));
+        }
+        ArrayList<Report> sourceReports = FirebaseInterface.getSourceReports();
+        for (Report report : sourceReports) {
+            mMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
+                    .title(report.getName())
+                    .snippet(report.toString())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            builder.include(new LatLng(report.getLat(), report.getLng()));
+        }
+
+        if(!FirebaseInterface.getAllReports().isEmpty()) {
             LatLngBounds bounds = builder.build();
             int width = getResources().getDisplayMetrics().widthPixels;
             int height = getResources().getDisplayMetrics().heightPixels;
             int padding = (int) (width * 0.12);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,  width, height, padding));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,  width, height, padding));
         }
     }
 

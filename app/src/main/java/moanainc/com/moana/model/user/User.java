@@ -30,7 +30,7 @@ public class User {
         _account = new Account();
     }
 
-    public void createAvailReport(String reportName, String dateCreated, double lat, double lng, String statusOfReport) {
+    public void createAvailReport(String reportName, Date dateCreated, double lat, double lng, String statusOfReport) {
         FirebaseInterface.addAvailabilityReport(new AvailReport(reportName, dateCreated, this, lat, lng, statusOfReport));
     }
 

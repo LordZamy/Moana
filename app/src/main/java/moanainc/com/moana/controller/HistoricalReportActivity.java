@@ -13,7 +13,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import moanainc.com.moana.R;
+import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.report.PurityReport;
 
 /*
@@ -29,20 +31,20 @@ public class HistoricalReportActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<PurityReport> purityReportList = Model.getInstance().getCurrentUser().getReportManager().pastPurityReports();
+        ArrayList<Report> purityReportList = FirebaseInterface.getPurityReports();
 
         // sums for each month
         float[] PPMSums = new float[12];
         int[] numSums = new int[12];
 
         // compute sum and number of sums
-        for (PurityReport report : purityReportList)  {
-            Date reportDate = report.getDateActual();
+        for (Report report : purityReportList)  {
+            Date reportDate = report.getDate();
             Calendar cal = Calendar.getInstance();
             cal.setTime(reportDate);
             int month = cal.get(Calendar.MONTH);
 
-            PPMSums[month] += report.getVirusPPM();
+            PPMSums[month] += ((PurityReport) report).getVirusPPM();
             numSums[month]++;
         }
 

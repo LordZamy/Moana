@@ -1,5 +1,7 @@
 package moanainc.com.moana.model;
 
+import java.util.Date;
+
 import moanainc.com.moana.model.user.User;
 
 /**
@@ -9,7 +11,7 @@ import moanainc.com.moana.model.user.User;
 public interface Report {
 
     public String getName();
-    public String getDate();
+    public Date getDate();
     public User getCreator();
     public Report createReport();
     public double getLat();
