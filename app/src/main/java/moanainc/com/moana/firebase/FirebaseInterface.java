@@ -44,6 +44,7 @@ public class FirebaseInterface {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
+            availibilityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 availibilityReports.add((Report) child.getValue(AvailReport.class));
             }
@@ -62,6 +63,7 @@ public class FirebaseInterface {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
+            purityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 purityReports.add((Report) child.getValue(PurityReport.class));
             }
@@ -82,6 +84,7 @@ public class FirebaseInterface {
 
             ArrayList<HistoryReport> newReportList = new ArrayList<>();
 
+            historyReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 historyReports.add((Report) child.getValue(HistoryReport.class));
             }
@@ -97,10 +100,10 @@ public class FirebaseInterface {
     private static ValueEventListener sourceReportListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
-            //TODO: Need to take the snapshot data and put it into the respective array list for this report type
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
+            sourceReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
                 sourceReports.add((Report) child.getValue(SourceReport.class));
             }
@@ -153,7 +156,6 @@ public class FirebaseInterface {
     }
 
     public static ArrayList<Report> getAvailabilityReports() {
-
         return availibilityReports;
     }
 
