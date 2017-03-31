@@ -46,17 +46,23 @@ public class FirebaseInterface {
         purityReports = new ArrayList<>();
         historyReports = new ArrayList<>();
         sourceReports = new ArrayList<>();
-
+        Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
         availabilityReportListener = new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
+
+                ArrayList<AvailReport> newReportList = new ArrayList<>();
+
+                for(DataSnapshot child : dataSnapshot.getChildren()) {
+                   //TODO:Parse the snapshot reports and add them into the new report array list
+                }
+
+                availibilityReports = newReportList;
+
             }
 
             @Override
@@ -69,11 +75,16 @@ public class FirebaseInterface {
         purityReportListener  = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
+
+                ArrayList<PurityReport> newReportList = new ArrayList<>();
+
+                for(DataSnapshot child : dataSnapshot.getChildren()) {
+                    //TODO:Parse the snapshot reports and add them into the new report array list
+                }
+
+                purityReports = newReportList;
             }
 
             @Override
@@ -86,11 +97,17 @@ public class FirebaseInterface {
         historyReportListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
+
+                ArrayList<HistoryReport> newReportList = new ArrayList<>();
+
+                for(DataSnapshot child : dataSnapshot.getChildren()) {
+                    //TODO:Parse the snapshot reports and add them into the new report array list
+                }
+
+                historyReports = newReportList;
+
             }
 
             @Override
@@ -106,8 +123,15 @@ public class FirebaseInterface {
                 //TODO: Need to take the snapshot data and put it into the respective array list for this report type
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
+
+                ArrayList<SourceReport> newReportList = new ArrayList<>();
+
+                for(DataSnapshot child : dataSnapshot.getChildren()) {
+                    //TODO:Parse the snapshot reports and add them into the new report array list
+                }
+
+                sourceReports = newReportList;
+
             }
 
             @Override
@@ -118,10 +142,10 @@ public class FirebaseInterface {
         };
 
         //Add all of the listeners //TODO:These listeners may need to be pointed at another child deeper to see the Firebase list updates
-        mDatabaseReference.child("availability").addValueEventListener(availabilityReportListener);
-        mDatabaseReference.child("purity").addValueEventListener(purityReportListener);
-        mDatabaseReference.child("historical").addValueEventListener(historyReportListener);
-        mDatabaseReference.child("source").addValueEventListener(sourceReportListener);
+        mDatabaseReference.child("reports").child("availability").addValueEventListener(availabilityReportListener);
+        mDatabaseReference.child("reports").child("purity").addValueEventListener(purityReportListener);
+        mDatabaseReference.child("reports").child("historical").addValueEventListener(historyReportListener);
+        mDatabaseReference.child("reports").child("source").addValueEventListener(sourceReportListener);
 
 
     }
