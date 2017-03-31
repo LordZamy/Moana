@@ -51,6 +51,22 @@ public class AvailReport implements Report {
 
     public double getLng() { return _lng; }
 
+    public void setName(String name) {
+        _reportName = name;
+    }
+
+    public void setDate(String date){
+        _dateCreated = date;
+    }
+
+    public void setCreator(User user) {
+        _creator = user;
+    }
+
+    public void setLat(double lat) { _lat = lat; }
+
+    public void setLng(double lng) { _lng = lng; }
+
     public Report createReport(){
         return new AvailReport();
     }

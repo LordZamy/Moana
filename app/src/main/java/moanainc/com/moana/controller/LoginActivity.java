@@ -93,10 +93,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginPressed(View view) {
 
         /*START TEST SECTION*/
-        FirebaseInterface fbi = new FirebaseInterface();
-        Log.d("FB", "GOT HERE 1");
+        //FirebaseInterface fbi = new FirebaseInterface();
+        //Log.d("FB", "GOT HERE 1");
 
-        fbi.getAvailabilityReports();
+        //fbi.getAvailabilityReports();
 
 
         /*END TEST SECTION*/
