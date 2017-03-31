@@ -171,6 +171,15 @@ public class FirebaseInterface {
         return sourceReports;
     }
 
+    public static ArrayList<Report> getAllReports() {
+        ArrayList<Report> allReports = new ArrayList<>();
+        allReports.addAll(availibilityReports);
+        allReports.addAll(purityReports);
+        allReports.addAll(historyReports);
+        allReports.addAll(sourceReports);
+        return allReports;
+    }
+
     public static void addAvailabilityReport(Report report) {
         mDatabaseReference.child("reports").child("availability").push().setValue(report);
     }

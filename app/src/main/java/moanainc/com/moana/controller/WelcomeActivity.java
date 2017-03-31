@@ -91,19 +91,21 @@ public class WelcomeActivity extends AppCompatActivity {
         popup.setAnchorView(findViewById(R.id.viewButton));
         popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent goToCreateReport;
+                Intent goToViewReport;
                 switch(ReportManager.legalReports.get(position)){
                     case "Availability":
-                        goToCreateReport = new Intent(getBaseContext(), ReportListActivity.class);
-                        getBaseContext().startActivity(goToCreateReport);
+                        goToViewReport = new Intent(getBaseContext(), ReportListActivity.class);
+                        goToViewReport.putExtra("filter", position);
+                        getBaseContext().startActivity(goToViewReport);
                         break;
                     case "Purity":
                         if(_userAccountType == AccountType.USER || _userAccountType == AccountType.ADMIN) {
                             Toast toast = Toast.makeText(getApplicationContext(), "Users and Admins cannot view purity reports.", Toast.LENGTH_LONG);
                             toast.show();
                         } else {
-                            goToCreateReport = new Intent(getBaseContext(), PurityReportListActivity.class);
-                            getBaseContext().startActivity(goToCreateReport);
+                            goToViewReport = new Intent(getBaseContext(), ReportListActivity.class);
+                            goToViewReport.putExtra("filter", position);
+                            getBaseContext().startActivity(goToViewReport);
                         }
                         break;
                     case "History":

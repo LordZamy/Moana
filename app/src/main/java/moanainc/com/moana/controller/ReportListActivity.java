@@ -35,6 +35,27 @@ public class ReportListActivity extends AppCompatActivity {
         //ArrayList<Report> list = Model.getInstance().getCurrentUser().getReportManager().pastReports();
         ArrayList<Report> list = FirebaseInterface.getAvailabilityReports();
 
+        switch(getIntent().getIntExtra("filter", 0)) {
+            case 0:
+                list = FirebaseInterface.getAvailabilityReports();
+                break;
+            case 1:
+                list = FirebaseInterface.getPurityReports();
+                break;
+            case 2:
+                list = FirebaseInterface.getSourceReports();
+                break;
+            case 3:
+                list = FirebaseInterface.getHistoryReports();
+                break;
+            case 4:
+                list = FirebaseInterface.getAllReports();
+                break;
+            default:
+                list = FirebaseInterface.getAvailabilityReports();
+                break;
+        }
+
         final ReportAdapter adapter = new ReportAdapter(this, android.R.layout.simple_list_item_1, list);
         listview.setAdapter(adapter);
     }
