@@ -11,55 +11,55 @@ import moanainc.com.moana.model.Report;
 
 public class FirebaseInterface {
 
-    DatabaseReference mDatabaseReference;
+    private static DatabaseReference mDatabaseReference; //TODO: Need to define globally
 
-    public Report getAvailabilityReports() {
+    public static Report getAvailabilityReports() {
         return null;
     }
 
-    public Report getPurityReports() {
+    public static Report getPurityReports() {
         return null;
     }
 
-    public Report getHistoryReports() {
+    public static Report getHistoryReports() {
         return null;
     }
 
-    public Report getSourceReports() {
+    public static Report getSourceReports() {
         return null;
     }
 
-    public void addAvailabilityReport(Report report) {
+    public static void addAvailabilityReport(Report report) {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mDatabaseReference.child("reports").child("availability").setValue(report);
     }
 
-    public void addPurityReport(Report report) {
+    public static void addPurityReport(Report report) {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mDatabaseReference.child("reports").child("purity").setValue(report);
     }
 
-    public void addHistoricalReport(Report report) {
+    public static void addHistoricalReport(Report report) {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mDatabaseReference.child("reports").child("historical").setValue(report);
     }
 
-    public void addSourceReport(Report report) {
+    public static void addSourceReport(Report report) {
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mDatabaseReference.child("reports").child("source").setValue(report);
     }
 
-    public void loginUser() {
+    public static void loginUser() {
         //TODO:Implement
         //TODO:Method params and return type may/should change
     }
 
-    public void registerUser() {
+    public static void registerUser() {
         //TODO:Implement
         //TODO:Method params and return type may/should change
     }
 
-    public void removeUser() {
+    public static void removeUser() {
         //TODO:Implement
         //TODO:Method params and return type may/should change
     }
