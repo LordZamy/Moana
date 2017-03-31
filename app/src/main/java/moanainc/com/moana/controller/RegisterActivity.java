@@ -1,6 +1,7 @@
 package moanainc.com.moana.controller;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     private User _user;
+    private TextView mTitleView;
     private EditText _usernameField;
     private EditText _passwordField;
     private EditText _nameField;
@@ -48,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+
+        mTitleView = (TextView) findViewById(R.id.textView3);
         _user = new User();
         _usernameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
@@ -77,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
                 // ...
             }
         };
+
+        Typeface disney_font = Typeface.createFromAsset(getAssets(),  "fonts/disneyui.ttf");
+        mTitleView.setTypeface(disney_font);
     }
 
     public void gotoHome(View view) {

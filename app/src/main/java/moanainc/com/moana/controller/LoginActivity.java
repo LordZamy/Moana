@@ -1,6 +1,7 @@
 package moanainc.com.moana.controller;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.io.Console;
 
 /*
@@ -39,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText usernameField;
     EditText passwordField;
     TextView pageTitle;
+    TextView emailPrompt;
+    TextView passwordPrompt;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -49,7 +54,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login_activity);
         usernameField = (EditText) findViewById(R.id.editText);
         passwordField = (EditText) findViewById(R.id.editText2);
+        emailPrompt = (TextView) findViewById(R.id.emailPrompt);
+        passwordPrompt = (TextView) findViewById(R.id.passwordPrompt);
         pageTitle = (TextView) findViewById(R.id.textView3);
+
+        Typeface disney_font = Typeface.createFromAsset(getAssets(),  "fonts/disneyui.ttf");
+        pageTitle.setTypeface(disney_font);
+        emailPrompt.setTypeface(disney_font);
+        passwordPrompt.setTypeface(disney_font);
 
         mAuth = FirebaseAuth.getInstance();
 
