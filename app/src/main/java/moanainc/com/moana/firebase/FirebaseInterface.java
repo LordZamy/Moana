@@ -117,11 +117,11 @@ public class FirebaseInterface {
             }
         };
 
-        //Add all of the listeners
-        mDatabaseReference.addValueEventListener(availabilityReportListener);
-        mDatabaseReference.addValueEventListener(purityReportListener);
-        mDatabaseReference.addValueEventListener(historyReportListener);
-        mDatabaseReference.addValueEventListener(sourceReportListener);
+        //Add all of the listeners //TODO:These listeners may need to be pointed at another child deeper to see the Firebase list updates
+        mDatabaseReference.child("availability").addValueEventListener(availabilityReportListener);
+        mDatabaseReference.child("purity").addValueEventListener(purityReportListener);
+        mDatabaseReference.child("historical").addValueEventListener(historyReportListener);
+        mDatabaseReference.child("source").addValueEventListener(sourceReportListener);
 
 
     }
