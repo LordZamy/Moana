@@ -32,6 +32,7 @@ public class FirebaseInterface {
     }
 
     public static void addAvailabilityReport(Report report) {
+        mDatabaseReference.child("reports").child("availability").push().setValue(report);
     }
 
     public static void addPurityReport(Report report) {
