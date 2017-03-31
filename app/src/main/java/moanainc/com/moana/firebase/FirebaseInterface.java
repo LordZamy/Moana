@@ -11,7 +11,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import moanainc.com.moana.model.Report;
+import moanainc.com.moana.model.report.AvailReport;
+import moanainc.com.moana.model.report.HistoryReport;
+import moanainc.com.moana.model.report.PurityReport;
+import moanainc.com.moana.model.report.SourceReport;
 
 /**
  * Created by darrion on 3/30/17.
@@ -21,6 +28,91 @@ public class FirebaseInterface {
 
     private static DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    private ValueEventListener availabilityReportListener;
+    private ValueEventListener purityReportListener;
+    private ValueEventListener historyReportListener;
+    private ValueEventListener sourceReportListener;
+
+    private ArrayList<AvailReport> availibilityReports;
+    private ArrayList<PurityReport> purityReports;
+    private ArrayList<HistoryReport> historyReports;
+    private ArrayList<SourceReport> sourceReports;
+
+
+    public FirebaseInterface() {
+        //Instatiate the report lists
+        availibilityReports = new ArrayList<>();
+        purityReports = new ArrayList<>();
+        historyReports = new ArrayList<>();
+        sourceReports = new ArrayList<>();
+
+        //Define all of the report listeners
+        availabilityReportListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("TAG", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        };
+
+        purityReportListener  = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("TAG", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        };
+
+        historyReportListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("TAG", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        };
+
+        sourceReportListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d("TAG", "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        };
+
+    }
 
     public static Report getAvailabilityReports() {
         ValueEventListener listener = new ValueEventListener() {

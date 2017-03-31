@@ -91,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginPressed(View view) {
+        //Define the callback
         OnCompleteListener listener = new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -127,6 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                     goToApplication(null);}
             }
         };
+        //call the login method
         FirebaseInterface.loginUser(listener, usernameField.getText().toString(), passwordField.getText().toString());
     }
 
