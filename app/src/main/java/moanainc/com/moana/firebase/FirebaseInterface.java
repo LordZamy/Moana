@@ -1,9 +1,12 @@
 package moanainc.com.moana.firebase;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,117 +32,97 @@ public class FirebaseInterface {
     private static DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-    private ValueEventListener availabilityReportListener;
-    private ValueEventListener purityReportListener;
-    private ValueEventListener historyReportListener;
-    private ValueEventListener sourceReportListener;
+    private static ArrayList<Report> availibilityReports;
+    private static ArrayList<Report> purityReports;
+    private static ArrayList<Report> historyReports;
+    private static ArrayList<Report> sourceReports;
 
-    private ArrayList<AvailReport> availibilityReports;
-    private ArrayList<PurityReport> purityReports;
-    private ArrayList<HistoryReport> historyReports;
-    private ArrayList<SourceReport> sourceReports;
+    private static ValueEventListener availabilityReportListener = new ValueEventListener() {
+
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+
+            for(DataSnapshot child : dataSnapshot.getChildren()) {
+                availibilityReports.add((Report) child.getValue(AvailReport.class));
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w("TAG", "Failed to read value.", error.toException());
+        }
+    };
+
+    private static ValueEventListener purityReportListener  = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+
+            for(DataSnapshot child : dataSnapshot.getChildren()) {
+                purityReports.add((Report) child.getValue(PurityReport.class));
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w("TAG", "Failed to read value.", error.toException());
+        }
+    };
+
+    private static ValueEventListener historyReportListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+
+            ArrayList<HistoryReport> newReportList = new ArrayList<>();
+
+            for(DataSnapshot child : dataSnapshot.getChildren()) {
+                historyReports.add((Report) child.getValue(HistoryReport.class));
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w("TAG", "Failed to read value.", error.toException());
+        }
+    };
+
+    private static ValueEventListener sourceReportListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            //TODO: Need to take the snapshot data and put it into the respective array list for this report type
+            // This method is called once with the initial value and again
+            // whenever data at this location is updated.
+
+            for(DataSnapshot child : dataSnapshot.getChildren()) {
+                sourceReports.add((Report) child.getValue(SourceReport.class));
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError error) {
+            // Failed to read value
+            Log.w("TAG", "Failed to read value.", error.toException());
+        }
+    };
 
 
-    public FirebaseInterface() {
+    public static void startData() {
         //Instatiate the report lists
         availibilityReports = new ArrayList<>();
         purityReports = new ArrayList<>();
         historyReports = new ArrayList<>();
         sourceReports = new ArrayList<>();
+
         Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
-        availabilityReportListener = new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                ArrayList<AvailReport> newReportList = new ArrayList<>();
-
-                for(DataSnapshot child : dataSnapshot.getChildren()) {
-                   //TODO:Parse the snapshot reports and add them into the new report array list
-                }
-
-                availibilityReports = newReportList;
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        };
-
-        purityReportListener  = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                ArrayList<PurityReport> newReportList = new ArrayList<>();
-
-                for(DataSnapshot child : dataSnapshot.getChildren()) {
-                    //TODO:Parse the snapshot reports and add them into the new report array list
-                }
-
-                purityReports = newReportList;
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        };
-
-        historyReportListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                ArrayList<HistoryReport> newReportList = new ArrayList<>();
-
-                for(DataSnapshot child : dataSnapshot.getChildren()) {
-                    //TODO:Parse the snapshot reports and add them into the new report array list
-                }
-
-                historyReports = newReportList;
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        };
-
-        sourceReportListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //TODO: Need to take the snapshot data and put it into the respective array list for this report type
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-
-                ArrayList<SourceReport> newReportList = new ArrayList<>();
-
-                for(DataSnapshot child : dataSnapshot.getChildren()) {
-                    //TODO:Parse the snapshot reports and add them into the new report array list
-                }
-
-                sourceReports = newReportList;
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        };
 
         //Add all of the listeners
         mDatabaseReference.child("reports").child("availability").addValueEventListener(availabilityReportListener);
@@ -150,19 +133,39 @@ public class FirebaseInterface {
 
     }
 
-    public ArrayList<AvailReport> getAvailabilityReports() {
+    public static void stopData() {
+        //Instatiate the report lists
+        availibilityReports = new ArrayList<>();
+        purityReports = new ArrayList<>();
+        historyReports = new ArrayList<>();
+        sourceReports = new ArrayList<>();
+
+        Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        //Define all of the report listeners
+
+        mDatabaseReference.child("reports").child("availability").removeEventListener(availabilityReportListener);
+        mDatabaseReference.child("reports").child("purity").removeEventListener(purityReportListener);
+        mDatabaseReference.child("reports").child("historical").removeEventListener(historyReportListener);
+        mDatabaseReference.child("reports").child("source").removeEventListener(sourceReportListener);
+
+
+
+    }
+
+    public static ArrayList<Report> getAvailabilityReports() {
+
         return availibilityReports;
     }
 
-    public ArrayList<PurityReport> getPurityReports() {
+    public static ArrayList<Report> getPurityReports() {
         return purityReports;
     }
 
-    public ArrayList<HistoryReport> getHistoryReports() {
+    public static ArrayList<Report> getHistoryReports() {
         return historyReports;
     }
 
-    public ArrayList<SourceReport> getSourceReports() {
+    public static ArrayList<Report> getSourceReports() {
         return sourceReports;
     }
 
@@ -183,7 +186,19 @@ public class FirebaseInterface {
     }
 
     public static void loginUser(OnCompleteListener listener, String username, String password) {
-        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(listener);
+        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(listener).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    startData();
+                }
+            }
+        });
+    }
+
+    public static void logout() {
+        stopData();
+        FirebaseAuth.getInstance().signOut();
     }
 
     public static void registerUser(OnCompleteListener listener, String username, String password) {
