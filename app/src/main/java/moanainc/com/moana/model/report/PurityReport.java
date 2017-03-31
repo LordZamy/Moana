@@ -1,11 +1,14 @@
 package moanainc.com.moana.model.report;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.user.User;
 
-/**
+/*
  * Created by darrion on 2/28/17.
  */
 
@@ -33,7 +36,7 @@ public class PurityReport implements Report {
 
     }
 
-    public PurityReport(){}
+    private PurityReport(){}
 
     public String getName() {
         return _reportName;
@@ -59,6 +62,35 @@ public class PurityReport implements Report {
     public int getVirusPPM() { return _virusPPM; }
 
     public int getContaminationPPM() { return _contaminationPPM; }
+
+    public void setName(String reportName) {
+        _reportName = reportName;
+    }
+
+    public void setDateCreated(String date){
+        try{
+            _dateCreated = (new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US)).parse(date);
+        } catch (ParseException perror) {
+            _dateCreated = null;
+        }
+    }
+
+    // created to preserve compatibility
+    public void setDateCreated(Date date) {
+        _dateCreated = date;
+    }
+
+    public void setCreator(User user){ _creator = user; }
+
+    public void setLat(double lat) { _lat = lat; }
+
+    public void setLng(double lng) { _lng = lng; }
+
+    public void setCondition(PurityCondition cond) { _cond = cond; }
+
+    public void setVirusPPM(int ppm) { _virusPPM = ppm; }
+
+    public void setContaminationPPM(int ppm) { _contaminationPPM = ppm; }
 
     public PurityReport createReport(){
         return new PurityReport();

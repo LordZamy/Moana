@@ -16,7 +16,7 @@ import moanainc.com.moana.R;
 import moanainc.com.moana.model.Model;
 import moanainc.com.moana.model.report.PurityReport;
 
-/**
+/*
  * Created by josh baldwin on 3/29/2017.
  */
 

@@ -24,8 +24,6 @@ import moanainc.com.moana.model.Report;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,33 +46,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        ArrayList<Report> availReports = FirebaseInterface.getAvailabilityReports();
+        ArrayList<Report> reports = FirebaseInterface.getAllReports();
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (Report report : availReports) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
+        for (Report report : reports) {
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
                     .title(report.getName())
                     .snippet(report.toString())
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)));
             builder.include(new LatLng(report.getLat(), report.getLng()));
         }
 
-        ArrayList<PurityReport> purityReports = Model.getInstance().getPurityReports();
-        for (PurityReport report : purityReports) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(report.getLat(), report.getLng()))
-                    .title(report.getName())
-                    .snippet(report.toString())
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-            builder.include(new LatLng(report.getLat(), report.getLng()));
-        }
-
-        if(!availReports.isEmpty() || !purityReports.isEmpty()) {
+        if(!reports.isEmpty()) {
             LatLngBounds bounds = builder.build();
             int width = getResources().getDisplayMetrics().widthPixels;
             int height = getResources().getDisplayMetrics().heightPixels;
             int padding = (int) (width * 0.12);
-            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,  width, height, padding));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,  width, height, padding));
         }
     }
 

@@ -34,11 +34,6 @@ public class User {
         FirebaseInterface.addAvailabilityReport(new AvailReport(reportName, dateCreated, this, lat, lng, statusOfReport));
     }
 
-    public void createPurityReport(String reportName, Date dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
-        PurityReport newPurityReport = new PurityReport(reportName, dateCreated, this, lat, lng, condition, virusPPM, contaminationPPM);
-        //_reportManager.createPurityReport(newPurityReport);
-    }
-
     public Account getAccount() {
         return _account;
     }

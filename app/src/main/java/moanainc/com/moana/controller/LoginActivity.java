@@ -13,8 +13,11 @@ import android.widget.Toast;
 import moanainc.com.moana.R;
 import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.user.AccountType;
+import moanainc.com.moana.model.user.Admin;
+import moanainc.com.moana.model.user.Manager;
 import moanainc.com.moana.model.user.User;
 import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.user.Worker;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Console;
 
-/**
+/*
  * Created by Micah Terrell on 2/13/2017.
  */
 
@@ -111,27 +114,31 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login failed: " + task.getException(), Toast.LENGTH_SHORT).show();
                 } else {
                     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    AccountType accountType;
 
-                    Log.d("ACCOUNTTYPE", user.getPhotoUrl().toString());
-                    switch (user.getPhotoUrl().toString()) {
+                    String accountString;
+                    try{
+                        accountString = user.getPhotoUrl().toString();
+                    } catch (NullPointerException err) {
+                        accountString = "User";
+                    }
+
+                    switch (accountString) {
                         case "User":
-                            accountType = AccountType.USER;
+                            Model.getInstance().setCurrentUser(new User(user.getUid(), "", user.getDisplayName(), AccountType.USER));
                             break;
                         case "Worker":
-                            accountType = AccountType.WORKER;
+                            Model.getInstance().setCurrentUser(new Worker(user.getUid(), "", user.getDisplayName(), AccountType.WORKER));
                             break;
                         case "Manager":
-                            accountType = AccountType.MANAGER;
+                            Model.getInstance().setCurrentUser(new Manager(user.getUid(), "", user.getDisplayName(), AccountType.MANAGER));
                             break;
                         case "Admin":
-                            accountType = AccountType.ADMIN;
+                            Model.getInstance().setCurrentUser(new Admin(user.getUid(), "", user.getDisplayName(), AccountType.ADMIN));
                             break;
                         default:
-                            accountType = AccountType.USER;
+                            Model.getInstance().setCurrentUser(new User(user.getUid(), "", user.getDisplayName(), AccountType.USER));
                             break;
                     }
-                    Model.getInstance().setCurrentUser(new User(user.getUid(), "", user.getDisplayName(), accountType));
                     Toast toast = Toast.makeText(getApplicationContext(), "Login succeeded", Toast.LENGTH_SHORT);
                     toast.show();
                     goToApplication(null);}

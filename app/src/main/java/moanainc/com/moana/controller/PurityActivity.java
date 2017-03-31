@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -32,9 +33,10 @@ import moanainc.com.moana.R;
 import moanainc.com.moana.model.Model;
 import moanainc.com.moana.model.report.PurityCondition;
 import moanainc.com.moana.model.ReportManager;
+import moanainc.com.moana.model.user.Worker;
 
 
-/**
+/*
  * Created by USER on 3/15/2017.
  */
 
@@ -64,7 +66,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         _contaminationPPM = (EditText) findViewById(R.id.editText8);
         _conditionSpinner = (Spinner) findViewById(R.id.spinner5);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, PurityCondition.values());
+        ArrayAdapter<PurityCondition> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, PurityCondition.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         _conditionSpinner.setAdapter(adapter);
 
@@ -75,7 +77,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSIONS_REQUEST_LOCATION);
         } else {
-            LocationManager locationManager = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+            LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 
             if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
@@ -107,7 +109,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
         String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
         PurityCondition pc = PurityCondition.valueOf(conditionInput);
-        Model.getInstance().getCurrentUser().createPurityReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude,
+        ((Worker) Model.getInstance().getCurrentUser()).createPurityReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude,
                 PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
 
@@ -143,7 +145,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MY_PERMISSIONS_REQUEST_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
@@ -152,7 +154,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    LocationManager locationManager = (LocationManager) this.getSystemService(this.LOCATION_SERVICE);
+                    LocationManager locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 
                     if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
@@ -164,7 +166,6 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
-                return;
             }
 
             // other 'case' lines to check for other

@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import moanainc.com.moana.R;
 import moanainc.com.moana.firebase.FirebaseInterface;
 import moanainc.com.moana.model.user.AccountType;
@@ -55,8 +57,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onNewReport(View view) {
         final ListPopupWindow popup = new ListPopupWindow(this);
-        popup.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, ReportManager.legalReports));
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ReportManager.legalReports);
+        popup.setAdapter(adapter);
         popup.setAnchorView(findViewById(R.id.reportButton));
+
         popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent goToCreateReport;
@@ -87,12 +92,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void onViewReports(View view) {
         final ListPopupWindow popup = new ListPopupWindow(this);
-        popup.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, ReportManager.legalReports));
+
+        final ArrayList<String> filterTypes = new ArrayList<>();
+        filterTypes.addAll(ReportManager.legalReports);
+        filterTypes.add("All");
+
+        popup.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, filterTypes));
+
         popup.setAnchorView(findViewById(R.id.viewButton));
         popup.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent goToViewReport;
-                switch(ReportManager.legalReports.get(position)){
+                switch(filterTypes.get(position)){
                     case "Availability":
                         goToViewReport = new Intent(getBaseContext(), ReportListActivity.class);
                         goToViewReport.putExtra("filter", position);
