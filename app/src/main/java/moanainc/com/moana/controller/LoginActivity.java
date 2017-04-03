@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView pageTitle;
     TextView emailPrompt;
     TextView passwordPrompt;
+    Button loginButton;
+    Button goBackButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -57,11 +60,16 @@ public class LoginActivity extends AppCompatActivity {
         emailPrompt = (TextView) findViewById(R.id.emailPrompt);
         passwordPrompt = (TextView) findViewById(R.id.passwordPrompt);
         pageTitle = (TextView) findViewById(R.id.textView3);
+        loginButton = (Button) findViewById(R.id.loginButton);
+        goBackButton = (Button) findViewById(R.id.goBackButton);
 
         Typeface disney_font = Typeface.createFromAsset(getAssets(),  "fonts/disneyui.ttf");
+        Typeface varela_round_font = Typeface.createFromAsset(getAssets(),  "fonts/VarelaRound-Regular.ttf");
         pageTitle.setTypeface(disney_font);
-        emailPrompt.setTypeface(disney_font);
-        passwordPrompt.setTypeface(disney_font);
+        emailPrompt.setTypeface(varela_round_font);
+        passwordPrompt.setTypeface(varela_round_font);
+        loginButton.setTypeface(varela_round_font);
+        goBackButton.setTypeface(varela_round_font);
 
         mAuth = FirebaseAuth.getInstance();
 

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +39,11 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText _usernameField;
     private EditText _passwordField;
     private EditText _nameField;
+    private TextView _usernamePrompt;
+    private TextView _emailPrompt;
+    private TextView _passwordPrompt;
+    private Button button;
+    private Button button2;
     private TextView usernameError;
     private TextView passwordError;
     private Spinner accountSpinner;
@@ -56,6 +62,11 @@ public class RegisterActivity extends AppCompatActivity {
         _usernameField = (EditText) findViewById(R.id.editText);
         _passwordField = (EditText) findViewById(R.id.editText2);
         _nameField = (EditText) findViewById(R.id.editText3);
+        _emailPrompt = (TextView) findViewById(R.id.emailPrompt);
+        _passwordPrompt = (TextView) findViewById(R.id.passwordPrompt);
+        _usernamePrompt = (TextView) findViewById(R.id.usernamePrompt);
+        button = (Button) findViewById(R.id.button);
+        button2 = (Button) findViewById(R.id.button2);
         usernameError = (TextView) findViewById(R.id.textView12);
         passwordError = (TextView) findViewById(R.id.textView13);
         accountSpinner = (Spinner) findViewById(R.id.spinner);
@@ -83,7 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
         };
 
         Typeface disney_font = Typeface.createFromAsset(getAssets(),  "fonts/disneyui.ttf");
+        Typeface varela_round_font = Typeface.createFromAsset(getAssets(),  "fonts/VarelaRound-Regular.ttf");
         mTitleView.setTypeface(disney_font);
+        _usernamePrompt.setTypeface(varela_round_font);
+        _emailPrompt.setTypeface(varela_round_font);
+        _passwordPrompt.setTypeface(varela_round_font);
+        button.setTypeface(varela_round_font);
+        button2.setTypeface(varela_round_font);
     }
 
     public void gotoHome(View view) {
