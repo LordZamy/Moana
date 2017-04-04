@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import moanainc.com.moana.R;
@@ -109,7 +111,15 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
         String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
         PurityCondition pc = PurityCondition.valueOf(conditionInput);
-        ((Worker) Model.getInstance().getCurrentUser()).createPurityReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude,
+        Date date = new Date();
+        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+
+        if (datePicker.getDayOfMonth() != 0) {
+            Calendar cal = Calendar.getInstance();
+            cal.set(datePicker.getYear(),datePicker.getMonth(), datePicker.getDayOfMonth());
+            date = cal.getTime();
+        }
+        ((Worker) Model.getInstance().getCurrentUser()).createPurityReport(nameInput, date, currentLocation.latitude, currentLocation.longitude,
                 PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
 
@@ -118,6 +128,14 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         toast.show();
     }
 
+    public void onShowCalendar(View view) {
+        if(findViewById(R.id.datePicker).isShown()){
+            findViewById(R.id.datePicker).setVisibility(View.INVISIBLE);
+        } else {
+            findViewById(R.id.datePicker).setVisibility(View.VISIBLE);
+        }
+
+    }
 
     public void onCancelPressed(View view) {
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
