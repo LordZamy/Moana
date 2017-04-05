@@ -68,14 +68,11 @@ public class HistoricalReportActivity extends AppCompatActivity {
         series.setThickness(8);
 
         graph.addSeries(series);
-
-        graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(100);
+        
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(14);
+        graph.getViewport().setMaxX(13);
 
         graph.getViewport().setScrollable(true);
         graph.getViewport().setScrollableY(true);
