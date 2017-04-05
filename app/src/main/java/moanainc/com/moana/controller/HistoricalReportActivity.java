@@ -35,7 +35,7 @@ public class HistoricalReportActivity extends AppCompatActivity {
 
         // sums for each month
         float[] PPMSums = new float[12];
-        int[] numSums = new int[12];
+        int[] numSums = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; //new int[12];
 
         // compute sum and number of sums
         for (Report report : purityReportList)  {
@@ -61,12 +61,22 @@ public class HistoricalReportActivity extends AppCompatActivity {
         GraphView graph = (GraphView) findViewById(R.id.graph);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphPoints);
 
+
         series.setTitle("Month vs. PPM");
         series.setDrawDataPoints(true);
         series.setDataPointsRadius(10);
         series.setThickness(8);
 
         graph.addSeries(series);
+
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(50000);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(14);
+
         graph.getViewport().setScrollable(true);
         graph.getViewport().setScrollableY(true);
     }
