@@ -68,7 +68,7 @@ public class HistoricalReportActivity extends AppCompatActivity {
         series.setThickness(8);
 
         graph.addSeries(series);
-        
+
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
