@@ -71,7 +71,7 @@ public class HistoricalReportActivity extends AppCompatActivity {
 
         graph.getViewport().setYAxisBoundsManual(true);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(50000);
+        graph.getViewport().setMaxY(100);
 
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setMinX(0);
