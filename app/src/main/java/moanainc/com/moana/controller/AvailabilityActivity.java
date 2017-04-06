@@ -79,7 +79,7 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
                     Log.d("LOCATION", lastKnownLocation.toString());
                     currentLocation = new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude());
                 }
-                if(mMap != null) {
+                if (mMap != null) {
                     onMapReady(mMap);
                 }
             }
