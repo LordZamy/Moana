@@ -24,10 +24,10 @@ public class TestAvailReport {
 
 
     @Before public void setup() {
-        _reportName = null;
-        _dateCreated = null;
-        _creator = null;
-        _status = null;
+        _reportName = "Dummy report";
+        _dateCreated = new Date();
+        _creator = new User();
+        _status = "Available";
         _lat = 0;
         _lng = 0;
         availReport = new AvailReport(_reportName, _dateCreated, _creator, _lat, _lng, _status);
@@ -35,7 +35,7 @@ public class TestAvailReport {
 
     // Name should have empty string, not null value.
     @Test public void testNullNameAvailabilityReport() {
-        assertEquals("", availReport.getName());
+        assertNotNull(availReport.getName());
     }
 
     // Date should be applied, even if null value is passed.
