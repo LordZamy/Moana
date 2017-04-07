@@ -92,13 +92,18 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
     }
 
     public void onSubmitReport(View view){
-        String nameInput = _reportName.getText().toString();
-        String statusInput = _statusSpinner.getSelectedItem().toString();
-        Model.getInstance().getCurrentUser().createAvailReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude, statusInput);
+        if (_reportName.getText().toString().equals("")) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please give the report a name.", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            String nameInput = _reportName.getText().toString();
+            String statusInput = _statusSpinner.getSelectedItem().toString();
+            Model.getInstance().getCurrentUser().createAvailReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude, statusInput);
 
-        goToWelcome(null);
-        Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
-        toast.show();
+            goToWelcome(null);
+            Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     public void onCancelPressed(View view) {

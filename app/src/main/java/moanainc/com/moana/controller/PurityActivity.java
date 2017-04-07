@@ -106,26 +106,34 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     public void onSubmitReport(View view){
-        String nameInput = _purityReportName.getText().toString();
-        int virusInput = Integer.parseInt(_virusPPM.getText().toString());
-        int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
-        String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
-        PurityCondition pc = PurityCondition.valueOf(conditionInput);
-        Date date = new Date();
-        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+        if (_purityReportName.getText().toString().equals("") || _virusPPM.getText().toString().equals("") || _contaminationPPM.getText().toString().equals("")) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please fill in every field.", Toast.LENGTH_LONG);
+            toast.show();
+        } else if (!(_virusPPM.getText().toString().matches("^[0-9_]*$"))) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Please enter numbers for the PPM.", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            String nameInput = _purityReportName.getText().toString();
+            int virusInput = Integer.parseInt(_virusPPM.getText().toString());
+            int contaminationInput = Integer.parseInt(_contaminationPPM.getText().toString());
+            String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
 
-        if (datePicker.getDayOfMonth() != 0) {
-            Calendar cal = Calendar.getInstance();
-            cal.set(datePicker.getYear(),datePicker.getMonth(), datePicker.getDayOfMonth());
-            date = cal.getTime();
+            Date date = new Date();
+            DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+
+            if (datePicker.getDayOfMonth() != 0) {
+                Calendar cal = Calendar.getInstance();
+                cal.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                date = cal.getTime();
+            }
+            ((Worker) Model.getInstance().getCurrentUser()).createPurityReport(nameInput, date, currentLocation.latitude, currentLocation.longitude,
+                    PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
+
+
+            goToWelcome(null);
+            Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
+            toast.show();
         }
-        ((Worker) Model.getInstance().getCurrentUser()).createPurityReport(nameInput, date, currentLocation.latitude, currentLocation.longitude,
-                PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
-
-
-        goToWelcome(null);
-        Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
-        toast.show();
     }
 
     public void onShowCalendar(View view) {
