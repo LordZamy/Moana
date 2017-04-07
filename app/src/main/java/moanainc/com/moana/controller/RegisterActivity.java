@@ -181,7 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean validatePassword(String passwordInput) {
+    public boolean validatePassword(String passwordInput) {
         if (passwordInput.length() < 8) {
             writePasswordError("Password needs to be at least 8 characters long.");
             return false;
