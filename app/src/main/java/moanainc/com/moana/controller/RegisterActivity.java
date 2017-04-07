@@ -164,7 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private boolean validateName(String usernameInput) {
+    public boolean validateName(String usernameInput) {
         // check if username string is valid
         if (usernameInput.length() < 5) {
             writeNameError("Username needs to be at least 5 characters long.");
