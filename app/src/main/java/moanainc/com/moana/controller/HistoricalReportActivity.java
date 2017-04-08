@@ -33,9 +33,35 @@ public class HistoricalReportActivity extends AppCompatActivity {
 
         ArrayList<Report> purityReportList = FirebaseInterface.getPurityReports();
 
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+
+        DataPoint[] graphPoints = populateGraphPoints(purityReportList);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphPoints);
+
+        series.setTitle("Month vs. PPM");
+        series.setDrawDataPoints(true);
+        series.setDataPointsRadius(10);
+        series.setThickness(8);
+
+        graph.addSeries(series);
+
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(13);
+
+        graph.getViewport().setScrollable(true);
+        graph.getViewport().setScrollableY(true);
+    }
+
+    public static DataPoint[] populateGraphPoints(ArrayList<Report> purityReportList) {
         // sums for each month
         float[] PPMSums = new float[12];
         int[] numSums = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; //new int[12];
+
+        // if null then generate a data point array anyway
+        if (purityReportList == null) {
+            purityReportList = new ArrayList<>(0);
+        }
 
         // compute sum and number of sums
         for (Report report : purityReportList)  {
@@ -58,25 +84,7 @@ public class HistoricalReportActivity extends AppCompatActivity {
                 graphPoints[i] = new DataPoint(i + 1, PPMSums[i] / numSums[i]);
         }
 
-        GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(graphPoints);
-
-
-        series.setTitle("Month vs. PPM");
-        series.setDrawDataPoints(true);
-        series.setDataPointsRadius(10);
-        series.setThickness(8);
-
-        graph.addSeries(series);
-
-
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(13);
-
-        graph.getViewport().setScrollable(true);
-        graph.getViewport().setScrollableY(true);
+        return graphPoints;
     }
-
 
 }
