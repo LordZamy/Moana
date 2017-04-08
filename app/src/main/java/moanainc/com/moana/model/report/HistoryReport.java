@@ -19,11 +19,41 @@ public class HistoryReport implements Report {
 
 
     public HistoryReport(String reportName, Date dateCreated, User creator, double lat, double lng){
-        _reportName = reportName;
-        _dateCreated = dateCreated;
-        _creator = creator;
-        _lat = lat;
-        _lng = lng;
+        if(reportName == null) {
+            _reportName = "No name given";
+        } else {
+            _reportName = reportName;
+        }
+
+        if(dateCreated == null) {
+            _dateCreated = new Date();
+        } else {
+            _dateCreated = dateCreated;
+        }
+
+        if(creator == null) {
+            _creator = new User();
+        } else {
+            _creator = creator;
+        }
+
+
+
+        if(lat > 90) {
+            _lat = 90;
+        } else if(lat < -90) {
+            _lat = -90;
+        } else {
+            _lat = lat;
+        }
+
+        if(lng > 180) {
+            _lng = 180;
+        } else if(lat < -180) {
+            _lng = -180;
+        } else {
+            _lng = lng;
+        }
 
     }
 
