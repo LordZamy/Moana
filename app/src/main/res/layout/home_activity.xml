@@ -27,7 +27,7 @@
     <Button
         android:text="Login"
         android:textColor="#ffffff"
-        android:textSize="60px"
+        android:textSize="60sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/main_goto_login_button"
@@ -35,12 +35,12 @@
         android:background="@android:color/transparent"
         android:layout_alignBottom="@+id/main_goto_register_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="62dp" />
+        android:layout_marginBottom="100dp" />
 
     <Button
         android:text="Register"
         android:textColor="#ffffff"
-        android:textSize="60px"
+        android:textSize="60sp"
         android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
