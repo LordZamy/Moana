@@ -9,16 +9,8 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.report.HistoryReport;
-import moanainc.com.moana.model.report.PurityCondition;
-import moanainc.com.moana.model.report.PurityReport;
-import moanainc.com.moana.model.user.User;
-
-import static junit.framework.Assert.assertEquals;
 
 public class HistoryReportTests {
     private Report historyReportNullObjects;

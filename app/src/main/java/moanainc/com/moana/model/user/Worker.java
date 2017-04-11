@@ -3,7 +3,6 @@ package moanainc.com.moana.model.user;
 import java.util.Date;
 
 import moanainc.com.moana.firebase.FirebaseInterface;
-import moanainc.com.moana.model.report.AvailReport;
 import moanainc.com.moana.model.report.PurityCondition;
 import moanainc.com.moana.model.report.PurityReport;
 

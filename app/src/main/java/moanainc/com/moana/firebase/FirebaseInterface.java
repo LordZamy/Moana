@@ -1,7 +1,6 @@
 package moanainc.com.moana.firebase;
 
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,7 +14,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.report.AvailReport;

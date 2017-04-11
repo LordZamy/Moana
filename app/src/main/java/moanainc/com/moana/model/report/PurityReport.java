@@ -1,12 +1,6 @@
 package moanainc.com.moana.model.report;
 
-import android.util.Log;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
 
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.user.User;

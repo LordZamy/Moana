@@ -14,7 +14,6 @@ import java.util.Date;
 
 import moanainc.com.moana.R;
 import moanainc.com.moana.firebase.FirebaseInterface;
-import moanainc.com.moana.model.Model;
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.report.PurityReport;
 

@@ -6,7 +6,6 @@ package moanainc.com.moana;
         import java.util.ArrayList;
 
         import moanainc.com.moana.controller.RegisterActivity;
-        import moanainc.com.moana.model.user.AccountType;
         import moanainc.com.moana.model.user.User;
 
         import static junit.framework.Assert.assertEquals;

@@ -4,16 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 
 import moanainc.com.moana.model.Report;
 import moanainc.com.moana.model.report.PurityCondition;
 import moanainc.com.moana.model.report.PurityReport;
-import moanainc.com.moana.model.user.AccountType;
 import moanainc.com.moana.model.user.User;
-import moanainc.com.moana.model.user.Worker;
 
 import static junit.framework.Assert.assertEquals;
 
