@@ -70,7 +70,7 @@ public class ReportListActivity extends AppCompatActivity {
 
     private class ReportAdapter extends ArrayAdapter<Report> {
 
-        HashMap<String, Integer> reportMap = new HashMap<String, Integer>();
+        final HashMap<String, Integer> reportMap = new HashMap<String, Integer>();
 
         public ReportAdapter(Context context, ArrayList<Report> reports) {
             super(context, android.R.layout.simple_list_item_1, reports);

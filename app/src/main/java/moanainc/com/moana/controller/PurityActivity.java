@@ -150,7 +150,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         getBaseContext().startActivity(goToWelcome);
     }
 
-    private LocationListener locationListener = new LocationListener() {
+    private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             // Called when a new location is found by the network location provider.
             Log.d("LOCATION", location.toString());

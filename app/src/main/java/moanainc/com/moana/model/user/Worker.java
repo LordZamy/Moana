@@ -13,8 +13,8 @@ import moanainc.com.moana.model.report.PurityReport;
 
 public class Worker extends User {
 
-    public Worker(String username, String password, String name, AccountType accountType) {
-        super(username, password, name, accountType);
+    public Worker(String username, String name, AccountType accountType) {
+        super(username, "", name, accountType);
     }
 
     public void createPurityReport(String reportName, Date dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {

@@ -27,15 +27,15 @@ import moanainc.com.moana.model.report.SourceReport;
 
 public class FirebaseInterface {
 
-    private static DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
-    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final DatabaseReference mDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private static ArrayList<Report> availibilityReports;
     private static ArrayList<Report> purityReports;
     private static ArrayList<Report> historyReports;
     private static ArrayList<Report> sourceReports;
 
-    private static ValueEventListener availabilityReportListener = new ValueEventListener() {
+    private static final ValueEventListener availabilityReportListener = new ValueEventListener() {
 
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -55,7 +55,7 @@ public class FirebaseInterface {
         }
     };
 
-    private static ValueEventListener purityReportListener  = new ValueEventListener() {
+    private static final ValueEventListener purityReportListener  = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             // This method is called once with the initial value and again
@@ -74,7 +74,7 @@ public class FirebaseInterface {
         }
     };
 
-    private static ValueEventListener historyReportListener = new ValueEventListener() {
+    private static final ValueEventListener historyReportListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             // This method is called once with the initial value and again
@@ -95,7 +95,7 @@ public class FirebaseInterface {
         }
     };
 
-    private static ValueEventListener sourceReportListener = new ValueEventListener() {
+    private static final ValueEventListener sourceReportListener = new ValueEventListener() {
         @Override
         public void onDataChange(DataSnapshot dataSnapshot) {
             // This method is called once with the initial value and again

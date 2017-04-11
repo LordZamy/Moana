@@ -19,7 +19,7 @@ public class AvailReport implements Report {
     private String _status;
     private double _lat;
     private double _lng;
-    public static List<String> legalStatus = Arrays.asList("Available", "Unavailable");
+    public static final List<String> legalStatus = Arrays.asList("Available", "Unavailable");
 
 
     public AvailReport(String reportName, Date dateCreated, User creator, double lat, double lng, String status) {

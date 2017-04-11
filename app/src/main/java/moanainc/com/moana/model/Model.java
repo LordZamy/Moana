@@ -16,10 +16,10 @@ public class Model {
     private User currentUser;
     public static Model getInstance() { return _instance; }
 
-    private ArrayList<Report> reports = new ArrayList<Report>();
-    private ArrayList<PurityReport> purityReports = new ArrayList<>();
+    private final ArrayList<Report> reports = new ArrayList<Report>();
+    private final ArrayList<PurityReport> purityReports = new ArrayList<>();
 
-    private Map<String, User> _users;
+    private final Map<String, User> _users;
 
     /**
      * make a new model

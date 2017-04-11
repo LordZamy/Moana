@@ -47,7 +47,7 @@ public class PurityReportListActivity extends AppCompatActivity {
 
     private class PurityReportAdapter extends ArrayAdapter<PurityReport> {
 
-        HashMap<String, Integer> purityReportMap = new HashMap<String, Integer>();
+        final HashMap<String, Integer> purityReportMap = new HashMap<String, Integer>();
 
         public PurityReportAdapter(Context context, ArrayList<PurityReport> purityReports) {
             super(context, android.R.layout.simple_list_item_1, purityReports);

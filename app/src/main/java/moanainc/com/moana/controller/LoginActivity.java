@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                             Model.getInstance().setCurrentUser(new User(user.getUid(), "", user.getDisplayName(), AccountType.USER));
                             break;
                         case "Worker":
-                            Model.getInstance().setCurrentUser(new Worker(user.getUid(), "", user.getDisplayName(), AccountType.WORKER));
+                            Model.getInstance().setCurrentUser(new Worker(user.getUid(), user.getDisplayName(), AccountType.WORKER));
                             break;
                         case "Manager":
                             Model.getInstance().setCurrentUser(new Manager(user.getUid(), user.getDisplayName()));

@@ -17,7 +17,7 @@ public class ReportManager {
 
     private DatabaseReference mDatabaseReference;
 
-    public static List<String> legalReports = Arrays.asList("Availability", "Purity", "History", "Source");
+    public static final List<String> legalReports = Arrays.asList("Availability", "Purity", "History", "Source");
 
     public void createReport(Report report) {
         // TODO: Call Firebase interface.
