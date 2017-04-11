@@ -195,7 +195,7 @@ public class FirebaseInterface {
     }
 
     public static void loginUser(OnCompleteListener listener, String username, String password) {
-        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(listener).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        final Task task = mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(listener).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -211,14 +211,7 @@ public class FirebaseInterface {
     }
 
     public static void registerUser(OnCompleteListener listener, String username, String password) {
-        mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(listener);
-    }
-
-    public static void removeUser() {
-        //TODO:Implement
-        //TODO:Method params and return type may/should change
-
-        //TODO: Perhaps use the firebase method User.delete()?
+        final Task task = mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(listener);
     }
 
 }

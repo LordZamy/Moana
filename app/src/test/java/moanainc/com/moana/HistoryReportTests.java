@@ -18,13 +18,6 @@ public class HistoryReportTests {
     private Report historyReport3;
     private Report historyReport4;
 
-    @Before
-    public void setup() {
-
-
-
-    }
-
     @Test
     public void TestHistoryReportNullChecking() {
         //Make sure the constructor set default values
