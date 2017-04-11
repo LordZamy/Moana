@@ -22,12 +22,11 @@ import static junit.framework.Assert.assertEquals;
  */
 
 public class AddPurityReportTests {
-    private Report goodPurityReport;
-    private Report badPurityReport;
     private ArrayList<Report> purityReports;
 
     @Before
     public void setup() {
+        Report goodPurityReport;
         purityReports = new ArrayList<>();
         Date date = new Date(2017212);
         User creator = new User("dede", "dede");
@@ -38,6 +37,7 @@ public class AddPurityReportTests {
 
     @Test
     public void testAddEmptyStringReport() {
+        Report badPurityReport;
         try {
             badPurityReport = new PurityReport("", null, null, 0, 0, null, Integer.parseInt(""), Integer.parseInt(""));
             purityReports.add(badPurityReport);

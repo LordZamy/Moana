@@ -33,7 +33,7 @@ public class Model {
     /**
      * return the list of users
      */
-    public Map<String, User> getUsers() { return _users; };
+    public Map<String, User> getUsers() { return _users; }
 
     /**
      * Add a test user

@@ -24,7 +24,6 @@ import moanainc.com.moana.model.Report;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        GoogleMap mMap = googleMap;
 
         ArrayList<Report> availReports = FirebaseInterface.getAvailabilityReports();
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
