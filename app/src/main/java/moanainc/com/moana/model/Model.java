@@ -54,11 +54,11 @@ public class Model {
      * Find the cause of a failed registration
      */
     public void registrationFailed(User u) {
-        if (_users.containsValue(u)) {
-            //user already exists
-        } else if (!_users.containsValue(u)) {
-            //user input an unacceptable password
-        }
+//        if (_users.containsValue(u)) {
+//            //user already exists
+//        } else if (!_users.containsValue(u)) {
+//            //user input an unacceptable password
+//        }
     }
 
     public User findUserByUsername(String username) {

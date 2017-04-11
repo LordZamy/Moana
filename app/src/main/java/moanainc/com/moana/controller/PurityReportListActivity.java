@@ -58,7 +58,14 @@ public class PurityReportListActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            String item = getItem(position).toString();
+            String item;
+
+            try {
+                item = getItem(position).toString();
+            } catch (Exception err) {
+                item = null;
+            }
+
             return purityReportMap.get(item);
         }
 

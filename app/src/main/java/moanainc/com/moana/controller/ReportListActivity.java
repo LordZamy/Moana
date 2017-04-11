@@ -32,7 +32,7 @@ public class ReportListActivity extends AppCompatActivity {
 
         ListView listview = (ListView) findViewById(R.id.listview);
         //ArrayList<Report> list = Model.getInstance().getCurrentUser().getReportManager().pastReports();
-        ArrayList<Report> list = FirebaseInterface.getAvailabilityReports();
+        ArrayList<Report> list;
 
         switch(getIntent().getIntExtra("filter", 0)) {
             case 0:
@@ -81,7 +81,14 @@ public class ReportListActivity extends AppCompatActivity {
 
         @Override
         public long getItemId(int position) {
-            String item = getItem(position).toString();
+            String item;
+
+            try {
+                item = getItem(position).toString();
+            } catch (Exception err) {
+                item = null;
+            }
+
             return reportMap.get(item);
         }
 

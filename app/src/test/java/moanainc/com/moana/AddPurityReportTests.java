@@ -58,7 +58,10 @@ public class AddPurityReportTests {
         PurityCondition condition = PurityCondition.UNSAFE;
         Report newReport = new PurityReport("", date, creator, 12, 12, condition, 12, 12);
         try {
-            newReport.getName().charAt(1);
+            Character check = newReport.getName().charAt(1);
+            if(check == ' ') {
+                throw new StringIndexOutOfBoundsException();
+            }
         } catch (StringIndexOutOfBoundsException e) {
             System.err.println("Cannot leave name field blank.");
         }

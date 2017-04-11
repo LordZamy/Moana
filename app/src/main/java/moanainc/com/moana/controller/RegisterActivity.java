@@ -79,22 +79,22 @@ public class RegisterActivity extends AppCompatActivity {
         accountSpinner.setAdapter(adapter);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseAuth.AuthStateListener mAuthListener;
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d("TAG", "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d("TAG", "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
+//        FirebaseAuth.AuthStateListener mAuthListener;
+//
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user != null) {
+//                    // User is signed in
+//                    Log.d("TAG", "onAuthStateChanged:signed_in:" + user.getUid());
+//                } else {
+//                    // User is signed out
+//                    Log.d("TAG", "onAuthStateChanged:signed_out");
+//                }
+//                // ...
+//            }
+//        };
 
         Typeface disney_font = Typeface.createFromAsset(getAssets(),  "fonts/disneyui.ttf");
         Typeface varela_round_font = Typeface.createFromAsset(getAssets(),  "fonts/VarelaRound-Regular.ttf");
@@ -120,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
      */
     public void onRegisterPressed(View view) {
         //Log.d("Edit", "Add user");
-        Model model = Model.getInstance();
+        //Model model = Model.getInstance();
 
         final String usernameInput = _usernameField.getText().toString();
         final String passwordInput = _passwordField.getText().toString();

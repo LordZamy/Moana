@@ -80,7 +80,7 @@ public class FirebaseInterface {
             // This method is called once with the initial value and again
             // whenever data at this location is updated.
 
-            ArrayList<HistoryReport> newReportList = new ArrayList<>();
+            //ArrayList<HistoryReport> newReportList = new ArrayList<>();
 
             historyReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
@@ -122,7 +122,7 @@ public class FirebaseInterface {
         historyReports = new ArrayList<>();
         sourceReports = new ArrayList<>();
 
-        Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        //Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
 
         //Add all of the listeners
@@ -141,7 +141,7 @@ public class FirebaseInterface {
         historyReports = new ArrayList<>();
         sourceReports = new ArrayList<>();
 
-        Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        //Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
 
         mDatabaseReference.child("reports").child("availability").removeEventListener(availabilityReportListener);
