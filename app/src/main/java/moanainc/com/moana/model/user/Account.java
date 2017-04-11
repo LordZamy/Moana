@@ -4,7 +4,9 @@ package moanainc.com.moana.model.user;
  * Created by josh baldwin on 2/13/2017.
  */
 
-class Account {
+public class Account {
+    // the user's permission level
+    private String _permission;
     //the user's username
     private String _username;
     //the user's password
@@ -18,7 +20,7 @@ class Account {
     private String _emailAddress = "";
     private String _homeAddress = "";
 
-    Account() {
+    public Account() {
 
     }
 
@@ -30,7 +32,7 @@ class Account {
      * @param accountType the account type
      */
 
-    Account(String username, String password, String name, AccountType accountType) {
+    public Account(String username, String password, String name, AccountType accountType) {
 
         _username = username;
         _password = password;
@@ -44,7 +46,7 @@ class Account {
      * @param password the password
      */
 
-    Account(String username, String password) {
+    public Account(String username, String password) {
 
         _username = username;
         _password = password;
@@ -54,6 +56,7 @@ class Account {
      * Getters and Setters
      */
     public String getUsername() { return _username; }
+    public void setUsername(String username) { _username = username; }
 
     public String getPassword() { return _password; } //if we want to implement "Forgot password"
     public void setPassword(String password) { _password = password; } //if we want to implement "Change password"
@@ -62,12 +65,21 @@ class Account {
     public void setName(String name) { _name = name; }
 
     public AccountType getAccountType() { return _accountType; }
+    public void setAccountType(AccountType type) { _accountType = type; }
 
     public String getEmailAddress() { return _emailAddress; }
     public void setEmailAddress(String email) { _emailAddress = email; }
 
     public String getHomeAddress() { return _homeAddress; }
     public void setHomeAddress(String home) { _homeAddress = home; }
+
+    public String get_permission() {
+        return _permission;
+    }
+
+    public void set_permission(String _permission) {
+        this._permission = _permission;
+    }
 
     @Override
     public boolean equals(Object o) {
