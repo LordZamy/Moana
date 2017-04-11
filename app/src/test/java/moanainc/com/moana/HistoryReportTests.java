@@ -6,7 +6,6 @@ package moanainc.com.moana;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import moanainc.com.moana.model.Report;
