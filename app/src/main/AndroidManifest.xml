@@ -19,6 +19,12 @@
         <activity android:name=".controller.HomeActivity" android:theme="@style/HomeStyle" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http"
+                    android:host="www.moanainc.com"
+                    android:pathPrefix="/moanaapp" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter> />
         </activity>
