@@ -41,7 +41,9 @@ public class User {
         _account = newAccount;
     }
 
-    public ReportManager getReportManager(){ return null; }
+    public ReportManager getReportManager() {
+        return null;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameField;
     private EditText passwordField;
-    private TextView pageTitle;
     private TextView emailPrompt;
     private TextView passwordPrompt;
     private Button loginButton;
@@ -52,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordField = (EditText) findViewById(R.id.editText2);
         emailPrompt = (TextView) findViewById(R.id.emailPrompt);
         passwordPrompt = (TextView) findViewById(R.id.passwordPrompt);
-        pageTitle = (TextView) findViewById(R.id.textView3);
+        TextView pageTitle = (TextView) findViewById(R.id.textView3);
         loginButton = (Button) findViewById(R.id.loginButton);
         goBackButton = (Button) findViewById(R.id.goBackButton);
 
