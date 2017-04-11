@@ -13,10 +13,11 @@
         <item name="windowNoTitle">false</item>
     </style>
 
-    <style name="HomeStyle" parent="Theme.AppCompat">
-        <item name="android:background">@drawable/moana4</item>
+    <style name="HomeStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/moana4</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowActionBar">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
