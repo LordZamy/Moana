@@ -24,6 +24,7 @@
         android:id="@+id/textView2" />
 
     <ImageView
+        android:contentDescription="Moana logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
