@@ -10,10 +10,10 @@ import moanainc.com.moana.model.user.User;
 
 public interface Report {
 
-    public String getName();
-    public Date getDate();
-    public User getCreator();
-    public Report createReport();
-    public double getLat();
-    public double getLng();
+    String getName();
+    Date getDate();
+    User getCreator();
+    Report createReport();
+    double getLat();
+    double getLng();
 }

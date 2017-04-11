@@ -20,7 +20,6 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText _realNameField;
     private EditText _emailAddressField;
     private EditText _homeAddressField;
-    private TextView _accountTypeField;
 
 
     Account u = Model.getInstance().getCurrentUser().getAccount();
@@ -32,7 +31,7 @@ public class ProfileActivity extends AppCompatActivity {
         _realNameField = (EditText) findViewById(R.id.editText3);
         _emailAddressField = (EditText) findViewById(R.id.editText);
         _homeAddressField = (EditText) findViewById(R.id.editText2);
-        _accountTypeField = (TextView) findViewById(R.id.editText4);
+        TextView _accountTypeField = (TextView) findViewById(R.id.editText4);
 
         _realNameField.setText(u.getName());
         _homeAddressField.setText(u.getHomeAddress());
