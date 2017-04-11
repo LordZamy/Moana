@@ -44,7 +44,7 @@ public class FirebaseInterface {
 
             availibilityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                availibilityReports.add((Report) child.getValue(AvailReport.class));
+                availibilityReports.add(child.getValue(AvailReport.class));
             }
         }
 
@@ -63,7 +63,7 @@ public class FirebaseInterface {
 
             purityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                purityReports.add((Report) child.getValue(PurityReport.class));
+                purityReports.add(child.getValue(PurityReport.class));
             }
         }
 
@@ -84,7 +84,7 @@ public class FirebaseInterface {
 
             historyReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                historyReports.add((Report) child.getValue(HistoryReport.class));
+                historyReports.add(child.getValue(HistoryReport.class));
             }
         }
 
@@ -103,7 +103,7 @@ public class FirebaseInterface {
 
             sourceReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                sourceReports.add((Report) child.getValue(SourceReport.class));
+                sourceReports.add(child.getValue(SourceReport.class));
             }
         }
 
