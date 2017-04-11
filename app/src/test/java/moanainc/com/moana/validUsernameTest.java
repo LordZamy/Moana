@@ -15,18 +15,21 @@ package moanainc.com.moana;
  */
 
 public class validUsernameTest {
-    private User user1;
-    private User user2;
-    private User user3;
-    private User user4;
-    private User user5;
-    private User user6;
+
     private ArrayList<User> userList;
     private ArrayList<User> validUserList;
     private RegisterActivity register;
 
     @Before
     public void setup() {
+
+        User user1;
+        User user2;
+        User user3;
+        User user4;
+        User user5;
+        User user6;
+
         user1 = new User("Micah1324", "asdfasdf1234");
         user2 = new User("Lord_Zamy", "asdfasdf1234");
         user3 = new User("Darrian", "asdfasdf1234");

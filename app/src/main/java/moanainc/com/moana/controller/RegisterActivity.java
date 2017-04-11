@@ -34,28 +34,30 @@ import moanainc.com.moana.model.Model;
 public class RegisterActivity extends AppCompatActivity {
 
 
-    private User _user;
-    private TextView mTitleView;
-    private EditText _usernameField;
-    private EditText _passwordField;
-    private EditText _nameField;
-    private TextView _usernamePrompt;
-    private TextView _emailPrompt;
-    private TextView _passwordPrompt;
-    private Button button;
-    private Button button2;
-    private TextView usernameError;
-    private TextView passwordError;
-    private Spinner accountSpinner;
+    User _user;
+    TextView usernameError;
+    TextView passwordError;
+    EditText _usernameField;
+    EditText _passwordField;
+    EditText _nameField;
+    Spinner accountSpinner;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+
+        TextView mTitleView;
+
+        TextView _usernamePrompt;
+        TextView _emailPrompt;
+        TextView _passwordPrompt;
+        Button button;
+        Button button2;
+
 
         mTitleView = (TextView) findViewById(R.id.textView3);
         _user = new User();
@@ -77,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
         accountSpinner.setAdapter(adapter);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth.AuthStateListener mAuthListener;
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
