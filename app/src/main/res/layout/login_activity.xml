@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text=""
-        android:hint="Enter your name."
+        android:hint="Enter your email."
         android:ems="10"
         android:layout_marginTop="22dp"
         android:id="@+id/editText" />
