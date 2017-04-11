@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
      *
      * @param view the button
      */
-    protected void onRegisterPressed(View view) {
+    public void onRegisterPressed(View view) {
         //Log.d("Edit", "Add user");
         Model model = Model.getInstance();
 
