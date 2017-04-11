@@ -165,10 +165,6 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         public void onProviderDisabled(String provider) {}
     };
 
-    private void updateMapLocation(Location location) {
-
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String permissions[], @NonNull int[] grantResults) {

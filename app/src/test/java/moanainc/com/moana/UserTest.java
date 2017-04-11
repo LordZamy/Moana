@@ -16,10 +16,6 @@ public class UserTest {
 
     private User user;
 
-    @Before
-    public void setup() {
-    }
-
     @Test
     public void testUserAccount() {
         try {
