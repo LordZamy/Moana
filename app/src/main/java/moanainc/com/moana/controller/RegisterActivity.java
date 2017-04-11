@@ -34,13 +34,13 @@ import moanainc.com.moana.model.Model;
 public class RegisterActivity extends AppCompatActivity {
 
 
-    User _user;
-    TextView usernameError;
-    TextView passwordError;
-    EditText _usernameField;
-    EditText _passwordField;
-    EditText _nameField;
-    Spinner accountSpinner;
+    private User _user;
+    private TextView usernameError;
+    private TextView passwordError;
+    private EditText _usernameField;
+    private EditText _passwordField;
+    private EditText _nameField;
+    private Spinner accountSpinner;
 
     private FirebaseAuth mAuth;
 

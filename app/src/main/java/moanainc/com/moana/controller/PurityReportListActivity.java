@@ -32,25 +32,25 @@ public class PurityReportListActivity extends AppCompatActivity {
         ListView listview = (ListView) findViewById(R.id.listview2);
         ArrayList<PurityReport> list = Model.getInstance().getCurrentUser().getReportManager().pastPurityReports();
 
-        final PurityReportAdapter adapter = new PurityReportAdapter(this, android.R.layout.simple_list_item_1, list);
+        final PurityReportAdapter adapter = new PurityReportAdapter(this, list);
         listview.setAdapter(adapter);
     }
 
-    public void goToWelcome(View view) {
+    private void goToWelcome() {
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToWelcome);
     }
 
     public void onBackPressed(View view) {
-        goToWelcome(null);
+        goToWelcome();
     }
 
     private class PurityReportAdapter extends ArrayAdapter<PurityReport> {
 
         HashMap<String, Integer> purityReportMap = new HashMap<String, Integer>();
 
-        public PurityReportAdapter(Context context, int textViewResourceId, ArrayList<PurityReport> purityReports) {
-            super(context, textViewResourceId, purityReports);
+        public PurityReportAdapter(Context context, ArrayList<PurityReport> purityReports) {
+            super(context, android.R.layout.simple_list_item_1, purityReports);
             for (int i = 0; i < purityReports.size(); ++i) {
                 purityReportMap.put(purityReports.get(i).toString(), i);
             }

@@ -50,7 +50,7 @@ public class PopulateGraphPointsTests {
         checkDataPointArraysEqual(expected, actual);
     }
 
-    public void checkDataPointArraysEqual(DataPoint[] expected, DataPoint[] actual) {
+    private void checkDataPointArraysEqual(DataPoint[] expected, DataPoint[] actual) {
         // length should always be 12
         Assert.assertEquals(actual.length, 12);
 

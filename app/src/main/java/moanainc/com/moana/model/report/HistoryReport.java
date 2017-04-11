@@ -18,24 +18,11 @@ public class HistoryReport implements Report {
     private double _lng;
 
 
-    public HistoryReport(String reportName, Date dateCreated, User creator, double lat, double lng){
-        if(reportName == null) {
-            _reportName = "No name given";
-        } else {
-            _reportName = reportName;
-        }
+    public HistoryReport(double lat, double lng){
 
-        if(dateCreated == null) {
-            _dateCreated = new Date();
-        } else {
-            _dateCreated = dateCreated;
-        }
-
-        if(creator == null) {
-            _creator = new User();
-        } else {
-            _creator = creator;
-        }
+        _reportName = "No name given";
+        _dateCreated = new Date();
+        _creator = new User();
 
 
 

@@ -55,25 +55,25 @@ public class ReportListActivity extends AppCompatActivity {
                 break;
         }
 
-        final ReportAdapter adapter = new ReportAdapter(this, android.R.layout.simple_list_item_1, list);
+        final ReportAdapter adapter = new ReportAdapter(this, list);
         listview.setAdapter(adapter);
     }
 
-    public void goToWelcome(View view) {
+    private void goToWelcome() {
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToWelcome);
     }
 
     public void onBackPressed(View view) {
-        goToWelcome(null);
+        goToWelcome();
     }
 
     private class ReportAdapter extends ArrayAdapter<Report> {
 
         HashMap<String, Integer> reportMap = new HashMap<String, Integer>();
 
-        public ReportAdapter(Context context, int textViewResourceId, ArrayList<Report> reports) {
-            super(context, textViewResourceId, reports);
+        public ReportAdapter(Context context, ArrayList<Report> reports) {
+            super(context, android.R.layout.simple_list_item_1, reports);
             for (int i = 0; i < reports.size(); ++i) {
                 reportMap.put(reports.get(i).toString(), i);
             }

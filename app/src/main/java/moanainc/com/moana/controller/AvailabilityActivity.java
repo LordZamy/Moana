@@ -86,7 +86,7 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
         }
     }
 
-    public void goToWelcome(View view) {
+    private void goToWelcome() {
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToWelcome);
     }
@@ -100,7 +100,7 @@ public class AvailabilityActivity extends AppCompatActivity implements OnMapRead
             String statusInput = _statusSpinner.getSelectedItem().toString();
             Model.getInstance().getCurrentUser().createAvailReport(nameInput, new Date(), currentLocation.latitude, currentLocation.longitude, statusInput);
 
-            goToWelcome(null);
+            goToWelcome();
             Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
             toast.show();
         }

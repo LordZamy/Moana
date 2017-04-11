@@ -14,13 +14,13 @@ import static junit.framework.Assert.*;
 
 public class TestAvailReport {
 
-    AvailReport availReport;
-    String _reportName;
-    Date _dateCreated;
-    User _creator;
-    String _status;
-    double _lat;
-    double _lng;
+    private AvailReport availReport;
+    private String _reportName;
+    private Date _dateCreated;
+    private User _creator;
+    private String _status;
+    private double _lat;
+    private double _lng;
 
 
     @Before public void setup() {

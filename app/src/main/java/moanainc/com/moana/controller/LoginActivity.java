@@ -33,13 +33,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText usernameField;
-    EditText passwordField;
-    TextView pageTitle;
-    TextView emailPrompt;
-    TextView passwordPrompt;
-    Button loginButton;
-    Button goBackButton;
+    private EditText usernameField;
+    private EditText passwordField;
+    private TextView pageTitle;
+    private TextView emailPrompt;
+    private TextView passwordPrompt;
+    private Button loginButton;
+    private Button goBackButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -143,10 +143,10 @@ public class LoginActivity extends AppCompatActivity {
                             Model.getInstance().setCurrentUser(new Worker(user.getUid(), "", user.getDisplayName(), AccountType.WORKER));
                             break;
                         case "Manager":
-                            Model.getInstance().setCurrentUser(new Manager(user.getUid(), "", user.getDisplayName(), AccountType.MANAGER));
+                            Model.getInstance().setCurrentUser(new Manager(user.getUid(), user.getDisplayName()));
                             break;
                         case "Admin":
-                            Model.getInstance().setCurrentUser(new Admin(user.getUid(), "", user.getDisplayName(), AccountType.ADMIN));
+                            Model.getInstance().setCurrentUser(new Admin(user.getUid(), user.getDisplayName()));
                             break;
                         default:
                             Model.getInstance().setCurrentUser(new User(user.getUid(), "", user.getDisplayName(), AccountType.USER));

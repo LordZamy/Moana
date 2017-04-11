@@ -7,8 +7,8 @@ package moanainc.com.moana.model.user;
 
 public class Manager extends Worker {
 
-    public Manager(String username, String password, String name, AccountType accountType) {
-        super(username, password, name, accountType);
+    public Manager(String username, String name) {
+        super(username, "", name, AccountType.MANAGER);
     }
 
 }

@@ -28,7 +28,7 @@ public class HistoryReportTests {
     @Test
     public void TestHistoryReportNullChecking() {
         //Make sure the constructor set default values
-        Report historyReportNullObjects = new HistoryReport(null, null, null, 0, 0);
+        Report historyReportNullObjects = new HistoryReport(0, 0);
 
         Assert.assertNotNull(historyReportNullObjects.getName());
         Assert.assertNotNull(historyReportNullObjects.getDate());
@@ -39,7 +39,7 @@ public class HistoryReportTests {
     public void TestHistoryReportLatLongBounds() {
         //Test the lat and long to make sure they are in bounds
 
-        Report historyReportInvalidLatLong = new HistoryReport(null, null, null, -10000, 100000);
+        Report historyReportInvalidLatLong = new HistoryReport(-10000, 100000);
 
         double lat = historyReportInvalidLatLong.getLat();
         double lng = historyReportInvalidLatLong.getLng();

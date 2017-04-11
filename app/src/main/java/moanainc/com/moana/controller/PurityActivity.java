@@ -100,7 +100,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
 
     }
 
-    public void goToWelcome(View view) {
+    private void goToWelcome() {
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToWelcome);
     }
@@ -130,7 +130,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
                     PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
 
-            goToWelcome(null);
+            goToWelcome();
             Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
             toast.show();
         }

@@ -22,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText _homeAddressField;
 
 
-    Account u = Model.getInstance().getCurrentUser().getAccount();
+    private Account u = Model.getInstance().getCurrentUser().getAccount();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

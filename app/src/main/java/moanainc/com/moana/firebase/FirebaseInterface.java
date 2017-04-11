@@ -115,7 +115,7 @@ public class FirebaseInterface {
     };
 
 
-    public static void startData() {
+    private static void startData() {
         //Instatiate the report lists
         availibilityReports = new ArrayList<>();
         purityReports = new ArrayList<>();
@@ -134,7 +134,7 @@ public class FirebaseInterface {
 
     }
 
-    public static void stopData() {
+    private static void stopData() {
         //Instatiate the report lists
         availibilityReports = new ArrayList<>();
         purityReports = new ArrayList<>();

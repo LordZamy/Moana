@@ -23,8 +23,8 @@ import moanainc.com.moana.model.ReportManager;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    Button _logoutButton;
-    Button _editProfile;
+    private Button _logoutButton;
+    private Button _editProfile;
     private AccountType _userAccountType;
 
     @Override

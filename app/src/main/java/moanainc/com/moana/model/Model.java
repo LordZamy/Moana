@@ -16,8 +16,8 @@ public class Model {
     private User currentUser;
     public static Model getInstance() { return _instance; }
 
-    ArrayList<Report> reports = new ArrayList<Report>();
-    ArrayList<PurityReport> purityReports = new ArrayList<>();
+    private ArrayList<Report> reports = new ArrayList<Report>();
+    private ArrayList<PurityReport> purityReports = new ArrayList<>();
 
     private Map<String, User> _users;
 
@@ -38,7 +38,7 @@ public class Model {
     /**
      * Add a test user
      */
-    public void testUser() {
+    private void testUser() {
         User datBoi = new User("George P. Burdell", "jackets7");
         _users.put("Georgia P. Burdell", datBoi);
     }
