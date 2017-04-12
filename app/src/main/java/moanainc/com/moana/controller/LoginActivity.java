@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 /*
@@ -123,7 +125,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (!task.isSuccessful()) {
                     Log.w("TAG", "signInWithEmail:failed", task.getException());
-                    //Toast.makeText(LoginActivity.this, "Login failed: " + task.getException(), Toast.LENGTH_SHORT).show();
+                    try {
+                        throw task.getException();
+                    } catch(FirebaseAuthInvalidUserException invalidUser) {
+                        Toast.makeText(LoginActivity.this, "Login failed: Invalid User nigga", Toast.LENGTH_SHORT).show();
+                    } catch(FirebaseAuthInvalidCredentialsException invalidCredentials) {
+                        Toast.makeText(LoginActivity.this, "Login failed: Wrong Password", Toast.LENGTH_SHORT).show();
+                    } catch(Exception e) {
+                        Toast.makeText(LoginActivity.this, "Bro... do you even lift?", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
