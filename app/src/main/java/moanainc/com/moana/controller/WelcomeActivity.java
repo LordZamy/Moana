@@ -37,6 +37,12 @@ public class WelcomeActivity extends AppCompatActivity {
         _logoutButton = (Button) findViewById(R.id.logoutButton);
         _editProfile = (Button) findViewById(R.id.editButton);
         _userAccountType = Model.getInstance().getCurrentUser().getAccount().getAccountType();
+
+        if(_userAccountType == AccountType.MANAGER){
+            findViewById(R.id.button7).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.button7).setVisibility(View.INVISIBLE);
+        }
     }
 
     public void goToHome(View view) {
@@ -143,5 +149,9 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onViewMap(View view) {
         Intent goToViewMap = new Intent(getBaseContext(), MapsActivity.class);
         getBaseContext().startActivity(goToViewMap);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
