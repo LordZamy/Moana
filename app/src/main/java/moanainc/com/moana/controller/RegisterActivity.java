@@ -175,10 +175,6 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (!usernameInput.matches("^[a-zA-Z0-9_]*$")) {
             writeNameError("Username can only contain alphanumeric characters.");
             return false;
-        } else if (Model.getInstance().userExists(usernameInput)) {
-            // check if username exists
-            writeNameError("Username already exists.");
-            return false;
         }
 
         return true;

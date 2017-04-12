@@ -66,7 +66,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
         _purityReportName = (EditText) findViewById(R.id.editText6);
         _virusPPM = (EditText) findViewById(R.id.editText7);
         _contaminationPPM = (EditText) findViewById(R.id.editText8);
-        _conditionSpinner = (Spinner) findViewById(R.id.spinner5);
+        //_conditionSpinner = (Spinner) findViewById(R.id.spinner5);
 
         ArrayAdapter<PurityCondition> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, PurityCondition.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

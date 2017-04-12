@@ -13,7 +13,6 @@ import moanainc.com.moana.model.report.AvailReport;
 
 public class User {
     private Account _account;
-    //private ReportManager _reportManager = new ReportManager();
 
     public User(String username, String password, String name, AccountType accountType) {
         _account = new Account(username, password, name, accountType);

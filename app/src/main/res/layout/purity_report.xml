@@ -53,13 +53,6 @@
         android:inputType="textPersonName"
         android:hint="Enter contamination PPM" />
 
-    <Spinner
-        android:id="@+id/spinner5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
-
     <Button
         android:text="Submit Report"
         android:layout_width="wrap_content"

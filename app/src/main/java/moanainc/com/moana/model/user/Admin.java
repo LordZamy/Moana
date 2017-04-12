@@ -10,5 +10,4 @@ public class Admin extends Manager {
     public Admin(String username, String name) {
         super(username, name);
     }
-
 }

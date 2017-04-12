@@ -14,29 +14,30 @@ import static junit.framework.Assert.assertEquals;
 public class UserTest {
 
     private User user;
+    private User user2;
 
     @Test
-    public void testUserAccount() {
+    public void testUserEquals() {
         try {
             user = new User("username", "password", "name", AccountType.USER);
+            user2 = new User("username", "password");
         } catch (NullPointerException e) {
             System.err.println("NullPointerException: " + e.getMessage());
         }
-        assertEquals("username", user.getAccount().getUsername());
-        assertEquals("password", user.getAccount().getPassword());
-        assertEquals("name", user.getAccount().getName());
-        assertEquals(AccountType.USER, user.getAccount().getAccountType());
+        assertEquals(true, user.equals(user2));
+//        assertEquals("password", user.getAccount().getPassword());
+//        assertEquals("name", user.getAccount().getName());
+//        assertEquals(AccountType.USER, user.getAccount().getAccountType());
 
     }
 
     @Test
-    public void testUserTwoParams() {
+    public void testNotUser() {
         try {
             user = new User("username", "password", "name", AccountType.USER);
         } catch (NullPointerException e) {
             System.err.println("NullPointerException: " + e.getMessage());
         }
-        assertEquals("username", user.getAccount().getUsername());
-        assertEquals("password", user.getAccount().getPassword());
+        assertEquals(false, user.equals("not a user"));
     }
 }

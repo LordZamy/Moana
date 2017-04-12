@@ -69,4 +69,13 @@
         android:onClick="goToHome"
         android:background="@android:color/transparent"/>
 
+    <Button
+        android:text="Reset Password"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resetButton"
+        android:onClick="onResetPassword"
+        android:background="@android:color/transparent"/>
+
 </LinearLayout>
