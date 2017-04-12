@@ -167,11 +167,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         //call the login method
-        FirebaseInterface.loginUser(listener, usernameField.getText().toString(), passwordField.getText().toString());
+        if(areValidCredentials(usernameField.getText().toString(), passwordField.getText().toString())) {
+            FirebaseInterface.loginUser(listener, usernameField.getText().toString(), passwordField.getText().toString());
+        } else {
+            Toast.makeText(LoginActivity.this, "Why would you click login, when you didn't fill everything out?", Toast.LENGTH_LONG).show();
+        }
     }
 
     public boolean areValidCredentials(String username, String password) {
-        return Model.getInstance().getUsers().containsValue(new User(username, password));
+        if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public LoginActivity() { }
