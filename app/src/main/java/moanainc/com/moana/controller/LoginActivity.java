@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         throw task.getException();
                     } catch(FirebaseAuthInvalidUserException invalidUser) {
-                        Toast.makeText(LoginActivity.this, "Login failed: Invalid User nigga", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Login failed: Invalid email", Toast.LENGTH_SHORT).show();
                     } catch(FirebaseAuthInvalidCredentialsException invalidCredentials) {
                         Toast.makeText(LoginActivity.this, "Login failed: Wrong Password", Toast.LENGTH_SHORT).show();
                     } catch(Exception e) {
