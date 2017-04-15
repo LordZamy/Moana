@@ -43,6 +43,12 @@ public class WelcomeActivity extends AppCompatActivity {
         } else {
             findViewById(R.id.button7).setVisibility(View.INVISIBLE);
         }
+        //_image = (ImageView) findViewById(R.id.imageView2);
+        //TranslateAnimation animation = new TranslateAnimation(100.0f, 700.0f, 0.0f, 0.0f);
+        //animation.setDuration(2000);
+        //animation.setRepeatCount(100);  // animation repeat count
+        //animation.setRepeatMode(2);
+        //_image.startAnimation(animation);
     }
 
     public void goToHome(View view) {

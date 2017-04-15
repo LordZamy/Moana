@@ -86,4 +86,5 @@
         android:layout_above="@+id/viewButton"
         android:layout_alignParentEnd="true"
         android:text="Historical Report" />
+    
 </RelativeLayout>

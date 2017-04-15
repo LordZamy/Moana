@@ -10,6 +10,7 @@ import android.widget.TextView;
 import moanainc.com.moana.R;
 import moanainc.com.moana.model.user.Account;
 import moanainc.com.moana.model.Model;
+import moanainc.com.moana.model.user.AccountType;
 
 /**
  * Created by josh baldwin on 2/21/2017.
@@ -20,6 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText _realNameField;
     private EditText _emailAddressField;
     private EditText _homeAddressField;
+    private EditText _accountTypeField;
 
 
     private final Account u = Model.getInstance().getCurrentUser().getAccount();
@@ -31,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         _realNameField = (EditText) findViewById(R.id.editText3);
         _emailAddressField = (EditText) findViewById(R.id.editText);
         _homeAddressField = (EditText) findViewById(R.id.editText2);
-        TextView _accountTypeField = (TextView) findViewById(R.id.editText4);
+        _accountTypeField = (EditText) findViewById(R.id.editText4);
 
         _realNameField.setText(u.getName());
         _homeAddressField.setText(u.getHomeAddress());
@@ -49,8 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
         u.setEmailAddress(_emailAddressField.getText().toString());
         u.setHomeAddress(_homeAddressField.getText().toString());
         u.setName(_realNameField.getText().toString());
+        u.setAccountType(AccountType.valueOf(_accountTypeField.getText().toString().toUpperCase()));
         goToApplication(null);
-        //Toast toast = Toast.makeText(getApplicationContext(), "Failed: Not implemented", Toast.LENGTH_LONG);
-        //toast.show();
     }
 }
