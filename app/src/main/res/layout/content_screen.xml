@@ -86,5 +86,14 @@
         android:layout_above="@+id/viewButton"
         android:layout_alignParentEnd="true"
         android:text="Historical Report" />
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:layout_below="@+id/imageView"
+        android:layout_above="@+id/mapButton"
+        android:layout_alignEnd="@+id/editButton">
+    </WebView>
     
 </RelativeLayout>

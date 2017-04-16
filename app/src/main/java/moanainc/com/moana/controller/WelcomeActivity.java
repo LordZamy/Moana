@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,6 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button _logoutButton;
     private Button _editProfile;
     private AccountType _userAccountType;
+    private WebView _webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class WelcomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        _webView = (WebView) findViewById(R.id.webView);
+        _webView.loadUrl("file:///android_asset/moana2.html");
         _logoutButton = (Button) findViewById(R.id.logoutButton);
         _editProfile = (Button) findViewById(R.id.editButton);
         _userAccountType = Model.getInstance().getCurrentUser().getAccount().getAccountType();
@@ -43,12 +48,11 @@ public class WelcomeActivity extends AppCompatActivity {
         } else {
             findViewById(R.id.button7).setVisibility(View.INVISIBLE);
         }
-        //_image = (ImageView) findViewById(R.id.imageView2);
-        //TranslateAnimation animation = new TranslateAnimation(100.0f, 700.0f, 0.0f, 0.0f);
-        //animation.setDuration(2000);
-        //animation.setRepeatCount(100);  // animation repeat count
-        //animation.setRepeatMode(2);
-        //_image.startAnimation(animation);
+        TranslateAnimation animation = new TranslateAnimation(100.0f, 500.0f, 0.0f, 0.0f);
+        animation.setDuration(2000);
+        animation.setRepeatCount(100);  // animation repeat count
+        animation.setRepeatMode(2);
+        _webView.startAnimation(animation);
     }
 
     public void goToHome(View view) {
