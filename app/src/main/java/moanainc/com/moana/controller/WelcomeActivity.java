@@ -50,7 +50,7 @@ public class WelcomeActivity extends AppCompatActivity {
         }
         TranslateAnimation animation = new TranslateAnimation(100.0f, 500.0f, 0.0f, 0.0f);
         animation.setDuration(2000);
-        animation.setRepeatCount(100);  // animation repeat count
+        animation.setRepeatCount(1000000);  // animation repeat count
         animation.setRepeatMode(2);
         _webView.startAnimation(animation);
     }
