@@ -139,6 +139,16 @@ public class WelcomeActivity extends AppCompatActivity {
                         break;
                     case "Source":
                         break;
+                    case "All":
+                        if(_userAccountType == AccountType.USER || _userAccountType == AccountType.ADMIN) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Users and Admins cannot view all reports.", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            goToViewReport = new Intent(getBaseContext(), ReportListActivity.class);
+                            goToViewReport.putExtra("filter", position);
+                            getBaseContext().startActivity(goToViewReport);
+                        }
+                        break;
                 }
                 popup.dismiss();
             }

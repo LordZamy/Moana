@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import moanainc.com.moana.R;
@@ -54,6 +56,14 @@ public class ReportListActivity extends AppCompatActivity {
                 list = FirebaseInterface.getAvailabilityReports();
                 break;
         }
+
+        Collections.sort(list, new Comparator<Report>() {
+            @Override
+            public int compare(Report r1, Report r2)
+            {
+                return  r1.getDate().compareTo(r2.getDate());
+            }
+        });
 
         final ReportAdapter adapter = new ReportAdapter(this, list);
         listview.setAdapter(adapter);
