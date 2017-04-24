@@ -34,8 +34,8 @@ import java.util.Date;
 
 import moanainc.com.moana.R;
 import moanainc.com.moana.model.Model;
-import moanainc.com.moana.model.report.PurityCondition;
 import moanainc.com.moana.model.ReportManager;
+import moanainc.com.moana.model.report.PurityCondition;
 import moanainc.com.moana.model.user.Worker;
 
 
@@ -43,7 +43,7 @@ import moanainc.com.moana.model.user.Worker;
  * Created by USER on 3/15/2017.
  */
 
-public class PurityActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class HistoryActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 
     private EditText _purityReportName;
@@ -58,7 +58,7 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_purityreport);
+        setContentView(R.layout.activity_historyreport);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
@@ -120,8 +120,14 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
             String conditionInput = _conditionSpinner.getSelectedItem().toString().toUpperCase();
 
             Date date = new Date();
+            DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
 
-            ((Worker) Model.getInstance().getCurrentUser()).createPurityReport(nameInput, date, currentLocation.latitude, currentLocation.longitude,
+            if (datePicker.getDayOfMonth() != 0) {
+                Calendar cal = Calendar.getInstance();
+                cal.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+                date = cal.getTime();
+            }
+            ((Worker) Model.getInstance().getCurrentUser()).createHistoryReport(nameInput, date, currentLocation.latitude, currentLocation.longitude,
                     PurityCondition.valueOf(conditionInput), virusInput, contaminationInput);
 
 
@@ -129,6 +135,32 @@ public class PurityActivity extends AppCompatActivity implements OnMapReadyCallb
             Toast toast = Toast.makeText(getApplicationContext(), "Report Created", Toast.LENGTH_LONG);
             toast.show();
         }
+    }
+
+    public void onShowCalendar(View view) {
+        if(findViewById(R.id.datePicker).isShown()){
+            findViewById(R.id.datePicker).setVisibility(View.INVISIBLE);
+            ((Button) findViewById(R.id.button8)).setText("Date");
+            findViewById(R.id.editText6).setVisibility(View.VISIBLE);
+            findViewById(R.id.editText7).setVisibility(View.VISIBLE);
+            findViewById(R.id.editText8).setVisibility(View.VISIBLE);
+            findViewById(R.id.map1).setVisibility(View.VISIBLE);
+            findViewById(R.id.submitButton).setVisibility(View.VISIBLE);
+            findViewById(R.id.button9).setVisibility(View.VISIBLE);
+            findViewById(R.id.spinner).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.datePicker).setVisibility(View.VISIBLE);
+            ((Button) findViewById(R.id.button8)).setText("Done");
+            findViewById(R.id.editText6).setVisibility(View.INVISIBLE);
+            findViewById(R.id.editText7).setVisibility(View.INVISIBLE);
+            findViewById(R.id.editText8).setVisibility(View.INVISIBLE);
+            findViewById(R.id.map1).setVisibility(View.INVISIBLE);
+            findViewById(R.id.submitButton).setVisibility(View.INVISIBLE);
+            findViewById(R.id.button9).setVisibility(View.INVISIBLE);
+            findViewById(R.id.spinner).setVisibility(View.INVISIBLE);
+
+        }
+
     }
 
     public void onCancelPressed(View view) {

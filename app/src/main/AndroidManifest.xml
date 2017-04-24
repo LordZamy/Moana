@@ -40,6 +40,14 @@
             android:label="Create an Availability Report"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
+            android:name=".controller.PurityActivity"
+            android:label="Create a Purity Report"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".controller.HistoryActivity"
+            android:label="Create a History Report"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".controller.ReportListActivity"
             android:label="List of Reports"
             android:theme="@style/AppTheme.NoActionBar"/>

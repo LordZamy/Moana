@@ -96,6 +96,13 @@ public class WelcomeActivity extends AppCompatActivity {
                         }
                         break;
                     case "History":
+                        if(_userAccountType == AccountType.USER || _userAccountType == AccountType.ADMIN) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Users and Admins cannot create history reports.", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            goToCreateReport = new Intent(getBaseContext(), HistoryActivity.class);
+                            getBaseContext().startActivity(goToCreateReport);
+                        }
                         break;
                     case "Source":
                         break;
@@ -136,6 +143,14 @@ public class WelcomeActivity extends AppCompatActivity {
                         }
                         break;
                     case "History":
+                        if(_userAccountType == AccountType.USER || _userAccountType == AccountType.ADMIN) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Users and Admins cannot view history reports.", Toast.LENGTH_LONG);
+                            toast.show();
+                        } else {
+                            goToViewReport = new Intent(getBaseContext(), ReportListActivity.class);
+                            goToViewReport.putExtra("filter", position);
+                            getBaseContext().startActivity(goToViewReport);
+                        }
                         break;
                     case "Source":
                         break;

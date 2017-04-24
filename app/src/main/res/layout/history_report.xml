@@ -10,8 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="moanainc.com.moana.controller.PurityActivity"
-    tools:showIn="@layout/activity_purityreport">
+    tools:context="moanainc.com.moana.controller.HistoryActivity"
+    tools:showIn="@layout/activity_historyreport">
 
     <EditText
         android:id="@+id/editText6"
@@ -89,6 +89,16 @@
         android:layout_alignParentStart="true"
         android:visibility="invisible"
         android:layout_above="@+id/submitButton" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/datePicker"
+        android:layout_alignParentTop="true"
+        android:text="date"
+        android:onClick="onShowCalendar"
+        android:visibility="visible"/>
 
 
 </RelativeLayout>

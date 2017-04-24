@@ -20,4 +20,8 @@ public class Worker extends User {
     public void createPurityReport(String reportName, Date dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
         FirebaseInterface.addPurityReport(new PurityReport(reportName, dateCreated, this, lat, lng, condition, virusPPM, contaminationPPM));
     }
+
+    public void createHistoryReport(String reportName, Date dateCreated, double lat, double lng, PurityCondition condition, int virusPPM, int contaminationPPM) {
+        FirebaseInterface.addHistoricalReport(new PurityReport(reportName, dateCreated, this, lat, lng, condition, virusPPM, contaminationPPM));
+    }
 }

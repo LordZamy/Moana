@@ -9,6 +9,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -35,6 +36,8 @@ public class FirebaseInterface {
     private static ArrayList<Report> historyReports;
     private static ArrayList<Report> sourceReports;
 
+    private static boolean reportError = false;
+
     private static final ValueEventListener availabilityReportListener = new ValueEventListener() {
 
         @Override
@@ -44,7 +47,11 @@ public class FirebaseInterface {
 
             availibilityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                availibilityReports.add(child.getValue(AvailReport.class));
+                try {
+                    availibilityReports.add(child.getValue(AvailReport.class));
+                } catch (DatabaseException err) {
+                    reportError = true;
+                }
             }
         }
 
@@ -63,7 +70,12 @@ public class FirebaseInterface {
 
             purityReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                purityReports.add(child.getValue(PurityReport.class));
+                try {
+                    purityReports.add(child.getValue(PurityReport.class));
+                } catch (DatabaseException err) {
+                    reportError = true;
+                }
+
             }
         }
 
@@ -84,7 +96,11 @@ public class FirebaseInterface {
 
             historyReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                historyReports.add(child.getValue(HistoryReport.class));
+                try {
+                    historyReports.add(child.getValue(HistoryReport.class));
+                } catch (DatabaseException err) {
+                    reportError = true;
+                }
             }
         }
 
@@ -103,7 +119,11 @@ public class FirebaseInterface {
 
             sourceReports.clear();
             for(DataSnapshot child : dataSnapshot.getChildren()) {
-                sourceReports.add(child.getValue(SourceReport.class));
+                try {
+                    sourceReports.add(child.getValue(SourceReport.class));
+                } catch (DatabaseException err) {
+                    reportError = true;
+                }
             }
         }
 
@@ -140,6 +160,8 @@ public class FirebaseInterface {
         purityReports = new ArrayList<>();
         historyReports = new ArrayList<>();
         sourceReports = new ArrayList<>();
+
+        reportError = false;
 
         //Log.d("LOGIN", FirebaseAuth.getInstance().getCurrentUser().getEmail());
         //Define all of the report listeners
@@ -214,4 +236,7 @@ public class FirebaseInterface {
         final Task task = mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(listener);
     }
 
+    public static boolean getReportError() {
+        return reportError;
+    }
 }

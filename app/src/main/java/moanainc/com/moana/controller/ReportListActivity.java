@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,10 +45,10 @@ public class ReportListActivity extends AppCompatActivity {
                 list = FirebaseInterface.getPurityReports();
                 break;
             case 2:
-                list = FirebaseInterface.getSourceReports();
+                list = FirebaseInterface.getHistoryReports();
                 break;
             case 3:
-                list = FirebaseInterface.getHistoryReports();
+                list = FirebaseInterface.getSourceReports();
                 break;
             case 4:
                 list = FirebaseInterface.getAllReports();
@@ -67,6 +68,10 @@ public class ReportListActivity extends AppCompatActivity {
 
         final ReportAdapter adapter = new ReportAdapter(this, list);
         listview.setAdapter(adapter);
+
+        if (FirebaseInterface.getReportError()) {
+            Toast.makeText(getApplicationContext(), "Some reports could not be processed. Please contact an Admin", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void goToWelcome() {
