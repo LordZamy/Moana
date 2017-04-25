@@ -48,6 +48,12 @@ public class WelcomeActivity extends AppCompatActivity {
         } else {
             findViewById(R.id.button7).setVisibility(View.INVISIBLE);
         }
+
+        if(_userAccountType == AccountType.ADMIN){
+            findViewById(R.id.adminButton).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.adminButton).setVisibility(View.INVISIBLE);
+        }
         TranslateAnimation animation = new TranslateAnimation(100.0f, 500.0f, 0.0f, 0.0f);
         animation.setDuration(2000);
         animation.setRepeatCount(1000000);  // animation repeat count
@@ -184,6 +190,11 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onViewMap(View view) {
         Intent goToViewMap = new Intent(getBaseContext(), MapsActivity.class);
         getBaseContext().startActivity(goToViewMap);
+    }
+
+    public void onAdminButton(View view) {
+        Intent goToViewAdmin = new Intent(getBaseContext(), AdminActivity.class);
+        getBaseContext().startActivity(goToViewAdmin);
     }
 
     @Override

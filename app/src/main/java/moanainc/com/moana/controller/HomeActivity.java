@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+
 import moanainc.com.moana.R;
 
 /*
@@ -33,11 +35,18 @@ public class HomeActivity extends AppCompatActivity {
         mLoginButton.setTypeface(disney_font);
         mRegisterButton.setTypeface(disney_font);
         mTitleView.setTypeface(disney_font);
+        FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
     public void gotoLogin(View view) {
-        Intent gotoLogin = new Intent(getBaseContext(), LoginActivity.class);
-        getBaseContext().startActivity(gotoLogin);
+        if(FacebookSdk.isInitialized()) {
+            Intent gotoLogin = new Intent(getBaseContext(), LoginActivity.class);
+            getBaseContext().startActivity(gotoLogin);
+        } else {
+            Toast.makeText(getApplicationContext(), "Error: could not connect", Toast.LENGTH_LONG);
+        }
+
+
     }
 
     public void gotoRegister(View view) {

@@ -5,9 +5,9 @@ package moanainc.com.moana.model.user;
  * << information holder >>
  */
 
-public class Admin extends Manager {
+public class Admin extends User {
 
     public Admin(String username, String name) {
-        super(username, name);
+        super(username, "", name, AccountType.ADMIN);
     }
 }

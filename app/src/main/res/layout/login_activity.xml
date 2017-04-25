@@ -19,7 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="70dp"
         android:id="@+id/emailPrompt" />
 
     <EditText
@@ -28,17 +28,17 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:text=""
-        android:hint="Enter your email."
+        android:hint=""
         android:ems="10"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
         android:id="@+id/editText" />
 
     <TextView
-        android:text="Please enter a password:"
+        android:text="Please enter your password:"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="55dp"
         android:id="@+id/passwordPrompt" />
 
     <EditText
@@ -47,8 +47,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_marginTop="24dp"
-        android:hint="Enter your password."
+        android:layout_marginTop="16dp"
+        android:hint=""
         android:id="@+id/editText2" />
 
     <Button
@@ -76,6 +76,24 @@
         android:layout_height="wrap_content"
         android:id="@+id/resetButton"
         android:onClick="onResetPassword"
+        android:background="@android:color/transparent"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/button_facebook_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp" />
+
+    <Button
+        android:text="Continue as null"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/continueButton"
+        android:onClick="onContinue"
+        android:layout_marginTop="5dp"
         android:background="@android:color/transparent"/>
 
 </LinearLayout>

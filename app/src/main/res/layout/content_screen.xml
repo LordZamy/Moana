@@ -79,6 +79,16 @@
         android:layout_alignParentStart="true" />
 
     <Button
+        android:text="Admin Panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/adminButton"
+        android:onClick="onAdminButton"
+        android:layout_alignBaseline="@+id/button7"
+        android:layout_alignBottom="@+id/button7"
+        android:layout_alignEnd="@+id/textView2" />
+
+    <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
