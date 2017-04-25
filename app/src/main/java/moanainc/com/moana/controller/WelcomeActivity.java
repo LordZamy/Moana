@@ -38,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         _webView = (WebView) findViewById(R.id.webView);
-        _webView.loadUrl("file:///android_asset/moana.html");
+        _webView.loadUrl("file:///android_asset/water.html");
         _logoutButton = (Button) findViewById(R.id.logoutButton);
         _editProfile = (Button) findViewById(R.id.editButton);
         _userAccountType = Model.getInstance().getCurrentUser().getAccount().getAccountType();
