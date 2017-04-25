@@ -15,6 +15,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 import moanainc.com.moana.R;
@@ -23,6 +26,28 @@ import moanainc.com.moana.model.Report;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private GoogleMap mMap;
+    private ChildEventListener listener = new ChildEventListener() {
+        @Override
+        public void onChildAdded(DataSnapshot dataSnapshot, String s) {}
+
+        @Override
+        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(MapsActivity.this);
+            Toast.makeText(getApplicationContext(), "Map updated!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+        @Override
+        public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {}
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +57,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        FirebaseInterface.addListenerOnReports(listener);
 
         if (FirebaseInterface.getReportError()) {
             Toast.makeText(getApplicationContext(), "Some reports could not be processed. Please contact an Admin", Toast.LENGTH_LONG).show();
@@ -50,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        //GoogleMap mMap = googleMap;
+        mMap = googleMap;
 
         ArrayList<Report> availReports = FirebaseInterface.getAvailabilityReports();
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
@@ -98,6 +125,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void onBackButton(View view) {
+        FirebaseInterface.removeListenerOnReports(listener);
+        Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
+        getBaseContext().startActivity(goToWelcome);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FirebaseInterface.removeListenerOnReports(listener);
         Intent goToWelcome = new Intent(getBaseContext(), WelcomeActivity.class);
         getBaseContext().startActivity(goToWelcome);
     }

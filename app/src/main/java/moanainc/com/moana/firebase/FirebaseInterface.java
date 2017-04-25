@@ -11,6 +11,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -263,6 +264,14 @@ public class FirebaseInterface {
 
     public static void registerUser(OnCompleteListener listener, String username, String password) {
         final Task task = mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(listener);
+    }
+
+    public static void addListenerOnReports(ChildEventListener listener) {
+        mDatabaseReference.child("reports").addChildEventListener(listener);
+    }
+
+    public static void removeListenerOnReports(ChildEventListener listener) {
+        mDatabaseReference.child("reports").removeEventListener(listener);
     }
 
     public static boolean getReportError() {
